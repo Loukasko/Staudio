@@ -4,12 +4,12 @@ public class Equipment {
     private int musInsId;
     private String name;
     private enum type{violi,klarino,kithara,baglamas,drums,fysarmonika};
-    private ArrayList<String> availiableDates;
+    private ArrayList<String> availiableMusInsDates;
 
-    public Equipment(int musInsId, String name, ArrayList<String> availiableDates) {
+    public Equipment(int musInsId, String name, ArrayList<String> availiableMusInsDates) {
         this.musInsId = musInsId;
         this.name = name;
-        this.availiableDates = availiableDates;
+        this.availiableMusInsDates = availiableMusInsDates;
     }
 
     public int getMusInsId() {
@@ -28,11 +28,18 @@ public class Equipment {
         this.name = name;
     }
 
-    public ArrayList<String> getAvailiableDates() {
-        return availiableDates;
+    public ArrayList<String> getAvailiableMusInsDates() {
+        return availiableMusInsDates;
     }
 
-    public void setAvailiableDates(ArrayList<String> availiableDates) {
-        this.availiableDates = availiableDates;
+    public void setAvailiableMusInsDates(ArrayList<String> availiableMusInsDates) {
+        this.availiableMusInsDates = availiableMusInsDates;
+    }
+
+    public boolean checkMusInsAvailiability(String checkDate){
+        for(String date:this.getAvailiableMusInsDates()){
+            if(date.equals(checkDate))return true;
+        }
+        return false;
     }
 }

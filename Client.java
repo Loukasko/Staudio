@@ -9,4 +9,18 @@ public class Client extends User{
         super(name, lastName, phone, email, password);
         this.clientId = clientId;
     }
+
+    public ArrayList<Reservation> getHistory() {
+        return history;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+
 }

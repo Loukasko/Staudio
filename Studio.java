@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Objects;
 
 public class Studio {
     private int studioId;
@@ -12,6 +14,16 @@ public class Studio {
     private ArrayList<Owner> partnerOwners;
     private ArrayList<Offer> offers;
     private ArrayList<Equipment> equips;
+    private ArrayList<String> availiableDates;
+    private ArrayList<Room> rooms;
+
+    public ArrayList<Room> getRooms() {
+        return rooms;
+    }
+
+    public ArrayList<String> getAvailiableDates() {
+        return availiableDates;
+    }
 
     public ArrayList getOffers() {
         return offers;
@@ -76,7 +88,23 @@ public class Studio {
     public void setLng(double lng) {
         this.lng = lng;
     }
-//dates
+
+    public boolean checkDateAvailiability(String checkDate){
+//        getAvailiableDates().forEach((date)->{
+//            if(date.equals(checkDate));
+//        });
+
+        for(String date:this.getAvailiableDates()){
+            if(date.equals(checkDate))return true;
+        }
+        return false;
+    }
+
+//    public Studio getStudio(int studioId){
+//        Iterator i = this.getStudios().iterator();
+//
+//    }
+
 
 
 }
