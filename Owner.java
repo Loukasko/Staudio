@@ -20,6 +20,18 @@ public class Owner extends User{
                     Offer offer = new Offer(resNum,free,type,state);
                 }
             }
+    }
 
+    public void addOffer(int studioId,int offerId,boolean state){
+        for(Studio i:this.getPartnerStudios()){
+            if(i.getStudioId()==studioId){
+                for(int j=0;j<i.getOffers().size();j++){
+                    if (i.getOffers().get(j).getOfferId()==offerId) {
+                        i.getOffers().get(j).setState(state);
+                        return;
+                    }
+                }
+            }
+        }
     }
 }
