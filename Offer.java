@@ -4,21 +4,23 @@ public class Offer {
     private int offerId;
     private enum type{recording,rehearsal};
     private int numOfReservations;
-    private float cost;
+    private int free;
+    private boolean state;
+
 
     private ArrayList<Reservation> listOfReservations;
 
 
-    public Offer(int offerId, int numOfReservations, float cost, ArrayList<Reservation> listOfReservations) {
-        this.offerId = offerId;
+    public Offer( int numOfReservations,int free,String type, boolean state) {
+        //this.offerId = offerId;
         this.numOfReservations = numOfReservations;
-        this.cost = cost;
-        this.listOfReservations = listOfReservations;
+        this.free = free;
+        this.state = state;
     }
 
-    public ArrayList<Reservation> getListOfReservations() {
-        return listOfReservations;
-    }
+//    public ArrayList<Reservation> getListOfReservations() {
+//        return listOfReservations;
+//    }
 
     public int getOfferId() {
         return offerId;
@@ -36,11 +38,19 @@ public class Offer {
         this.numOfReservations = numOfReservations;
     }
 
-    public float getCost() {
-        return cost;
+    public float getFree() {
+        return free;
     }
 
-    public void setCost(float cost) {
-        this.cost = cost;
+    public void setFree(float cost) {
+        this.free = free;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 }
