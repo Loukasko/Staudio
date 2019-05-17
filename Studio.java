@@ -16,6 +16,11 @@ public class Studio {
     private ArrayList<Equipment> equips;
     private ArrayList<String> availiableDates;
     private ArrayList<Room> rooms;
+    private ArrayList<Reservation> reservations;
+
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
 
     public Studio(int studioId, String address, String phone, double lat, double lng,
                   int overallRating, ArrayList<Producer> partnerProducers,
