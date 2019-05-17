@@ -17,6 +17,24 @@ public class Studio {
     private ArrayList<String> availiableDates;
     private ArrayList<Room> rooms;
 
+    public Studio(int studioId, String address, String phone, double lat, double lng,
+                  int overallRating, ArrayList<Producer> partnerProducers,
+                  ArrayList<Owner> partnerOwners, ArrayList<Offer> offers, ArrayList<Equipment> equips,
+                  ArrayList<String> availiableDates, ArrayList<Room> rooms) {
+        this.studioId = studioId;
+        this.address = address;
+        this.phone = phone;
+        this.lat = lat;
+        this.lng = lng;
+        this.overallRating = overallRating;
+        this.partnerProducers = partnerProducers;
+        this.partnerOwners = partnerOwners;
+        this.offers = offers;
+        this.equips = equips;
+        this.availiableDates = availiableDates;
+        this.rooms = rooms;
+    }
+
     public ArrayList<Room> getRooms() {
         return rooms;
     }
