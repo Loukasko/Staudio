@@ -21,9 +21,14 @@ public class Owner extends User{
     public void manageResevation(Studio studioId,User userId, Reservation reservationId,Room roomId, boolean pending, boolean accept){
         for (Studio i:this.getPartnerStudios()){
             if(i.getStudioId()==studioId){
-                for (Reservation j:this.getReservationId()){
+                for (Reservation j:i.getReservations()){
                     if(j.getReservationId() == reservationId){
                         if(j.isConfirmed() == pending && accept==true){
+                            //if(accept==true )
+                                // j.setConfirmed(true)
+                            //else diagrafo th krathsh
+                            //i.getReservations().remove(reservationId) remove ekei pou einai to rese toso
+
                             Reservation reservation = new Reservation(Studio studioId,User userId, Reservation reservationId,Room roomId, boolean pending);
                         }else if()
                     }
