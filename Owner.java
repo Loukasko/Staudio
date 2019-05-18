@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Owner extends User{
+public class Owner extends User {
 
     private int ownerId;
     private ArrayList<Studio> partnerStudios;
@@ -18,12 +18,14 @@ public class Owner extends User{
     public ArrayList<Reservation> getReservationId() {
         return reservationId;
     }
-    public void confirmResevation(Studio studio,User user, Reservation reservation,Room room, boolean pending, boolean accept){
-        for (Studio i:this.getPartnerStudios()){
-            if(i.getStudioId()==studio){
-                for (Reservation j:i.getReservations()){
-                    if(j.getReservationId() == reservation){
-                        if(j.isConfirmed() == pending) {
+
+
+    public void confirmResevation(Studio studio, User user, Reservation reservation, Room room, boolean pending, boolean accept) {
+        for (Studio i : this.getPartnerStudios()) {
+            if (i.getStudioId() == studio) {
+                for (Reservation j : i.getReservations()) {
+                    if (j.getReservationId() == reservation) {
+                        if (j.isConfirmed() == pending) {
                             if (accept == true) {
                                 j.setConfirmed(true);
                                 System.out.println("The reservation of the user" + user + " is confirmed");
@@ -40,13 +42,20 @@ public class Owner extends User{
         }
     }
 
-    public void manageReservationRoom(Studio studio, Reservation reservation,Room room, boolean acceptChanges){
-        for (Studio i:this.getPartnerStudios()) {
+    public void manageReservationRoom(Studio studio, Reservation reservation, Room room, boolean acceptChanges) {
+        for (Studio i : this.getPartnerStudios()) {
             if (i.getStudioId() == studio) {
                 for (Reservation j : i.getReservations()) {
                     if (j.getReservationId() == reservation) {
-                        if (j.getRoomId() == room) {
-                            j.setRoomId(room);
+                        if (i.getRooms().get(j).getRoomId()) ==room {
+                            if (acceptChanges == true) {
+                                i.getRooms().get(j).setRoomId(room);
+                                System.out.println("Changes for the studio" + studio + "has successfully saved to the Reservation" + reservation);
+                                return;
+                            } else {
+                                System.out.println("The changes have been dismissed");
+                                return;
+                            }
                         }
                     }
 
@@ -55,6 +64,27 @@ public class Owner extends User{
         }
     }
 
+    public void manageReservationEquipment(Studio studio, Reservation reservation,Equipment equip, boolean acceptChanges){
+        for (Studio i:this.getPartnerStudios()) {
+            if (i.getStudioId() == studio) {
+                for (Reservation j : i.getReservations()) {
+                    if (j.getReservationId() == reservation) {
+                        if (i.getEquips().get(j).getListOfEquipment()) == equip{
+                            if(acceptChanges == true) {
+                                i.getEquips()().get(j).setMusInsId(equip);
+                                System.out.println("Changes for the studio" + studio + "has successfully saved to the Reservation" + reservation );
+                                return;
+                            } else {
+                                System.out.println("The changes have been dismissed");
+                                return;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
 
     public void makeOwnOffer(String type, int resNum, int free , int studioId, boolean state) {
             for(Studio i:this.getPartnerStudios()){
@@ -64,12 +94,13 @@ public class Owner extends User{
             }
     }
 
-    public void addOffer(int studioId,int offerId,boolean state){
+    public void addOffer(int studio,int offer,boolean state){
         for(Studio i:this.getPartnerStudios()){
-            if(i.getStudioId()==studioId){
-                for(int j=0;j<i.getOffers().size();j++){
-                    if (i.getOffers().get(j).getOfferId()==offerId){
+            if(i.getStudioId()==studio){
+                for(Reservation j : i.getOffers()){
+                    if (i.getOffers().get(j).getOfferId()==offer){
                         i.getOffers().get(j).setState(state);
+                        System.out.println("A new Offer" + offer + "has been added");
                         return;
                     }
                 }
