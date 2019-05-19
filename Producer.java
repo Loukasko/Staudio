@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class Producer extends User {
     // Variables
@@ -105,4 +107,78 @@ public class Producer extends User {
 
         return str;
     }
+
+    public void printWork() {
+        String str = "";
+
+        for(Production p : this.productions) {
+            str += "\tProduction ID: " + p.getReservationId() + ", Production studio: " + p.getStudio().getStudioId() + "\n";
+        }
+
+        System.out.println(str);
+    }
+
+    public void editProducerInfo() {
+        Scanner keyboard = new Scanner(System.in);
+        char c;
+        String tempName = "";
+        String tempLastName = "";
+        String tempPhone = "";
+        String tempEmail = "";
+        String tempPassword = "";
+        String tempStatus = "";
+
+        /*System.out.print("Change name? [y/n]: ");
+        c = keyboard.next().charAt(0);
+        System.out.print("Name: ");
+        tempName = keyboard.next();
+
+        System.out.print("Change last name? [y/n]: ");
+        c = keyboard.next().charAt(0);
+        System.out.print("Last Name: ");
+        tempLastName = keyboard.next();*/
+
+        System.out.print("Change phone num? [y/n]: ");
+        c = keyboard.next().charAt(0);
+        if(c == 'y') {
+            System.out.print("Phone num: ");
+            tempPhone = keyboard.next();
+        }
+
+        System.out.print("Change email? [y/n]: ");
+        c = keyboard.next().charAt(0);
+        if(c == 'y') {
+            System.out.print("Email: ");
+            tempEmail = keyboard.next();
+        }
+
+        System.out.print("Change Password? [y/n]: ");
+        c = keyboard.next().charAt(0);
+        if(c == 'y') {
+            System.out.print("Password: ");
+            tempEmail = keyboard.next();
+        }
+
+        System.out.print("Change status? [y/n]: ");
+        c = keyboard.next().charAt(0);
+        if(c == 'y') {
+            System.out.print("Status [true/false]: ");
+            tempStatus = keyboard.next();
+        }
+
+        System.out.print("Save? [y/n]: ");
+        c = keyboard.next().charAt(0);
+        if(c == 'y') {
+            this.setPhone(tempPhone);
+            this.setEmail(tempEmail);
+            this.setPassword(tempPassword);
+            this.setStatus(tempStatus.equals("true") ? true : false);
+        }
+
+        System.out.println(this.toString());
+
+
+        System.out.println("");
+    }
+
 }

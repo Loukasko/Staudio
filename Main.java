@@ -1,6 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Kalispera kai kali vradia!");
+        BasicUI.init();
+        BasicUI.startBasicUI();
     }
 }
