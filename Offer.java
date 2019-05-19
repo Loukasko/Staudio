@@ -7,15 +7,14 @@ public class Offer {
     private int free;
     private boolean state;
 
-
     private ArrayList<Reservation> listOfReservations;
-
 
     public Offer( int numOfReservations,int free,String type, boolean state) {
         //this.offerId = offerId;
         this.numOfReservations = numOfReservations;
         this.free = free;
         this.state = state;
+        this.listOfReservations=new ArrayList<>();
     }
 
 //    public ArrayList<Reservation> getListOfReservations() {
