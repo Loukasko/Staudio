@@ -16,6 +16,8 @@ public class Producer extends User {
         this.producerId = producerId;
         this.status = status;
         this.rating = rating;
+        this.partnerStudios = new ArrayList<Studio>();
+        this.productions = new ArrayList<Production>();
     }
 
     // Setters - Getters
@@ -94,6 +96,7 @@ public class Producer extends User {
         String str = "";
         str += "Producer ID: " + this.getProducerId() + "\n";
         String tempStr = super.toString().replaceAll("User", "Producer");
+        str += tempStr;
         str += "Producer status: " + this.isStatus() + "\n";
         str += "Producer rating: " + this.getRating() + "\n";
         str += "Producer partner studios:\n";
@@ -127,16 +130,6 @@ public class Producer extends User {
         String tempEmail = "";
         String tempPassword = "";
         String tempStatus = "";
-
-        /*System.out.print("Change name? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        System.out.print("Name: ");
-        tempName = keyboard.next();
-
-        System.out.print("Change last name? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        System.out.print("Last Name: ");
-        tempLastName = keyboard.next();*/
 
         System.out.print("Change phone num? [y/n]: ");
         c = keyboard.next().charAt(0);
@@ -175,7 +168,7 @@ public class Producer extends User {
             this.setStatus(tempStatus.equals("true") ? true : false);
         }
 
-        System.out.println(this.toString());
+        //System.out.println(this.toString());
 
 
         System.out.println("");

@@ -16,21 +16,28 @@ public class BasicUI {
 
         System.out.println("Welcome to St-audio!");
         System.out.println("Login as:");
-        System.out.println("\t1) Client\n\t2) Owner\n\t Producer");
-        System.out.println("Choose option: ");
-        opt = keyboard.nextInt();
+        System.out.println("\t1) Client\n\t2) Owner\n\t3) Producer\n\t0) Exit");
 
-        switch (opt) {
-            case 1:
-                createClientUI();
-                break;
-            case 2:
-                createOwnerUI();
-                break;
-            case 3:
-                createProducerUI();
-                break;
-        }
+        do {
+            System.out.println("Choose option: ");
+            opt = keyboard.nextInt();
+            switch (opt) {
+                case 1:
+                    createClientUI();
+                    break;
+                case 2:
+                    createOwnerUI();
+                    break;
+                case 3:
+                    createProducerUI();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("No such option.");
+                    break;
+            }
+        }while(opt < 0 || opt > 3);
     }
 
     public static void createClientUI() {
@@ -43,7 +50,9 @@ public class BasicUI {
 
     public static void createProducerUI() {
         ProducerUI.producer = prodList.get(0);
-        ProducerUI.showStartMenu();
+        int x = 10;
+        while(x != 0)
+            x = ProducerUI.showStartMenu();
     }
 
     static class ProducerUI {
@@ -56,47 +65,73 @@ public class BasicUI {
         public static Producer getProducer() { return producer; }
         public static void setProducer(Producer producer) { producer = producer; }
 
-        public static void showStartMenu() {
+        public static int showStartMenu() {
             Scanner keyboard = new Scanner(System.in);
             int opt = 0;
+            int x = 10;
 
             System.out.println("Producer options:");
             System.out.println("\t1) Show profile");
             System.out.println("\t0) Exit");
-            System.out.print("Choose option: ");
-            opt = keyboard.nextInt();
 
-            switch (opt) {
-                case 1:
-                    showProfile();
-                    break;
-                case 0:
-                    return;
-            }
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch (opt) {
+                    case 1:
+                        while(x != 0 && x != -1)
+                            x = showProfile();
+                        if(x == 0)
+                            opt = 0;
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("No such option.");
+                        break;
+                }
+            }while(opt < 0 || opt > 1);
+
+            return opt;
         }
 
-        public static void showProfile() {
+        public static int showProfile() {
             Scanner keyboard = new Scanner(System.in);
             int opt;
+            int x = 10;
 
             System.out.println("Producer profile options: ");
-            System.out.println("\t1) Show Producer Info\n\t2) Show Producer Work\n\t0) Exit");
-            System.out.print("Choose option: ");
-            opt = keyboard.nextInt();
+            System.out.println("\t1) Show Producer Info\n\t2) Show Producer Work\n\t0) Exit\n\t-1) Back");
 
-            switch(opt) {
-                case 1:
-                    showProducerInfo();
-                    break;
-                case 2:
-                    showProducerWork();
-                    break;
-                case 0:
-                    return;
-            }
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch (opt) {
+                    case 1:
+                        while(x != 0 && x != -1)
+                            x = showProducerInfo();
+                        if(x == 0)
+                            opt = 0;
+                        break;
+                    case 2:
+                        showProducerWork();
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                    default:
+                        System.out.println("No such option.");
+                        break;
+                }
+            }while(opt < -1 || opt > 2);
+
+            return opt;
         }
 
-        public static void showProducerInfo() {
+        public static int showProducerInfo() {
             Scanner keyboard = new Scanner(System.in);
             int opt;
 
@@ -104,17 +139,27 @@ public class BasicUI {
             System.out.println(producer.toString());
             System.out.println();
             System.out.println("Producer profile info option: ");
-            System.out.println("\t1) Edit Profile Info\n\t0) Exit");
-            System.out.print("Choose option: ");
-            opt = keyboard.nextInt();
+            System.out.println("\t1) Edit Profile Info\n\t0) Exit\n\t-1) Back");
 
-            switch(opt) {
-                case 1:
-                    producer.editProducerInfo();
-                    break;
-                case 0:
-                    return;
-            }
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch (opt) {
+                    case 1:
+                        producer.editProducerInfo();
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                    default:
+                        System.out.println("No such option.");
+                        break;
+                }
+            }while(opt < -1 || opt > 1);
+
+            return opt;
         }
 
         public static void showProducerWork() {
@@ -128,6 +173,10 @@ public class BasicUI {
         Owner owner2 = new Owner("Kwstas", "Kavourdirhs", "2310474829", "kavourdirhs@hotmail.gr", "kavourdirhs", 4019);
         Client client1 = new Client("Maria", "Pentagiotisa", "2102904738", "maria5i@gmail.com", "5i", 100);
         Client client2 = new Client("Ihsous", "Xristos", "2107777777", "jesuschrist@hotmail.com", "isousnika", 777);
+
+        Studio studio1 = new Studio(1, "kapouedw", "2222222222", 3.2, 3.3, 5, prodList, ownerList, null, null, null, null);
+
+        producer.setPartnerStudio(studio1);
 
         prodList.clear();
         prodList.add(producer);
