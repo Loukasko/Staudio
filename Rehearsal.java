@@ -1,27 +1,17 @@
 import org.w3c.dom.Text;
 
 public class Rehearsal extends Reservation {
-    private int roomId;
     private float costPerHour;
     private Text comments;
     private String startDate;
     private String endDate;
 
-    public Rehearsal(int reservationId, int userId, int studioId, int roomId, boolean confirmed, int roomId1, float costPerHour, Text comments, String startDate, String endDate) {
+    public Rehearsal(int reservationId, int userId, int studioId, int roomId, boolean confirmed, float costPerHour, Text comments, String startDate, String endDate) {
         super(reservationId, userId, studioId, roomId, confirmed);
-        this.roomId = roomId1;
         this.costPerHour = costPerHour;
         this.comments = comments;
         this.startDate = startDate;
         this.endDate = endDate;
-    }
-
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
     }
 
     public float getCostPerHour() {

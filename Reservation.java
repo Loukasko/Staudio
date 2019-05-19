@@ -67,6 +67,4 @@ public class Reservation {
         this.listOfEquipment.add(musIns);
     }
 
-
-
 }

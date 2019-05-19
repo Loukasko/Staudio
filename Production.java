@@ -4,6 +4,8 @@ public class Production extends  Reservation{
     private String endDay;
     private int producerId;
     private float costPerMeeting;
+    private boolean accepted;
+
 
     public Production(int reservationId, int userId, int studioId, int roomId, boolean confirmed, String startDay, String endDay, int producerId, float costPerMeeting) {
         super(reservationId, userId, studioId, roomId, confirmed);
@@ -11,6 +13,14 @@ public class Production extends  Reservation{
         this.endDay = endDay;
         this.producerId = producerId;
         this.costPerMeeting = costPerMeeting;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
 
     public String getStartDay() {

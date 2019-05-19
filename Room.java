@@ -46,7 +46,7 @@ public class Room {
         this.rating = rating;
     }
 
-    public boolean checkRoomAvailiability(int studioId, String checkDate, int RoomId) {
+    public boolean checkRoomAvailiability( String checkDate) {
         for (String date : this.getAvailiableRoomDates()) {
             if (date.equals(checkDate)) return true;
         }
