@@ -11,7 +11,6 @@ public class Room {
         rehearsal,
     }
 
-    ;
 
     private enum size {
         small,
@@ -19,7 +18,7 @@ public class Room {
         large
     }
 
-    ;
+
     private int rating;
     private ArrayList<String> availiableRoomDates;
     private ArrayList<Reservation> listOfReservations; //not sure
@@ -27,14 +26,8 @@ public class Room {
     public Room(int roomId) {
         this.roomId = roomId;
         this.rating = 0;
-    }
-
-    public ArrayList<String> getAvailiableRoomDates() {
-        return availiableRoomDates;
-    }
-
-    public ArrayList<Reservation> getListOfReservations() {
-        return listOfReservations;
+        this.availiableRoomDates = new ArrayList<>();
+        this.listOfReservations = new ArrayList<>();
     }
 
     public int getRoomId() {
@@ -53,10 +46,18 @@ public class Room {
         this.rating = rating;
     }
 
-    public boolean checkRoomAvailiability(int studioId,String checkDate,int RoomId){
-        for (String date:this.getAvailiableRoomDates()){
-            if(date.equals(checkDate))return true;
+    public boolean checkRoomAvailiability(int studioId, String checkDate, int RoomId) {
+        for (String date : this.getAvailiableRoomDates()) {
+            if (date.equals(checkDate)) return true;
         }
         return false;
+    }
+
+    public ArrayList<String> getAvailiableRoomDates() {
+        return availiableRoomDates;
+    }
+
+    public ArrayList<Reservation> getListOfReservations() {
+        return listOfReservations;
     }
 }

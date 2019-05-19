@@ -14,14 +14,8 @@ public class Producer extends User {
         this.producerId = producerId;
         this.status = status;
         this.rating = rating;
-    }
-
-    public ArrayList<Studio> getPartnerStudios() {
-        return partnerStudios;
-    }
-
-    public ArrayList<Production> getHistory() {
-        return history;
+        this.partnerStudios=new ArrayList<>();
+        this.history=new ArrayList<>();
     }
 
     public int getProducerId() {
@@ -46,5 +40,13 @@ public class Producer extends User {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public ArrayList<Studio> getPartnerStudios() {
+        return partnerStudios;
+    }
+
+    public ArrayList<Production> getHistory() {
+        return history;
     }
 }

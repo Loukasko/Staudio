@@ -18,26 +18,21 @@ public class Studio {
     private ArrayList<Room> rooms;
     private ArrayList<Reservation> reservations;
 
-    public ArrayList<Reservation> getReservations() {
-        return reservations;
-    }
-
     public Studio(int studioId, String address, String phone, double lat, double lng,
-                  int overallRating, ArrayList<Producer> partnerProducers,
-                  ArrayList<Owner> partnerOwners, ArrayList<Offer> offers, ArrayList<Equipment> equips,
-                  ArrayList<String> availiableDates, ArrayList<Room> rooms) {
+                  int overallRating) {
         this.studioId = studioId;
         this.address = address;
         this.phone = phone;
         this.lat = lat;
         this.lng = lng;
         this.overallRating = overallRating;
-        this.partnerProducers = partnerProducers;
-        this.partnerOwners = partnerOwners;
-        this.offers = offers;
-        this.equips = equips;
-        this.availiableDates = availiableDates;
-        this.rooms = rooms;
+        this.partnerProducers = new ArrayList<>();
+        this.partnerOwners = new ArrayList<>();
+        this.offers = new ArrayList<>();
+        this.equips = new ArrayList<>();
+        this.availiableDates = new ArrayList<>();
+        this.rooms = new ArrayList<>();
+        this.reservations=new ArrayList<>();
     }
 
     public ArrayList<Room> getRooms() {
@@ -112,22 +107,51 @@ public class Studio {
         this.lng = lng;
     }
 
-    public boolean checkDateAvailiability(String checkDate){
-//        getAvailiableDates().forEach((date)->{
-//            if(date.equals(checkDate));
-//        });
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
 
+    public boolean checkDateAvailiability(String checkDate){
         for(String date:this.getAvailiableDates()){
             if(date.equals(checkDate))return true;
         }
         return false;
     }
 
-//    public Studio getStudio(int studioId){
-//        Iterator i = this.getStudios().iterator();
-//
-//    }
+    public Reservation getReservationById(int reservationId){
+        for(Reservation i:this.reservations){
+            if(i.getStudioId()==reservationId){
+                return i;
+            }
+        }
+        return null;
+    }
 
+    public Room getRoomById(int roomId){
+        for(Room i:this.rooms){
+            if(i.getRoomId()==roomId){
+                return i;
+            }
+        }
+        return null;
+    }
 
+    public Equipment getEquipmentById(int equipmentId){
+        for(Equipment i:this.equips){
+            if(i.getMusInsId()==equipmentId){
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public Offer getOfferById(int offerId) {
+        for (Offer i : this.offers) {
+            if (i.getOfferId() == offerId) {
+                return i;
+            }
+        }
+        return null;
+    }
 
 }

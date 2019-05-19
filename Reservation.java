@@ -5,19 +5,25 @@ public class Reservation {
     private int userId;
     private int StudioId;
     private boolean confirmed;
+    private int roomId;
 
     private ArrayList<Equipment> listOfEquipment;
 
     public Reservation(int reservationId, int userId, int studioId, int roomId, boolean confirmed) {
         this.reservationId = reservationId;
         this.userId = userId;
-        StudioId = studioId;
+        this.StudioId = studioId;
         this.confirmed = confirmed;
-
+        this.listOfEquipment=new ArrayList<>();
+        this.roomId=roomId;
     }
 
-    public ArrayList<Equipment> getListOfEquipment() {
-        return listOfEquipment;
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public int getReservationId() {
@@ -44,7 +50,6 @@ public class Reservation {
         StudioId = studioId;
     }
 
-
     public boolean isConfirmed() {
         return confirmed;
     }
@@ -52,4 +57,15 @@ public class Reservation {
     public void setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
     }
+
+    public ArrayList<Equipment> getListOfEquipment() {
+        return listOfEquipment;
+    }
+
+    public void addEquipment(Studio studio,int equipmentId) {
+        Equipment musIns=studio.getEquipmentById(equipmentId);
+        this.listOfEquipment.add(musIns);
+    }
+
+
 }
