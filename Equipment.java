@@ -40,7 +40,6 @@ public class Equipment {
         }
         return false;
     }
-
     public ArrayList<String> getAvailiableMusInsDates() {
         return availiableMusInsDates;
     }
