@@ -1,47 +1,51 @@
-public class Production extends  Reservation{
+public class Production extends Reservation{
+    // Variables
     private enum type{miniAlbum,song,fullAlbum}
+    private type prodType;
     private String startDay;
     private String endDay;
-    private int producerId;
+    private Producer producer;
     private float costPerMeeting;
 
-    public Production(int reservationId, int userId, int studioId, int roomId, boolean confirmed, String startDay, String endDay, int producerId, float costPerMeeting) {
-        super(reservationId, userId, studioId, roomId, confirmed);
+    // Constructors
+    public Production(int reservationId, Client client, Studio studio, Room room, boolean confirmed, type prodType, String startDay, String endDay, Producer producer, float costPerMeeting) {
+        super(reservationId, client, studio, room, confirmed);
+        this.prodType = prodType;
         this.startDay = startDay;
         this.endDay = endDay;
-        this.producerId = producerId;
+        this.producer = producer;
         this.costPerMeeting = costPerMeeting;
     }
 
+    // Setters - Getters
     public String getStartDay() {
         return startDay;
     }
-
     public void setStartDay(String startDay) {
         this.startDay = startDay;
     }
-
     public String getEndDay() {
         return endDay;
     }
-
     public void setEndDay(String endDay) {
         this.endDay = endDay;
     }
+    public Producer getProducer() { return producer; }
+    public void setProducerId(Producer producer) { this.producer = producer; }
+    public float getCostPerMeeting() { return costPerMeeting; }
+    public void setCostPerMeeting(float costPerMeeting) { this.costPerMeeting = costPerMeeting; }
+    public void printProductionInfo() { System.out.println(this.toString()); }
 
-    public int getProducerId() {
-        return producerId;
-    }
+    @Override
+    public String toString() {
+        String str = "";
 
-    public void setProducerId(int producerId) {
-        this.producerId = producerId;
-    }
-
-    public float getCostPerMeeting() {
-        return costPerMeeting;
-    }
-
-    public void setCostPerMeeting(float costPerMeeting) {
-        this.costPerMeeting = costPerMeeting;
+        str += super.toString().replaceAll("Reservation", "Production");
+        str += "Production type: " + this.prodType + "\n";
+        str += "Production start day: " + this.startDay + "\n";
+        str += "Production end day: " + this.endDay + "\n";
+        str += "Production producer: " + this.producer.getProducerId() + "\n";
+        str += "Production cost per day: " + this.costPerMeeting + "\n";
+        return str;
     }
 }

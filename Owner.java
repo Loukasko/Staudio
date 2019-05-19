@@ -1,110 +1,126 @@
 import java.util.ArrayList;
 
-public class Owner extends User {
-
+public class Owner extends User{
+    // Variables
     private int ownerId;
     private ArrayList<Studio> partnerStudios;
-    private ArrayList<Reservation> reservationId;
+    private ArrayList<Reservation> reservations;
 
+    // Constructors
     public Owner(String name, String lastName, String phone, String email, String password, int ownerId) {
         super(name, lastName, phone, email, password);
         this.ownerId = ownerId;
     }
 
+    // Setters - Getters
+    public void setOwnerId(int ownerId) { this.ownerId = ownerId; }
+    public int getOwnerId() { return ownerId; }
     public ArrayList<Studio> getPartnerStudios() {
         return partnerStudios;
     }
-
-    public ArrayList<Reservation> getReservationId() {
-        return reservationId;
+    public Studio getPartnerStudio(int studioId) {
+        for(Studio s : this.partnerStudios) {
+            if(s.getStudioId() == studioId) {
+                return s;
+            }
+        }
+        return null;
     }
-
-
-    public void confirmResevation(Studio studio, User user, Reservation reservation, Room room, boolean pending, boolean accept) {
+    public boolean setPartnerStudio(Studio stud) {
+        if(getPartnerStudio(stud.getStudioId()) != null) {
+            return false;
+        }
+        return this.partnerStudios.add(stud);
+    }
+    public boolean deleteStudio(int studioId) {
+        Studio s = getPartnerStudio(studioId);
+        if(s == null)
+            return false;
+        else {
+            this.partnerStudios.remove(s);
+        }
+        return false;
+    }
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+    public Reservation getReservation(int reservationId) {
+        for(Reservation r : this.reservations) {
+            if(r.getReservationId() == reservationId) {
+                return r;
+            }
+        }
+        return null;
+    }
+    public boolean setReservation(Reservation res) {
+        if(getReservation(res.getReservationId()) != null) {
+            return false;
+        }
+        reservations.add(res);
+        return true;
+    }
+    public boolean deleteReservation(int reservationId) {
+        Reservation res = getReservation(reservationId);
+        if(res == null) {
+            return false;
+        }
+        else {
+            reservations.remove(res);
+        }
+        return true;
+    }
+    public void manageResevation(Studio studio,Client client, Reservation reservation,Room room, boolean pending, boolean accept) {
         for (Studio i : this.getPartnerStudios()) {
-            if (i.getStudioId() == studio) {
+            if (i.getStudioId() == studio.getStudioId()) {
                 for (Reservation j : i.getReservations()) {
-                    if (j.getReservationId() == reservation) {
-                        if (j.isConfirmed() == pending) {
-                            if (accept == true) {
+                    if (j.getReservationId() == reservation.getReservationId()) {
+                        if (j.isConfirmed() == pending && accept == true) {
+                            if(accept==true )
                                 j.setConfirmed(true);
-                                System.out.println("The reservation of the user" + user + " is confirmed");
-                            } else {
-                                i.getReservations().remove(reservation);
-                                System.out.println("The reservation of the user" + user + " is declined");
-                            }
-                            //ή μπορώ να χω 2 συναρτήσεις , που η μια να κάνει κονφιρμ πχ και η άλλη να κάνει αλλαγές ( ίδιο όνομα , διαφορετικά ορίσματα)(sId,us9d,res9d,pend) , mr(5orismata) diaforetikh
-                            //ή να καλεί την ίδια συνάρτηση και να βάλεις να έχει αν θες να πειράξεις μονο το pending και όχι πχ μουσικό όργανο
-                        }   // , τότε να έχει default τιμές τα ορίσματα πχ null , και τσεκάρεις να είναι null με if και αν ναι τότε δεν αλλάζεις πχ (int musinsid:default null)
+                            else //diagrafo th krathsh
+                                i.getReservations().remove(reservation); //remove ekei pou einai to rese toso
+
+                            Reservation res = new Reservation(reservation.getReservationId(), client, studio, room, pending);
+                            this.reservations.add(res);
+                        } //else if ()
                     }
                 }
             }
         }
     }
-
-    public void manageReservationRoom(Studio studio, Reservation reservation, Room room, boolean acceptChanges) {
-        for (Studio i : this.getPartnerStudios()) {
-            if (i.getStudioId() == studio) {
-                for (Reservation j : i.getReservations()) {
-                    if (j.getReservationId() == reservation) {
-                        if (i.getRooms().get(j).getRoomId()) ==room {
-                            if (acceptChanges == true) {
-                                i.getRooms().get(j).setRoomId(room);
-                                System.out.println("Changes for the studio" + studio + "has successfully saved to the Reservation" + reservation);
-                                return;
-                            } else {
-                                System.out.println("The changes have been dismissed");
-                                return;
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-    }
-
-    public void manageReservationEquipment(Studio studio, Reservation reservation,Equipment equip, boolean acceptChanges){
-        for (Studio i:this.getPartnerStudios()) {
-            if (i.getStudioId() == studio) {
-                for (Reservation j : i.getReservations()) {
-                    if (j.getReservationId() == reservation) {
-                        if (i.getEquips().get(j).getListOfEquipment()) == equip{
-                            if(acceptChanges == true) {
-                                i.getEquips()().get(j).setMusInsId(equip);
-                                System.out.println("Changes for the studio" + studio + "has successfully saved to the Reservation" + reservation );
-                                return;
-                            } else {
-                                System.out.println("The changes have been dismissed");
-                                return;
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-    }
-
-    public void makeOwnOffer(String type, int resNum, int free , int studioId, boolean state) {
+    public void makeOwnOffer(int offerId, Studio studio, int numOfReservs, int free , Offer.type recType, boolean state) {
             for(Studio i:this.getPartnerStudios()){
-                if(i.getStudioId()==studioId){
-                    Offer offer = new Offer(resNum,free,type,state);
+                if(i.getStudioId()==studio.getStudioId()){
+                    Offer offer = new Offer(offerId, studio, numOfReservs, free, recType, state);
+                    i.getOffers().add(offer);
+                    return;
                 }
             }
     }
-
-    public void addOffer(int studio,int offer,boolean state){
+    public void addOffer(int studioId,Offer offer,boolean state){
         for(Studio i:this.getPartnerStudios()){
-            if(i.getStudioId()==studio){
-                for(Reservation j : i.getOffers()){
-                    if (i.getOffers().get(j).getOfferId()==offer){
-                        i.getOffers().get(j).setState(state);
-                        System.out.println("A new Offer" + offer + "has been added");
-                        return;
-                    }
-                }
+            if(i.getStudioId()==studioId){
+                i.setOffer(offer);
             }
         }
     }
+
+    @Override
+    public String toString() {
+        String str="";
+        str += "Owner ID: " + this.ownerId + "\n";
+        String tempStr = super.toString().replaceAll("User", "Owner");
+        str += tempStr;
+        str += "Owner Partner Studios:\n";
+        for(Studio s : this.partnerStudios) {
+            str += "\tStudio ID: " + s.getStudioId() + ", Address: " + s.getAddress() + "\n";
+        }
+        str += "Owner Reservations:\n";
+        for(Reservation r : this.reservations) {
+            str += "\tReservation ID" + r.getReservationId() + "\n";
+        }
+
+        return str;
+    }
+
 }
