@@ -123,4 +123,14 @@ public class Owner extends User{
         return str;
     }
 
+    public String printOwnerStudios() {
+        String str = "";
+
+        for(Studio s : this.partnerStudios) {
+            str += "\tStudio ID: " + s.getStudioId() + ", Address: " + s.getAddress() + "\n";
+        }
+
+        return str;
+    }
+
 }

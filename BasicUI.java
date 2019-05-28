@@ -55,15 +55,79 @@ public class BasicUI {
             x = ProducerUI.showStartMenu();
     }
 
-    static class ProducerUI {
-        public static Producer producer;
+    public static class OwnerUI {
+        public static Owner owner;
 
-        public ProducerUI(Producer producer) {
-            this.producer = producer;
+        public static int showStartMenu() {
+            Scanner keyboard = new Scanner(System.in);
+            int opt = 0;
+            int x = 10;
+
+            System.out.println("Owner options: ");
+            System.out.println("\t1) My studios\n\t2) Personal info\n\t0) Exit");
+
+            do{
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch(opt) {
+                    case 1:
+                        while(x != 0 && x != -1)
+                        {
+                            x = showMyStudios();
+                        }
+                        if(x != 0)
+                            opt = 0;
+                        break;
+                    case 2:
+                        while(x != 0 && x != -1)
+                        {
+                            x = showPersonalInfo();
+                        }
+                        if(x != 0)
+                            opt = 0;
+                        break;
+                    case 0:
+                        break;
+                     default:
+                         break;
+                }
+
+            }while(opt < 0 || opt > 2);
+            return opt;
         }
 
-        public static Producer getProducer() { return producer; }
-        public static void setProducer(Producer producer) { producer = producer; }
+        public static int showMyStudios() {
+            Scanner keyboard = new Scanner(System.in);
+            int opt;
+            int x = 10;
+
+            System.out.println("My studios: ");
+            owner.printOwnerStudios();
+
+            /*do {
+                System.out.println("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch(opt)
+                {
+                    case 1:
+
+                }
+            }while(opt < 0 || opt > 2);*/
+
+            return 1;
+        }
+
+        public static int showPersonalInfo() {
+
+            return 0;
+        }
+
+    }
+
+    static class ProducerUI {
+        public static Producer producer;
 
         public static int showStartMenu() {
             Scanner keyboard = new Scanner(System.in);
