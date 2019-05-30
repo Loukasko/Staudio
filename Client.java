@@ -9,6 +9,7 @@ public class Client extends User{
     public Client(String name, String lastName, String phone, String email, String password, int clientId) {
         super(name, lastName, phone, email, password);
         this.clientId = clientId;
+        this.history=new ArrayList<>();
     }
 
     // Setters - Getters
@@ -54,4 +55,33 @@ public class Client extends User{
 
         return str;
     }
+
+//    public void rate(Studio studio, int reservationId, int soundRating, int environmentRating, int staffRating) {//analoga an epelekse na vathmologisei kai sound kai environment kai staff , prosarmozetai o paronomasths tou mesou orou tou rating
+//        int div=3;
+//        if (soundRating==0){
+//            div-=1;
+//        }
+//        if (environmentRating==0){
+//            div-=1;
+//        }
+//        if (staffRating==0){
+//            div-=1;
+//        }
+//
+//        if (checkRating(soundRating) && checkRating(environmentRating) && checkRating(staffRating)&&(div!=0)) {
+//            Reservation reservation = this.getReservationById(reservationId);
+//            if (reservation != null) {
+//                int mo = soundRating + environmentRating + staffRating;
+//                mo = mo / div;
+//                studio.setOverallRating(mo);
+//            }
+//        }
+//    }
+//    private boolean checkRating(int rating) {
+//        if ((rating <= 5) && (rating >= 1)) {
+//            return true;
+//        }
+//        return false;
+//    }
+
 }

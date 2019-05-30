@@ -112,6 +112,30 @@ public class SampleInit {
 //        studio3.setRoom(room11);
 //        studio3.setRoom(room12);
 
+        Reservation reservation1= new Reservation(1,client1,studio1,room1,true);
+        Reservation reservation2= new Reservation(1,client1,studio1,room2,true);
+        Reservation reservation3= new Reservation(1,client1,studio2,room5,true);
+
+        Reservation reservation4= new Reservation(1,client2,studio1,room3,true);
+        Reservation reservation5= new Reservation(1,client2,studio2,room4,true);
+        Reservation reservation6= new Reservation(1,client2,studio2,room6,true);
+
+        studio1.getReservations().add(reservation1);
+        studio1.getReservations().add(reservation2);
+        studio1.getReservations().add(reservation3);
+
+        studio2.getReservations().add(reservation4);
+        studio2.getReservations().add(reservation5);
+        studio2.getReservations().add(reservation6);
+
+        client1.getHistory().add(reservation1);
+        client1.getHistory().add(reservation2);
+        client1.getHistory().add(reservation3);
+
+        client2.getHistory().add(reservation4);
+        client2.getHistory().add(reservation5);
+        client2.getHistory().add(reservation6);
+
         producer1.setPartnerStudio(studio1);
         producer2.setPartnerStudio(studio2);
     }

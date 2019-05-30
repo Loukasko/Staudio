@@ -1,13 +1,14 @@
 import java.util.Scanner;
 
 public class ClientUI {
-    public ClientUI() {
+    public ClientUI(Client client) {
         int option;
         while (true) {
             System.out.println("Client options: ");
             System.out.println("1) Rehearsal");
             System.out.println("2) Recording");
             System.out.println("3) Production");
+            System.out.println("4) Rate");
             System.out.println("0) Exit");
             Scanner sc = new Scanner(System.in);
             option = sc.nextInt();
@@ -61,6 +62,9 @@ public class ClientUI {
                     break;
                 case 3:
                     break;
+                case 4:
+                    System.out.println(client.getName());
+
                 case 0:
                     System.out.println("Bye");
                     System.exit(0);

@@ -16,7 +16,7 @@ public class BasicUI {
             opt = keyboard.nextInt();
             switch (opt) {
                 case 1:
-                    new ClientUI();
+                    new ClientUI(SampleInit.getClientList().get(1));
                     break;
                 case 2:
                     createOwnerUI();
