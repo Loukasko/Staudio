@@ -3,17 +3,10 @@ import java.util.Scanner;
 
 public class BasicUI {
 
-    static ArrayList<Producer> prodList = new ArrayList<Producer>();
-    static ArrayList<Client> clientList = new ArrayList<Client>();
-    static ArrayList<Owner> ownerList = new ArrayList<Owner>();
-
-    public static void startBasicUI() {
-
-        init();
-
+    //public BasicUI();
+    public BasicUI() {
         Scanner keyboard = new Scanner(System.in);
         int opt = 0;
-
         System.out.println("Welcome to St-audio!");
         System.out.println("Login as:");
         System.out.println("\t1) Client\n\t2) Owner\n\t3) Producer\n\t0) Exit");
@@ -23,7 +16,7 @@ public class BasicUI {
             opt = keyboard.nextInt();
             switch (opt) {
                 case 1:
-                    createClientUI();
+                    new ClientUI();
                     break;
                 case 2:
                     createOwnerUI();
@@ -37,11 +30,7 @@ public class BasicUI {
                     System.out.println("No such option.");
                     break;
             }
-        }while(opt < 0 || opt > 3);
-    }
-
-    public static void createClientUI() {
-        System.out.println("Client options: ");
+        } while (opt < 0 || opt > 3);
     }
 
     public static void createOwnerUI() {
@@ -49,9 +38,9 @@ public class BasicUI {
     }
 
     public static void createProducerUI() {
-        ProducerUI.producer = prodList.get(0);
+        ProducerUI.producer= SampleInit.getProdList().get(0);
         int x = 10;
-        while(x != 0)
+        while (x != 0)
             x = ProducerUI.showStartMenu();
     }
 
@@ -66,34 +55,32 @@ public class BasicUI {
             System.out.println("Owner options: ");
             System.out.println("\t1) My studios\n\t2) Personal info\n\t0) Exit");
 
-            do{
+            do {
                 System.out.print("Choose option: ");
                 opt = keyboard.nextInt();
 
-                switch(opt) {
+                switch (opt) {
                     case 1:
-                        while(x != 0 && x != -1)
-                        {
+                        while (x != 0 && x != -1) {
                             x = showMyStudios();
                         }
-                        if(x != 0)
+                        if (x != 0)
                             opt = 0;
                         break;
                     case 2:
-                        while(x != 0 && x != -1)
-                        {
+                        while (x != 0 && x != -1) {
                             x = showPersonalInfo();
                         }
-                        if(x != 0)
+                        if (x != 0)
                             opt = 0;
                         break;
                     case 0:
                         break;
-                     default:
-                         break;
+                    default:
+                        break;
                 }
 
-            }while(opt < 0 || opt > 2);
+            } while (opt < 0 || opt > 2);
             return opt;
         }
 
@@ -144,9 +131,9 @@ public class BasicUI {
 
                 switch (opt) {
                     case 1:
-                        while(x != 0 && x != -1)
+                        while (x != 0 && x != -1)
                             x = showProfile();
-                        if(x == 0)
+                        if (x == 0)
                             opt = 0;
                         break;
                     case 0:
@@ -155,7 +142,7 @@ public class BasicUI {
                         System.out.println("No such option.");
                         break;
                 }
-            }while(opt < 0 || opt > 1);
+            } while (opt < 0 || opt > 1);
 
             return opt;
         }
@@ -174,9 +161,9 @@ public class BasicUI {
 
                 switch (opt) {
                     case 1:
-                        while(x != 0 && x != -1)
+                        while (x != 0 && x != -1)
                             x = showProducerInfo();
-                        if(x == 0)
+                        if (x == 0)
                             opt = 0;
                         break;
                     case 2:
@@ -190,7 +177,7 @@ public class BasicUI {
                         System.out.println("No such option.");
                         break;
                 }
-            }while(opt < -1 || opt > 2);
+            } while (opt < -1 || opt > 2);
 
             return opt;
         }
@@ -221,7 +208,7 @@ public class BasicUI {
                         System.out.println("No such option.");
                         break;
                 }
-            }while(opt < -1 || opt > 1);
+            } while (opt < -1 || opt > 1);
 
             return opt;
         }
@@ -230,30 +217,5 @@ public class BasicUI {
             producer.printWork();
         }
     }
-
-    public static void init() {
-        Producer producer = new Producer("Kirk", "Gian", "6981097028", "email@gmail.com", "otithelw", 16, true, 3);
-        Owner owner1 = new Owner("Nikos", "Korompos", "6981787878", "korompos@gmail.com", "kalantas", 20);
-        Owner owner2 = new Owner("Kwstas", "Kavourdirhs", "2310474829", "kavourdirhs@hotmail.gr", "kavourdirhs", 4019);
-        Client client1 = new Client("Maria", "Pentagiotisa", "2102904738", "maria5i@gmail.com", "5i", 100);
-        Client client2 = new Client("Ihsous", "Xristos", "2107777777", "jesuschrist@hotmail.com", "isousnika", 777);
-
-        Studio studio1 = new Studio(1, "kapouedw", "2222222222", 3.2, 3.3, 5, prodList, ownerList, null, null, null, null);
-
-        producer.setPartnerStudio(studio1);
-
-        prodList.clear();
-        prodList.add(producer);
-
-        ownerList.clear();
-        ownerList.add(owner1);
-        ownerList.add(owner2);
-
-        clientList.clear();
-        clientList.add(client1);
-        clientList.add(client2);
-    }
-
-
 }
 

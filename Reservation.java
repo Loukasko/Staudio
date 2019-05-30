@@ -10,7 +10,7 @@ public class Reservation {
     private ArrayList<Equipment> equipmentList;
 
     // Constructors
-    public Reservation(int reservationId, Client client, Studio studio, Room room, boolean confirmed) {
+    public Reservation(int reservationId,Client client,Studio studio, Room room, boolean confirmed) {
         this.reservationId = reservationId;
         this.client = client;
         this.studio = studio;

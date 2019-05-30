@@ -10,6 +10,7 @@ public class Studio {
     private double lat;
     private double lng;
     private int overallRating;
+    private String studioName;
     private ArrayList<Producer> partnerProducers;
     private ArrayList<Owner> partnerOwners;
     private ArrayList<Offer> offers;
@@ -17,30 +18,33 @@ public class Studio {
     private ArrayList<String> availiableDates;
     private ArrayList<Room> rooms;
     private ArrayList<Reservation> reservations;
-    public ArrayList<Reservation> getReservations() {
-        return reservations;
-    }
 
     // Constructors
-    public Studio(int studioId, String address, String phone, double lat, double lng,
-                  int overallRating, ArrayList<Producer> partnerProducers,
-                  ArrayList<Owner> partnerOwners, ArrayList<Offer> offers, ArrayList<Equipment> equips,
-                  ArrayList<String> availiableDates, ArrayList<Room> rooms) {
+    public Studio(String studioName,int studioId, String address, String phone, double lat, double lng,int overallRating)  {
+        this.studioName=studioName;
         this.studioId = studioId;
         this.address = address;
         this.phone = phone;
         this.lat = lat;
         this.lng = lng;
         this.overallRating = overallRating;
-        this.partnerProducers = partnerProducers;
-        this.partnerOwners = partnerOwners;
-        this.offers = offers;
-        this.equips = equips;
-        this.availiableDates = availiableDates;
-        this.rooms = rooms;
+        this.partnerProducers = new ArrayList<>();
+        this.partnerOwners = new ArrayList<>();
+        this.offers = new ArrayList<>();
+        this.equips = new ArrayList<>();
+        this.availiableDates = new ArrayList<>();
+        this.rooms = new ArrayList<>();
+        this.reservations=new ArrayList<>();
     }
 
     // Setters - Getters
+    public String getStudioName() {
+        return studioName;
+    }
+
+    public void setStudioName(String studioName) {
+        this.studioName = studioName;
+    }
     public ArrayList<Room> getRooms() {
         return rooms;
     }
@@ -190,6 +194,10 @@ public class Studio {
     public void setLng(double lng) {
         this.lng = lng;
     }
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+
     public boolean checkDateAvailiability(String checkDate){
 //        getAvailiableDates().forEach((date)->{
 //            if(date.equals(checkDate));
