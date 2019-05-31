@@ -137,7 +137,7 @@ public class SampleInit {
 
     public static ArrayList<Client> getClientList() { return clientList; }
 
-    public static ArrayList<Reservation> getReservationList() { return SampleInit.reservationList; }
+    public static ArrayList<Reservation> getReservationList() { return reservationList; }
 
     public static ArrayList<Owner> getOwnerList() {
         return ownerList;

@@ -26,7 +26,7 @@ public class Room {
         this.rating = rating;
         this.cost = cost;
         availiableRoomDates = new ArrayList<>();
-        //listOfReservations=new ArrayList<>();
+        listOfReservations=new ArrayList<>();
     }
 
     // Setters - Getters

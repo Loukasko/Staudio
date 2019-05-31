@@ -20,15 +20,14 @@ public class OwnerUI {
                     }
                     option = sc.nextInt();
                     Studio selectedStudio = SampleInit.getStudioList().get(option - 1);
-
+                    //System.out.print(selectedStudio.setReservation().size());
                     System.out.println("Please select a Reservation from the list below");
-                    for (int j = 0; j < selectedStudio.getReservations().size(); j++) {
-                        //System.out.print("poutsa");
+                    for (int j = 0; j < SampleInit.getReservationList().size(); j++) {
                         System.out.print(j + 1 + ")");
-                        System.out.println("Reservation ID:" + selectedStudio.getReservations().get(j).getReservationId());
-                        System.out.print("Client of the Reservation:" + selectedStudio.getReservations().get(j).getClient() + "\t");
-                        System.out.print("Room of the Reservation:" + selectedStudio.getReservations().get(j).getRoom() + "\t");
-                        System.out.println("Is the reservation Confirmed:" + selectedStudio.getReservations().get(j).isConfirmed());
+                        System.out.println("Reservation ID:" + SampleInit.getStudioList().get(j));
+                        System.out.print("Client of the Reservation:" + SampleInit.getReservationList().get(j).getClient() + "\t");
+                        System.out.print("Room of the Reservation:" + SampleInit.getReservationList().get(j).getRoom() + "\t");
+                        System.out.println("Is the reservation Confirmed:" + SampleInit.getReservationList().get(j).isConfirmed());
                     }
 
                     option = sc.nextInt();
