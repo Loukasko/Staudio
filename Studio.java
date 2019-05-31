@@ -158,6 +158,35 @@ public class Studio {
         }
         return true;
     }
+
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+    public Reservation getReservation(int reservationId) {
+        for(Reservation r : this.reservations) {
+            if(r.getReservationId() == reservationId) {
+                return r;
+            }
+        }
+        return null;
+    }
+    public boolean setReservation(Reservation res) {
+        if (getReservation(res.getReservationId()) == null) {
+            this.reservations.add(res);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteReservation(int reservationId) {
+        Reservation res = getReservation(reservationId);
+        if (res == null) {
+            return false;
+        }
+        this.reservations.remove(res);
+        return true;
+    }
+
     public int getStudioId() {
         return studioId;
     }
@@ -194,9 +223,9 @@ public class Studio {
     public void setLng(double lng) {
         this.lng = lng;
     }
-    public ArrayList<Reservation> getReservations() {
-        return reservations;
-    }
+    //public ArrayList<Reservation> getReservations() {
+    //    return reservations;
+    //}
 
     public boolean checkDateAvailiability(String checkDate){
 //        getAvailiableDates().forEach((date)->{

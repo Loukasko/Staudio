@@ -107,28 +107,28 @@ public class Owner extends User {
             if (i.getStudioId() == studio.getStudioId()) {
                 for (Reservation j : i.getReservations()) {
                     if (j.getReservationId() == reservation.getReservationId()) {
-                        j.setRoom(Room room);
+                        j.setRoom(room);
                     }
-                    Reservation res = new Reservation(reservation.getReservationId(), null, studio.getStudioId(), room, null);
+                    Reservation res = new Reservation(reservation.getReservationId(), null, studio, room, true);
                     this.reservations.add(res);
                 }
             }
         }
     }
 
-    public void manageReservationEquipment(Studio studio, Reservation reservation,Equipment equip) {
-        for (Studio i : this.getPartnerStudios()) {
-            if (i.getStudioId() == studio.getStudioId()) {
-                for (Reservation j : i.getReservations()) {
-                    if (j.getReservationId() == reservation.getReservationId()) {
-                        j.getEquipmentList().
-                    }
-                    Reservation res = new Reservation(reservation.getReservationId(), null, studio.getStudioId(), room, null);
-                    this.reservations.add(res);
-                }
-            }
-        }
-    }
+//    public void manageReservationEquipment(Studio studio, Reservation reservation,Equipment equip) {
+ //       for (Studio i : this.getPartnerStudios()) {
+//            if (i.getStudioId() == studio.getStudioId()) {
+//                for (Reservation j : i.getReservations()) {
+//                    if (j.getReservationId() == reservation.getReservationId()) {
+//                        j.getEquipmentList().
+//                    }
+//                    Reservation res = new Reservation(reservation.getReservationId(), null, studio.getStudioId(), room, null);
+//                    this.reservations.add(res);
+//                }
+//            }
+//        }
+//    }
     public void makeOwnOffer(int offerId, Studio studio, int numOfReservs, int free , Offer.type recType, boolean state) {
             for(Studio i:this.getPartnerStudios()){
                 if(i.getStudioId()==studio.getStudioId()){

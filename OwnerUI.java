@@ -23,10 +23,17 @@ public class OwnerUI {
 
                     System.out.println("Please select a Reservation from the list below");
                     for (int j = 0; j < selectedStudio.getReservations().size(); j++) {
-                        System.out.print(j + 1 + ")" + SampleInit.getReservationList().get(j));
+                        //System.out.print("poutsa");
+                        System.out.print(j + 1 + ")");
+                        System.out.println("Reservation ID:" + selectedStudio.getReservations().get(j).getReservationId());
+                        System.out.print("Client of the Reservation:" + selectedStudio.getReservations().get(j).getClient() + "\t");
+                        System.out.print("Room of the Reservation:" + selectedStudio.getReservations().get(j).getRoom() + "\t");
+                        System.out.println("Is the reservation Confirmed:" + selectedStudio.getReservations().get(j).isConfirmed());
+                    }
 
                     option = sc.nextInt();
                     Reservation selectedReservation = selectedStudio.getReservations().get(option - 1);
+
                     for (int j = 0; j < selectedStudio.getReservations().size(); j++) {
                         if(selectedReservation.isConfirmed() == false){
                         System.out.println("You have a pending reservation");
@@ -46,7 +53,7 @@ public class OwnerUI {
                             System.out.println("0) Exit ");
 
                         }
-                    }
+
                     }
 
 

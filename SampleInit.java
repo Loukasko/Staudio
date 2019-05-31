@@ -37,6 +37,8 @@ public class SampleInit {
         studioList.add(studio1);
         Studio studio2 = new Studio("American Canary ", 2, "parapera", "2222222222", 3.4, 3.7, 4);
         studioList.add(studio2);
+        Studio studio3 = new Studio("Wudsound ", 3, "nea smurnnis 23", "2111111424", 3.4, 3.7, 5);
+        studioList.add(studio3);
 
 
 
@@ -108,7 +110,9 @@ public class SampleInit {
 
         //reservations initialization
         Reservation reserv1 = new Reservation(001, client1, studio1, room1, false  );
+        reservationList.add(reserv1);
         Reservation reserv2 = new Reservation(002, client3, studio1, room5, false  );
+        reservationList.add(reserv2);
 
 //        Room room9 = new Room(9, Room.type.highend, Room.size.small, 1, 2);
 //        Room room10 = new Room(10, Room.type.highend, Room.size.large, 1, 200);
@@ -133,7 +137,7 @@ public class SampleInit {
 
     public static ArrayList<Client> getClientList() { return clientList; }
 
-    public static ArrayList<Reservation> getReservationList() { return reservationList; }
+    public static ArrayList<Reservation> getReservationList() { return SampleInit.reservationList; }
 
     public static ArrayList<Owner> getOwnerList() {
         return ownerList;

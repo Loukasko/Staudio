@@ -71,11 +71,11 @@ public class Room {
 
     public Reservation getReservation(int resId) {
         for (Reservation r : this.listOfReservations) {
-            if (r.getReservationId() == resId) {
-                return r;
-            }
-        }
-        return null;
+           if (r.getReservationId() == resId) {
+               return r;
+           }
+       }
+       return null;
     }
 
     public boolean setReservation(Reservation res) {
