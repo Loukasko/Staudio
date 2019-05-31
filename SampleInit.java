@@ -5,6 +5,7 @@ public class SampleInit {
     private static ArrayList<Client> clientList =new ArrayList<>();
     private static ArrayList<Owner> ownerList =new ArrayList<>();
     private static ArrayList<Studio> studioList =new ArrayList<>();
+    private static ArrayList<Reservation> reservationList =new ArrayList<>();
 
     public SampleInit() {
         //producers initialization
@@ -36,6 +37,8 @@ public class SampleInit {
         studioList.add(studio1);
         Studio studio2 = new Studio("American Canary ", 2, "parapera", "2222222222", 3.4, 3.7, 4);
         studioList.add(studio2);
+
+
 
         Room room1 = new Room(1, Room.type.highend, Room.size.large, 4, 15);
         room1.addAvaliableRoomDate("1-6-19 17:00:00");
@@ -103,6 +106,10 @@ public class SampleInit {
         studio2.setRoom(room7);
         studio2.setRoom(room8);
 
+        //reservations initialization
+        Reservation reserv1 = new Reservation(001, client1, studio1, room1, false  );
+        Reservation reserv2 = new Reservation(002, client3, studio1, room5, false  );
+
 //        Room room9 = new Room(9, Room.type.highend, Room.size.small, 1, 2);
 //        Room room10 = new Room(10, Room.type.highend, Room.size.large, 1, 200);
 //        Room room11 = new Room(11, Room.type.highend, Room.size.medium, 1, 0);
@@ -124,9 +131,9 @@ public class SampleInit {
         return prodList;
     }
 
-    public static ArrayList<Client> getClientList() {
-        return clientList;
-    }
+    public static ArrayList<Client> getClientList() { return clientList; }
+
+    public static ArrayList<Reservation> getReservationList() { return reservationList; }
 
     public static ArrayList<Owner> getOwnerList() {
         return ownerList;

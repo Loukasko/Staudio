@@ -19,7 +19,8 @@ public class BasicUI {
                     new ClientUI();
                     break;
                 case 2:
-                    createOwnerUI();
+                    Owner owner=SampleInit.getOwnerList().get(1);
+                    new OwnerUI(owner);
                     break;
                 case 3:
                     createProducerUI();
@@ -33,9 +34,6 @@ public class BasicUI {
         } while (opt < 0 || opt > 3);
     }
 
-    public static void createOwnerUI() {
-        System.out.println("Owner options: ");
-    }
 
     public static void createProducerUI() {
         ProducerUI.producer= SampleInit.getProdList().get(0);
@@ -44,74 +42,74 @@ public class BasicUI {
             x = ProducerUI.showStartMenu();
     }
 
-    public static class OwnerUI {
-        public static Owner owner;
+//    public static class OwnerUI {
+//        public static Owner owner;
+//
+//        public static int showStartMenu() {
+//            Scanner keyboard = new Scanner(System.in);
+//            int opt = 0;
+//            int x = 10;
+//
+//            System.out.println("Owner options: ");
+//            System.out.println("\t1) My studios\n\t2) Personal info\n\t0) Exit");
+//
+//            do {
+//                System.out.print("Choose option: ");
+//                opt = keyboard.nextInt();
+//
+//                switch (opt) {
+//                    case 1:
+//                        while (x != 0 && x != -1) {
+//                            x = showMyStudios();
+//                        }
+//                        if (x != 0)
+//                            opt = 0;
+//                        break;
+//                    case 2:
+//                        while (x != 0 && x != -1) {
+//                            x = showPersonalInfo();
+//                        }
+//                        if (x != 0)
+//                            opt = 0;
+//                        break;
+//                    case 0:
+//                        break;
+//                    default:
+//                        break;
+//                }
+//
+//            } while (opt < 0 || opt > 2);
+//            return opt;
+//        }
 
-        public static int showStartMenu() {
-            Scanner keyboard = new Scanner(System.in);
-            int opt = 0;
-            int x = 10;
-
-            System.out.println("Owner options: ");
-            System.out.println("\t1) My studios\n\t2) Personal info\n\t0) Exit");
-
-            do {
-                System.out.print("Choose option: ");
-                opt = keyboard.nextInt();
-
-                switch (opt) {
-                    case 1:
-                        while (x != 0 && x != -1) {
-                            x = showMyStudios();
-                        }
-                        if (x != 0)
-                            opt = 0;
-                        break;
-                    case 2:
-                        while (x != 0 && x != -1) {
-                            x = showPersonalInfo();
-                        }
-                        if (x != 0)
-                            opt = 0;
-                        break;
-                    case 0:
-                        break;
-                    default:
-                        break;
-                }
-
-            } while (opt < 0 || opt > 2);
-            return opt;
-        }
-
-        public static int showMyStudios() {
-            Scanner keyboard = new Scanner(System.in);
-            int opt;
-            int x = 10;
-
-            System.out.println("My studios: ");
-            owner.printOwnerStudios();
-
-            /*do {
-                System.out.println("Choose option: ");
-                opt = keyboard.nextInt();
-
-                switch(opt)
-                {
-                    case 1:
-
-                }
-            }while(opt < 0 || opt > 2);*/
-
-            return 1;
-        }
-
-        public static int showPersonalInfo() {
-
-            return 0;
-        }
-
-    }
+//        public static int showMyStudios() {
+//            Scanner keyboard = new Scanner(System.in);
+//            int opt;
+//            int x = 10;
+//
+//            System.out.println("My studios: ");
+//            owner.printOwnerStudios();
+//
+//            /*do {
+//                System.out.println("Choose option: ");
+//                opt = keyboard.nextInt();
+//
+//                switch(opt)
+//                {
+//                    case 1:
+//
+//                }
+//            }while(opt < 0 || opt > 2);*/
+//
+//            return 1;
+//        }
+//
+//        public static int showPersonalInfo() {
+//
+//            return 0;
+//        }
+//
+//    }
 
     static class ProducerUI {
         public static Producer producer;

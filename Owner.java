@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Owner extends User{
+public class Owner extends User {
     // Variables
     private int ownerId;
     private ArrayList<Studio> partnerStudios;
@@ -13,69 +13,82 @@ public class Owner extends User{
     }
 
     // Setters - Getters
-    public void setOwnerId(int ownerId) { this.ownerId = ownerId; }
-    public int getOwnerId() { return ownerId; }
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
     public ArrayList<Studio> getPartnerStudios() {
         return partnerStudios;
     }
+
     public Studio getPartnerStudio(int studioId) {
-        for(Studio s : this.partnerStudios) {
-            if(s.getStudioId() == studioId) {
+        for (Studio s : this.partnerStudios) {
+            if (s.getStudioId() == studioId) {
                 return s;
             }
         }
         return null;
     }
+
     public boolean setPartnerStudio(Studio stud) {
-        if(getPartnerStudio(stud.getStudioId()) != null) {
+        if (getPartnerStudio(stud.getStudioId()) != null) {
             return false;
         }
         return this.partnerStudios.add(stud);
     }
+
     public boolean deleteStudio(int studioId) {
         Studio s = getPartnerStudio(studioId);
-        if(s == null)
+        if (s == null)
             return false;
         else {
             this.partnerStudios.remove(s);
         }
         return false;
     }
+
     public ArrayList<Reservation> getReservations() {
         return reservations;
     }
+
     public Reservation getReservation(int reservationId) {
-        for(Reservation r : this.reservations) {
-            if(r.getReservationId() == reservationId) {
+        for (Reservation r : this.reservations) {
+            if (r.getReservationId() == reservationId) {
                 return r;
             }
         }
         return null;
     }
+
     public boolean setReservation(Reservation res) {
-        if(getReservation(res.getReservationId()) != null) {
+        if (getReservation(res.getReservationId()) != null) {
             return false;
         }
         reservations.add(res);
         return true;
     }
+
     public boolean deleteReservation(int reservationId) {
         Reservation res = getReservation(reservationId);
-        if(res == null) {
+        if (res == null) {
             return false;
-        }
-        else {
+        } else {
             reservations.remove(res);
         }
         return true;
     }
-    public void manageResevation(Studio studio,Client client, Reservation reservation,Room room, boolean pending, boolean accept) {
+
+    public void manageResevation(Studio studio, Client client, Reservation reservation, Room room, boolean pending, boolean accept) {
         for (Studio i : this.getPartnerStudios()) {
             if (i.getStudioId() == studio.getStudioId()) {
                 for (Reservation j : i.getReservations()) {
                     if (j.getReservationId() == reservation.getReservationId()) {
                         if (j.isConfirmed() == pending && accept == true) {
-                            if(accept==true )
+                            if (accept == true)
                                 j.setConfirmed(true);
                             else //diagrafo th krathsh
                                 i.getReservations().remove(reservation); //remove ekei pou einai to rese toso
@@ -84,6 +97,34 @@ public class Owner extends User{
                             this.reservations.add(res);
                         } //else if ()
                     }
+                }
+            }
+        }
+    }
+
+    public void manageReservationRoom(Studio studio, Reservation reservation, Room room) {
+        for (Studio i : this.getPartnerStudios()) {
+            if (i.getStudioId() == studio.getStudioId()) {
+                for (Reservation j : i.getReservations()) {
+                    if (j.getReservationId() == reservation.getReservationId()) {
+                        j.setRoom(Room room);
+                    }
+                    Reservation res = new Reservation(reservation.getReservationId(), null, studio.getStudioId(), room, null);
+                    this.reservations.add(res);
+                }
+            }
+        }
+    }
+
+    public void manageReservationEquipment(Studio studio, Reservation reservation,Equipment equip) {
+        for (Studio i : this.getPartnerStudios()) {
+            if (i.getStudioId() == studio.getStudioId()) {
+                for (Reservation j : i.getReservations()) {
+                    if (j.getReservationId() == reservation.getReservationId()) {
+                        j.getEquipmentList().
+                    }
+                    Reservation res = new Reservation(reservation.getReservationId(), null, studio.getStudioId(), room, null);
+                    this.reservations.add(res);
                 }
             }
         }
