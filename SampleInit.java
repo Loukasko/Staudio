@@ -118,18 +118,23 @@ public class SampleInit {
         Reservation reserv3 = new Reservation(003, client2, studio2, room4, false  );
         reservationList.add(reserv3);
         studio2.setReservation(reserv3);
+        Reservation reserv4 = new Reservation(004, client2, studio3, room4, true  );
+        reservationList.add(reserv4);
+        studio3.setReservation(reserv4);
 
-//        Room room9 = new Room(9, Room.type.highend, Room.size.small, 1, 2);
-//        Room room10 = new Room(10, Room.type.highend, Room.size.large, 1, 200);
-//        Room room11 = new Room(11, Room.type.highend, Room.size.medium, 1, 0);
-//        Room room12 = new Room(12, Room.type.highend, Room.size.medium, 1, 1);
-//        studio3.setRoom(room9);
-//        studio3.setRoom(room10);
-//        studio3.setRoom(room11);
-//        studio3.setRoom(room12);
+        Room room9 = new Room(9, Room.type.highend, Room.size.small, 1, 2);
+        Room room10 = new Room(10, Room.type.highend, Room.size.large, 1, 200);
+        Room room11 = new Room(11, Room.type.highend, Room.size.medium, 1, 0);
+        Room room12 = new Room(12, Room.type.highend, Room.size.medium, 1, 1);
+        studio3.setRoom(room9);
+        studio3.setRoom(room10);
+        studio3.setRoom(room11);
+        studio3.setRoom(room12);
 
         producer1.setPartnerStudio(studio1);
         producer2.setPartnerStudio(studio2);
+
+        owner2.setPartnerStudio(studio1);
     }
 
     public static ArrayList<Studio> getStudioList() {

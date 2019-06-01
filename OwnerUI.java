@@ -30,39 +30,66 @@ public class OwnerUI {
                             System.out.println("Room of the Reservation: " + selectedStudio.getReservations().get(j).getRoom().getRoomId());
                             System.out.println("Is the reservation Confirmed: " + selectedStudio.getReservations().get(j).isConfirmed());
                         }
-                    }else{
+                    } else {
                         System.out.println("No reservations were made for current Studio: " + selectedStudio.getStudioName());
                         System.exit(0);
                     }
                     option = sc.nextInt();
                     Reservation selectedReservation = selectedStudio.getReservations().get(option - 1);
-                    selectedReservation.printReservationInfo();
-                    if(selectedReservation.isConfirmed() == false) {
-                    System.out.println("You have a pending reservation");
-                    System.out.println("Select an option: ");
-                    System.out.println("1) Reservation Details");
-                    System.out.println("2) Accept Reservation");
-                    System.out.println("3) Decline Reservation");
-                    option = sc.nextInt();
-                    switch (option) {
-                        case 1:
-                            selectedReservation.printReservationInfo();
-                            break;
-                        case:2
-                            selectedReservation.setConfirmed(true);
-                            System.out.println("Reservation confirmed");
-                            break;
-                        case:3
-                            System.out.println("Reservation declined");
+                    //selectedReservation.printReservationInfo();
+                    if (selectedReservation.isConfirmed() == false) {
+                        System.out.println("You have a pending reservation");
+                        System.out.println("Select an option: ");
+                        System.out.println("1) Reservation Details");
+                        System.out.println("2) Accept Reservation");
+                        System.out.println("3) Decline Reservation");
+                        option = sc.nextInt();
+                        switch (option) {
+                            case 1:
+                                selectedReservation.printReservationInfo();
+                                break;
+                            case 2:
+                                owner.manageResevation(selectedStudio, selectedReservation, false, true);
+                                //selectedReservation.setConfirmed(true);
+                                //System.out.println("Reservation : " + selectedReservation.getReservationId() + " Added");
+                                break;
+                            case 3:
+                                owner.manageResevation(selectedStudio, selectedReservation, false, false);
+                                //selectedStudio.getReservations().remove(selectedReservation);
+                                //System.out.println("Reservation : " + selectedReservation.getReservationId() + " Declined");
+                                break;
                         }
-                    }
-                    else{
+                    } else {
                         System.out.println("You have a non-pending reservation");
                         System.out.println("Edit Your Reservation ");
                         System.out.println("1) Edit Reservation Room");
                         System.out.println("2) Edit Reservation Equipment");
                         System.out.println("0) Exit ");
                         option = sc.nextInt();
+                        switch (option) {
+                            case 1:
+                                System.out.println("Current Room for the Reservation : Room " + selectedReservation.getRoom().getRoomId());
+                                System.out.println("Select another Room from the list below : ");
+                                //System.out.print(selectedStudio.getRooms().size());
+                                for (int j = 0; j < selectedStudio.getRooms().size(); j++) {
+                                    System.out.print(j+1 + ")");
+                                    System.out.print("Room ID:" + selectedStudio.getRooms().get(j).getRoomId() + "\t");
+                                    System.out.print("Type:" + selectedStudio.getRooms().get(j).getRoomType() + "\t");
+                                    System.out.println("Size:" + selectedStudio.getRooms().get(j).getRoomSize());
+                                }
+                                option = sc.nextInt();
+                                Room selectedRoom = selectedStudio.getRooms().get(option-1);
+                                owner.manageReservationRoom(selectedStudio, selectedReservation, selectedRoom);
+                                break;
+                            case 2:
+                                selectedReservation.setConfirmed(true);
+                                System.out.println("Reservation confirmed");
+                                break;
+                            case 3:
+                                System.out.println("Reservation declined");
+                                break;
+                        }
+
 
                     }
 
@@ -82,17 +109,17 @@ public class OwnerUI {
                     //System.out.println("1)yes 2)No");
                     //option = sc.nextInt();
                     //if (option == 1) {
-                     //   new Reservation(1, null, selectedStudio, selectedRoom, false);
-                     //   System.out.println("New book request sent. Reservation currently pending.");
+                    //   new Reservation(1, null, selectedStudio, selectedRoom, false);
+                    //   System.out.println("New book request sent. Reservation currently pending.");
                     //} else {
-                     //   System.out.println("canceled");
+                    //   System.out.println("canceled");
                     //}
                     break;
                 case 2:
-                    System.out.println("Select Studio from the list below");
-                    for (int i = 0; i < SampleInit.getStudioList().size(); i++) {
-                        System.out.println(i + ")" + SampleInit.getStudioList().get(i).getStudioName());
-                    }
+                    //System.out.println("Select Studio from the list below");
+                    //for (int i = 0; i < SampleInit.getStudioList().size(); i++) {
+                    //    System.out.println(i + ")" + SampleInit.getStudioList().get(i).getStudioName());
+                    //}
                     break;
                 case 3:
                     break;

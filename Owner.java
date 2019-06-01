@@ -40,7 +40,7 @@ public class Owner extends User {
         if (getPartnerStudio(stud.getStudioId()) != null) {
             return false;
         }
-        return this.partnerStudios.add(stud);
+        return this.partnerStudios.add(stud) && stud.setPartnerOwner(this);
     }
 
     public boolean deleteStudio(int studioId) {
@@ -84,18 +84,20 @@ public class Owner extends User {
         return true;
     }
 
-    public void manageResevation(Studio studio, Client client, Reservation reservation, Room room, boolean pending, boolean accept) {
+    public void manageResevation(Studio studio, Reservation reservation, boolean pending, boolean accept) {
         for (Studio i : this.getPartnerStudios()) {
             if (i.getStudioId() == studio.getStudioId()) {
                 for (Reservation j : i.getReservations()) {
                     if (j.getReservationId() == reservation.getReservationId()) {
-                        if (j.isConfirmed() == pending && accept == true) {
-                            if (accept == true)
+                        if (j.isConfirmed() == pending ) {
+                            if (accept == true) {
                                 j.setConfirmed(true);
-                            else //diagrafo th krathsh
+                                System.out.println("Reservation : " + j.getReservationId() + " Added");
+                            }else { //diagrafo th krathsh
                                 i.getReservations().remove(reservation); //remove ekei pou einai to rese toso
-
-                            Reservation res = new Reservation(reservation.getReservationId(), client, studio, room, pending);
+                                System.out.println("Reservation : " + j.getReservationId() + " Declined");
+                            }
+                            Reservation res = new Reservation(reservation.getReservationId(), null, studio, null, pending);
                             this.reservations.add(res);
                         } //else if ()
                     }

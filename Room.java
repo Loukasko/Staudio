@@ -17,6 +17,7 @@ public class Room {
     private ArrayList<String> availiableRoomDates;
 
     private ArrayList<Reservation> listOfReservations; //not sure
+    private ArrayList<Room> rooms;
 
     // Constructions
     public Room(int roomId, type roomType, size roomSize, int rating, float cost) {
@@ -27,6 +28,7 @@ public class Room {
         this.cost = cost;
         availiableRoomDates = new ArrayList<>();
         listOfReservations=new ArrayList<>();
+        this.rooms = new ArrayList<Room>();
     }
 
     // Setters - Getters

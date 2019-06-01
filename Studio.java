@@ -171,11 +171,11 @@ public class Studio {
         return null;
     }
     public boolean setReservation(Reservation res) {
-        if (getReservation(res.getReservationId()) == null) {
-            this.reservations.add(res);
-            return true;
+        if (getReservation(res.getReservationId()) != null) {
+            return false;
         }
-        return false;
+        res.setStudio(this);
+        return this.reservations.add(res);
     }
 
     public boolean deleteReservation(int reservationId) {

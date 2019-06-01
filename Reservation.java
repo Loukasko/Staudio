@@ -18,6 +18,7 @@ public class Reservation {
         this.room = room;
         this.confirmed = confirmed;
         this.reservationList = new ArrayList<Reservation>();
+        this.equipmentList = new ArrayList<Equipment>();
     }
 
     // Seters - Getters
