@@ -1,12 +1,15 @@
 import java.util.ArrayList;
 
-public class Reservation {
+public  class Reservation {
     // Variables
     private int reservationId;
     private Client client;
     private Studio studio;
     private boolean confirmed;
     private Room room;
+    private static int idAutoIncrement=0;
+    private int studioId;
+
     private ArrayList<Equipment> equipmentList;
 
     // Constructors
@@ -74,4 +77,12 @@ public class Reservation {
         return str;
     }
     public void printReservationInfo() { System.out.println(this.toString()); }
+
+    public int getStudioId() {
+        return studioId;
+    }
+
+    public static int idAutoIncrement(){
+        return ++idAutoIncrement;
+    }
 }

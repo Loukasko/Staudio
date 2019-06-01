@@ -11,7 +11,8 @@ public class Rehearsal extends Reservation {
     private String endDate;
 
     // Construstor
-    public Rehearsal(int reservationId, Client client, Studio studio, Room room, boolean confirmed, float costPerHour, Text comments, String startDate, String endDate) {
+    public Rehearsal(int reservationId, Client client, Studio studio, Room room, boolean confirmed,
+                     float costPerHour, Text comments, String startDate, String endDate) {
         super(reservationId, client, studio, room, confirmed);
         this.costPerHour = costPerHour;
         this.comments = comments;
@@ -20,12 +21,12 @@ public class Rehearsal extends Reservation {
     }
 
     // Setters - Getters
-    public Client getClient() { return client; }
-    public void setClient(Client client) { this.client = client; }
-    public Studio getStudio() { return studio; }
-    public void setStudio(Studio studio) { this.studio = studio; }
-    public Room getRoom() { return room; }
-    public void setRoom(Room room) { this.room = room; }
+//    public Client getClient() { return client; }
+//    public void setClient(Client client) { this.client = client; }
+//    public Studio getStudio() { return studio; }
+//    public void setStudio(Studio studio) { this.studio = studio; }
+//    public Room getRoom() { return room; }
+//    public void setRoom(Room room) { this.room = room; }
     public float getCostPerHour() {
         return costPerHour;
     }

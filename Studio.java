@@ -18,7 +18,7 @@ public class Studio {
     private ArrayList<String> availiableDates;
     private ArrayList<Room> rooms;
     private ArrayList<Reservation> reservations;
-
+    private static int numOfReservations=0;
     // Constructors
     public Studio(String studioName,int studioId, String address, String phone, double lat, double lng,int overallRating)  {
         this.studioName=studioName;
@@ -35,11 +35,16 @@ public class Studio {
         this.availiableDates = new ArrayList<>();
         this.rooms = new ArrayList<>();
         this.reservations=new ArrayList<>();
+        numOfReservations++;
     }
 
     // Setters - Getters
     public String getStudioName() {
         return studioName;
+    }
+
+    public static int getNumOfReservations() {
+        return numOfReservations;
     }
 
     public void setStudioName(String studioName) {

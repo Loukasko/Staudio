@@ -5,7 +5,6 @@ public class SampleInit {
     private static ArrayList<Client> clientList =new ArrayList<>();
     private static ArrayList<Owner> ownerList =new ArrayList<>();
     private static ArrayList<Studio> studioList =new ArrayList<>();
-    private static ArrayList<Reservation> reservationList =new ArrayList<>();
 
     public SampleInit() {
         //producers initialization
@@ -37,10 +36,6 @@ public class SampleInit {
         studioList.add(studio1);
         Studio studio2 = new Studio("American Canary ", 2, "parapera", "2222222222", 3.4, 3.7, 4);
         studioList.add(studio2);
-        Studio studio3 = new Studio("Wudsound ", 3, "nea smurnnis 23", "2111111424", 3.4, 3.7, 5);
-        studioList.add(studio3);
-
-
 
         Room room1 = new Room(1, Room.type.highend, Room.size.large, 4, 15);
         room1.addAvaliableRoomDate("1-6-19 17:00:00");
@@ -108,12 +103,6 @@ public class SampleInit {
         studio2.setRoom(room7);
         studio2.setRoom(room8);
 
-        //reservations initialization
-        Reservation reserv1 = new Reservation(001, client1, studio1, room1, false  );
-        reservationList.add(reserv1);
-        Reservation reserv2 = new Reservation(002, client3, studio1, room5, false  );
-        reservationList.add(reserv2);
-
 //        Room room9 = new Room(9, Room.type.highend, Room.size.small, 1, 2);
 //        Room room10 = new Room(10, Room.type.highend, Room.size.large, 1, 200);
 //        Room room11 = new Room(11, Room.type.highend, Room.size.medium, 1, 0);
@@ -122,6 +111,30 @@ public class SampleInit {
 //        studio3.setRoom(room10);
 //        studio3.setRoom(room11);
 //        studio3.setRoom(room12);
+
+        Reservation reservation1= new Reservation(1,client1,studio1,room1,true);
+        Reservation reservation2= new Reservation(1,client1,studio1,room2,true);
+        Reservation reservation3= new Reservation(1,client1,studio2,room5,true);
+
+        Reservation reservation4= new Reservation(1,client2,studio1,room3,true);
+        Reservation reservation5= new Reservation(1,client2,studio2,room4,true);
+        Reservation reservation6= new Reservation(1,client2,studio2,room6,true);
+
+        studio1.getReservations().add(reservation1);
+        studio1.getReservations().add(reservation2);
+        studio1.getReservations().add(reservation3);
+
+        studio2.getReservations().add(reservation4);
+        studio2.getReservations().add(reservation5);
+        studio2.getReservations().add(reservation6);
+
+        client1.getHistory().add(reservation1);
+        client1.getHistory().add(reservation2);
+        client1.getHistory().add(reservation3);
+
+        client2.getHistory().add(reservation4);
+        client2.getHistory().add(reservation5);
+        client2.getHistory().add(reservation6);
 
         producer1.setPartnerStudio(studio1);
         producer2.setPartnerStudio(studio2);
@@ -135,9 +148,9 @@ public class SampleInit {
         return prodList;
     }
 
-    public static ArrayList<Client> getClientList() { return clientList; }
-
-    public static ArrayList<Reservation> getReservationList() { return reservationList; }
+    public static ArrayList<Client> getClientList() {
+        return clientList;
+    }
 
     public static ArrayList<Owner> getOwnerList() {
         return ownerList;

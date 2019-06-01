@@ -16,10 +16,11 @@ public class BasicUI {
             opt = keyboard.nextInt();
             switch (opt) {
                 case 1:
-                    new ClientUI();
+                    Client client=SampleInit.getClientList().get(0);
+                    new ClientUI(client);
                     break;
                 case 2:
-                    Owner owner=SampleInit.getOwnerList().get(1);
+                    Owner owner=SampleInit.getOwnerList().get(0);
                     new OwnerUI(owner);
                     break;
                 case 3:
