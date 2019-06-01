@@ -32,7 +32,7 @@ public class Owner extends User{
         if(getPartnerStudio(stud.getStudioId()) != null) {
             return false;
         }
-        return this.partnerStudios.add(stud);
+        return this.partnerStudios.add(stud) && stud.setPartnerOwner(this);
     }
     public boolean deleteStudio(int studioId) {
         Studio s = getPartnerStudio(studioId);

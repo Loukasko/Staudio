@@ -108,6 +108,7 @@ public class SampleInit {
         studio2.setRoom(room7);
         studio2.setRoom(room8);
 
+
         //reservations initialization
         Reservation reserv1 = new Reservation(001, client1, studio1, room1, false  );
         reservationList.add(reserv1);
@@ -132,6 +133,7 @@ public class SampleInit {
         producer2.setPartnerStudio(studio2);
 
         owner1.setPartnerStudio(studio1);
+        owner2.setPartnerStudio(studio1);
     }
 
     public static ArrayList<Studio> getStudioList() {

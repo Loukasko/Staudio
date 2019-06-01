@@ -143,6 +143,7 @@ public class Studio {
                 return false;
             }
         }
+        this.partnerProducers.add(prod);
         return true;
     }
     public ArrayList getPartnerOwners() {
@@ -154,6 +155,7 @@ public class Studio {
                 return false;
             }
         }
+        this.partnerOwners.add(partOwn);
         return true;
     }
     public String getName() { return this.name; }
