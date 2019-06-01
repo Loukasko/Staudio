@@ -1,20 +1,22 @@
 public class Production extends Reservation{
     // Variables
-    private enum type{miniAlbum,song,fullAlbum}
+    public enum type{miniAlbum,song,fullAlbum}
     private type prodType;
     private String startDay;
     private String endDay;
     private Producer producer;
     private float costPerMeeting;
+    private boolean status;
 
     // Constructors
-    public Production(int reservationId, Client client, Studio studio, Room room, boolean confirmed, type prodType, String startDay, String endDay, Producer producer, float costPerMeeting) {
+    public Production(int reservationId, Client client, Studio studio, Room room, boolean confirmed, type prodType, String startDay, String endDay, Producer producer, float costPerMeeting, boolean status) {
         super(reservationId, client, studio, room, confirmed);
         this.prodType = prodType;
         this.startDay = startDay;
         this.endDay = endDay;
         this.producer = producer;
         this.costPerMeeting = costPerMeeting;
+        this.status = status;
     }
 
     // Setters - Getters
@@ -34,6 +36,8 @@ public class Production extends Reservation{
     public void setProducerId(Producer producer) { this.producer = producer; }
     public float getCostPerMeeting() { return costPerMeeting; }
     public void setCostPerMeeting(float costPerMeeting) { this.costPerMeeting = costPerMeeting; }
+    public boolean getProductionStatus() { return this.status; }
+    public void setProductionStatus(boolean status) { this.status = status; }
     public void printProductionInfo() { System.out.println(this.toString()); }
 
     @Override

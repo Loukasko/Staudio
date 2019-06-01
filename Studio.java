@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Studio {
     // Variables
+    private String name;
     private int studioId;
     private String address;
     private String phone;
@@ -22,22 +23,23 @@ public class Studio {
     }
 
     // Constructors
-    public Studio(int studioId, String address, String phone, double lat, double lng,
-                  int overallRating, ArrayList<Producer> partnerProducers,
-                  ArrayList<Owner> partnerOwners, ArrayList<Offer> offers, ArrayList<Equipment> equips,
-                  ArrayList<String> availiableDates, ArrayList<Room> rooms) {
+    public Studio(String name, int studioId, String address, String phone, double lat, double lng,
+                  int overallRating) {
+        this.name = name;
         this.studioId = studioId;
         this.address = address;
         this.phone = phone;
         this.lat = lat;
         this.lng = lng;
         this.overallRating = overallRating;
-        this.partnerProducers = partnerProducers;
-        this.partnerOwners = partnerOwners;
-        this.offers = offers;
-        this.equips = equips;
-        this.availiableDates = availiableDates;
-        this.rooms = rooms;
+        this.partnerOwners = new ArrayList<Owner>();
+        this.partnerProducers = new ArrayList<Producer>();
+        this.offers = new ArrayList<Offer>();
+        this.equips = new ArrayList<Equipment>();
+        this.availiableDates= new ArrayList<String>();
+        this.rooms = new ArrayList<Room>();
+        this.reservations = new ArrayList<Reservation>();
+
     }
 
     // Setters - Getters
@@ -51,7 +53,7 @@ public class Studio {
             }
         }
         return null;
-    }
+   }
     public boolean setRoom(Room room) {
         if(getRoom(room.getRoomId()) != null)
         {
@@ -154,6 +156,8 @@ public class Studio {
         }
         return true;
     }
+    public String getName() { return this.name; }
+    public void setName(String name) { this.name = name; }
     public int getStudioId() {
         return studioId;
     }
@@ -191,10 +195,6 @@ public class Studio {
         this.lng = lng;
     }
     public boolean checkDateAvailiability(String checkDate){
-//        getAvailiableDates().forEach((date)->{
-//            if(date.equals(checkDate));
-//        });
-
         for(String date:this.getAvailiableDates()){
             if(date.equals(checkDate))return true;
         }
@@ -205,6 +205,50 @@ public class Studio {
 //        Iterator i = this.getStudios().iterator();
 //
 //    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Studio name: " + this.getName() + "\n";
+        str += "Studio ID: " + this.getStudioId() + "\n";
+        str += "Studio adress: " + this.getAddress() + "\n";
+        str += "Studio overall rating: " + this.getOverallRating() + "\n";
+        str += "Studio phone: " + this.getPhone() + "\n";
+        str += "Studio lat: " + this.getLat() + "\n";
+        str += "Studio lng: " + this.getLng() + "\n";
+        str += "Studio owner" + (this.getPartnerOwners().size() > 1 ? "s" : "") + ": ";
+        for(Owner o : this.partnerOwners) {
+            str += (o==partnerOwners.get(0) ? "" : ", ") + o.getOwnerId();
+        }
+        str += "\n";
+        str += "Studio producer" + (this.getPartnerProducers().size() > 1 ? "s" : "") + ": ";
+        for(Producer p : this.partnerProducers) {
+            str += (p==partnerProducers.get(0) ? "" : ", ") + p.getProducerId();
+        }
+        str += "\n";
+        str += "Studio rooms:\n";
+        for(Room r : this.rooms) {
+            str += r.getRoomId() + "\n";
+        }
+        str += "Studio equipment:\n";
+        for(Equipment e : this.equips) {
+            str += e.getMusInsId() + "\n";
+        }
+        str += "Studio avaliable dates:\n";
+        for(String s : this.availiableDates) {
+            str += s + "\n";
+        }
+        str += "Studio reservations:\n";
+        for(Reservation r : this.reservations) {
+            str += r.getReservationId() + "\n";
+        }
+        str += "Studio offers:\n";
+        for(Offer o : this.offers) {
+            str += o.getOfferId();
+        }
+        str += "\n";
+        return str;
+    }
 
 
 

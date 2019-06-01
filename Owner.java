@@ -10,6 +10,8 @@ public class Owner extends User{
     public Owner(String name, String lastName, String phone, String email, String password, int ownerId) {
         super(name, lastName, phone, email, password);
         this.ownerId = ownerId;
+        this.partnerStudios = new ArrayList<Studio>();
+        this.reservations = new ArrayList<Reservation>();
     }
 
     // Setters - Getters
@@ -123,14 +125,23 @@ public class Owner extends User{
         return str;
     }
 
-    public String printOwnerStudios() {
-        String str = "";
-
+    public void printOwnerStudios() {
         for(Studio s : this.partnerStudios) {
-            str += "\tStudio ID: " + s.getStudioId() + ", Address: " + s.getAddress() + "\n";
+            System.out.println("\tStudio ID: " + s.getStudioId() + ", Name: " + s.getName() + "\n");
         }
-
-        return str;
     }
 
+    public void editOwnerStudioByID(int ID) {
+        Studio stud = null;
+        stud = this.getPartnerStudio(ID);
+        if(stud == null)
+        {
+            System.out.println("There is no studio with such ID");
+            return;
+        }
+
+        System.out.println("Studio info:");
+        System.out.println(stud.toString());
+
+    }
 }

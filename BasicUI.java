@@ -9,7 +9,7 @@ public class BasicUI {
 
     public static void startBasicUI() {
 
-        init();
+        //init();
 
         Scanner keyboard = new Scanner(System.in);
         int opt = 0;
@@ -45,11 +45,14 @@ public class BasicUI {
     }
 
     public static void createOwnerUI() {
-        System.out.println("Owner options: ");
+        OwnerUI.owner = SampleInit.getOwnerList().get(0);
+        int x = 10;
+        while(x != 0)
+            x = OwnerUI.showStartMenu();
     }
 
     public static void createProducerUI() {
-        ProducerUI.producer = prodList.get(0);
+        ProducerUI.producer = SampleInit.getProdList().get(0);
         int x = 10;
         while(x != 0)
             x = ProducerUI.showStartMenu();
@@ -74,17 +77,17 @@ public class BasicUI {
                     case 1:
                         while(x != 0 && x != -1)
                         {
-                            x = showMyStudios();
+                            x = showOwnerMyStudios();
                         }
-                        if(x != 0)
+                        if(x == 0)
                             opt = 0;
                         break;
                     case 2:
                         while(x != 0 && x != -1)
                         {
-                            x = showPersonalInfo();
+                            x = showOwnerPersonalInfo();
                         }
-                        if(x != 0)
+                        if(x == 0)
                             opt = 0;
                         break;
                     case 0:
@@ -97,29 +100,42 @@ public class BasicUI {
             return opt;
         }
 
-        public static int showMyStudios() {
+        public static int showOwnerMyStudios() {
             Scanner keyboard = new Scanner(System.in);
             int opt;
             int x = 10;
+            int ID;
 
             System.out.println("My studios: ");
             owner.printOwnerStudios();
+            System.out.println("Owner My studios options: ");
+            System.out.println("\t1) Edit Studio by ID\n\t0) Exit\n\t-1) Back");
 
-            /*do {
+            do {
                 System.out.println("Choose option: ");
                 opt = keyboard.nextInt();
 
                 switch(opt)
                 {
                     case 1:
-
+                        System.out.print("Studio ID: ");
+                        ID = keyboard.nextInt();
+                        owner.editOwnerStudioByID(ID);
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                    default:
+                        System.out.println("No such option.");
+                        break;
                 }
-            }while(opt < 0 || opt > 2);*/
+            }while(opt < -1 || opt > 1);
 
-            return 1;
+            return opt;
         }
 
-        public static int showPersonalInfo() {
+        public static int showOwnerPersonalInfo() {
 
             return 0;
         }
@@ -145,7 +161,7 @@ public class BasicUI {
                 switch (opt) {
                     case 1:
                         while(x != 0 && x != -1)
-                            x = showProfile();
+                            x = showProducerProfile();
                         if(x == 0)
                             opt = 0;
                         break;
@@ -160,7 +176,7 @@ public class BasicUI {
             return opt;
         }
 
-        public static int showProfile() {
+        public static int showProducerProfile() {
             Scanner keyboard = new Scanner(System.in);
             int opt;
             int x = 10;
@@ -180,7 +196,10 @@ public class BasicUI {
                             opt = 0;
                         break;
                     case 2:
-                        showProducerWork();
+                        while(x != 0 && x != -1)
+                            x = showProducerWork();
+                        if(x == 0)
+                            opt = 0;
                         break;
                     case 0:
                         break;
@@ -202,7 +221,7 @@ public class BasicUI {
             System.out.println("Producer info:");
             System.out.println(producer.toString());
             System.out.println();
-            System.out.println("Producer profile info option: ");
+            System.out.println("Producer profile info options: ");
             System.out.println("\t1) Edit Profile Info\n\t0) Exit\n\t-1) Back");
 
             do {
@@ -226,12 +245,42 @@ public class BasicUI {
             return opt;
         }
 
-        public static void showProducerWork() {
+        public static int showProducerWork() {
+            Scanner keyboard = new Scanner(System.in);
+            int opt;
+            int ID;
+
+            System.out.println("Producer work:");
             producer.printWork();
+            System.out.println();
+            System.out.println("Producer work options: ");
+            System.out.println("\t1) Edit work by ID\n\t0) Exit\n\t-1) Back");
+
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch (opt) {
+                    case 1:
+                        System.out.print("ID of work: ");
+                        ID = keyboard.nextInt();
+                        producer.editProducerWorkByID(ID);
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                    default:
+                        System.out.println("No such option.");
+                        break;
+                }
+            }while(opt < -1 || opt > 1);
+
+            return opt;
         }
     }
 
-    public static void init() {
+    /*public static void init() {
         Producer producer = new Producer("Kirk", "Gian", "6981097028", "email@gmail.com", "otithelw", 16, true, 3);
         Owner owner1 = new Owner("Nikos", "Korompos", "6981787878", "korompos@gmail.com", "kalantas", 20);
         Owner owner2 = new Owner("Kwstas", "Kavourdirhs", "2310474829", "kavourdirhs@hotmail.gr", "kavourdirhs", 4019);
@@ -252,7 +301,7 @@ public class BasicUI {
         clientList.clear();
         clientList.add(client1);
         clientList.add(client2);
-    }
+    }*/
 
 
 }

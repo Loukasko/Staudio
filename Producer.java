@@ -64,12 +64,12 @@ public class Producer extends User {
         this.productions.add(prod);
         return true;
     }
-    public boolean deleteStudio(int studioId) {
-        Studio stud = getPartnerStudio(studioId);
-        if(stud == null) {
+    public boolean deleteProduction(int productionID) {
+        Production prod = getProduction(productionID);
+        if(prod == null) {
             return false;
         }
-        this.partnerStudios.remove(stud);
+        this.productions.remove(prod);
         return true;
     }
     public int getProducerId() {
@@ -103,10 +103,6 @@ public class Producer extends User {
         for(Studio s : this.partnerStudios) {
             str += "\tStudio ID: " + s.getStudioId() + ", Studio adress: " + s.getAddress() + ", Phone: " + s.getPhone() + "\n";
         }
-        str += "Producer productions:\n";
-        for(Production p : this.productions) {
-            str += "\tProduction ID: " + p.getReservationId() + ", Production studio: " + p.getStudio().getStudioId() + "\n";
-        }
 
         return str;
     }
@@ -115,7 +111,8 @@ public class Producer extends User {
         String str = "";
 
         for(Production p : this.productions) {
-            str += "\tProduction ID: " + p.getReservationId() + ", Production studio: " + p.getStudio().getStudioId() + "\n";
+            str += "\tProduction ID: " + p.getReservationId() + ", Production studio: " + p.getStudio().getStudioId() + ", Production Confirmed: " +
+                    (!p.isConfirmed() ? "No" : ("Yes" + ", Production Status: " + (p.getProductionStatus() ? "Finished" : "On progress"))) + "\n";
         }
 
         System.out.println(str);
@@ -124,12 +121,12 @@ public class Producer extends User {
     public void editProducerInfo() {
         Scanner keyboard = new Scanner(System.in);
         char c;
-        String tempName = "";
-        String tempLastName = "";
-        String tempPhone = "";
-        String tempEmail = "";
-        String tempPassword = "";
-        String tempStatus = "";
+        String tempName = this.getName();
+        String tempLastName = this.getLastName();
+        String tempPhone = this.getPhone();
+        String tempEmail = this.getEmail();
+        String tempPassword = this.getPassword();
+        String tempStatus = this.isStatus() ? "true" : "false";
 
         System.out.print("Change phone num? [y/n]: ");
         c = keyboard.next().charAt(0);
@@ -149,7 +146,7 @@ public class Producer extends User {
         c = keyboard.next().charAt(0);
         if(c == 'y') {
             System.out.print("Password: ");
-            tempEmail = keyboard.next();
+            tempPassword = keyboard.next();
         }
 
         System.out.print("Change status? [y/n]: ");
@@ -168,10 +165,46 @@ public class Producer extends User {
             this.setStatus(tempStatus.equals("true") ? true : false);
         }
 
-        //System.out.println(this.toString());
-
-
         System.out.println("");
     }
 
+    public void editProducerWorkByID(int ID) {
+        Production prod = null;
+        Scanner keyboard = new Scanner(System.in);
+        char c;
+
+        for(Production p : this.productions) {
+            if(p.getReservationId() == ID) {
+                prod = p;
+                break;
+            }
+        }
+
+        if(prod == null) {
+            System.out.println("There is no production having such ID.");
+            return;
+        }
+        if(!prod.isConfirmed()) {
+            do {
+                System.out.print("Confirm Production? [y/n]: ");
+                c = keyboard.next().charAt(0);
+                if (c == 'y')
+                    prod.setConfirmed(true);
+                else {
+                    this.deleteProduction(ID);
+                    return;
+                }
+            }while(c != 'y' && c != 'n');
+        }
+        else {
+            if (!prod.getProductionStatus()) {
+                do {
+                    System.out.print("Finshed production? [y/n]: ");
+                    c = keyboard.next().charAt(0);
+                    if (c == 'y')
+                        prod.setProductionStatus(true);
+                } while (c != 'y' && c != 'n');
+            }
+        }
+    }
 }

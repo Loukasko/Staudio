@@ -10,13 +10,17 @@ public class Room {
     public enum size {small, medium, large};
     private size roomSize;
     private int rating;
+    private float cost;
     private ArrayList<String> availiableRoomDates;
     private ArrayList<Reservation> listOfReservations; //not sure
 
     // Constructions
-    public Room(int roomId, type roomType, size roomSize, int rating) {
+    public Room(int roomId, type roomType, size roomSize, int rating, float cost) {
         this.roomId = roomId;
         this.rating = rating;
+        this.cost = cost;
+        this.availiableRoomDates = new ArrayList<String>();
+        this.listOfReservations = new ArrayList<Reservation>();
     }
 
     // Setters - Getters
@@ -33,8 +37,9 @@ public class Room {
     }
     public boolean setAvaliableRoomDate(String date) {
         String avalDate = getAvaliableRoomDate(date);
-        if(avalDate == null) {
+        if (avalDate == null) {
             return false;
+
         }
         this.availiableRoomDates.add(date);
         return true;
@@ -91,4 +96,6 @@ public class Room {
         }
         return false;
     }
+    public float getCost() { return this.cost; }
+    public void setCost(float cost) { this.cost = cost; }
 }
