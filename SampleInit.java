@@ -11,7 +11,7 @@ public class SampleInit {
         //producers initialization
         Producer producer1 = new Producer("Kirk", "Gian", "6981097028", "email@gmail.com", "otithelw", 16, true, 3);
         prodList.add(producer1);
-        Producer producer2 = new Producer("Vasilis", "Terlegkas", "6981097028", "email@gmail.com", "otithelw", 16, true, 4);
+        Producer producer2 = new Producer("Vasilis", "Terlegkas", "6981097028", "email@gmail.com", "otithelw", 17, true, 4);
         prodList.add(producer2);
 
         //owners initialization
@@ -130,7 +130,8 @@ public class SampleInit {
 //        studio3.setRoom(room12);
 
         producer1.setPartnerStudio(studio1);
-        producer2.setPartnerStudio(studio2);
+        producer2.setPartnerStudio(studio1);
+        System.out.println(studio1.getPartnerProducers().size());
 
         owner1.setPartnerStudio(studio1);
         owner2.setPartnerStudio(studio1);

@@ -33,12 +33,11 @@ public class Producer extends User {
         return null;
     }
     public boolean setPartnerStudio(Studio stud) {
-
         if(getPartnerStudio(stud.getStudioId()) != null) {
+            System.out.println("FAIL!!!!!!! " + this.getProducerId());
             return false;
         }
-        this.partnerStudios.add(stud);
-        return true;
+        return this.partnerStudios.add(stud) && stud.setPartnerProducer(this);
     }
     public boolean deletePartnerStudio(int studioId) {
         Studio stud = getPartnerStudio(studioId);
