@@ -19,7 +19,7 @@ public class ClientUI {
                     }
                     option = sc.nextInt();
                     Studio selectedStudio = SampleInit.getStudioList().get(option-1);
-
+                    System.out.println(selectedStudio.getRooms().size());
                     System.out.println("Please select Room from the list below");
                     for (int j = 0; j < selectedStudio.getRooms().size(); j++) {
                         System.out.print(j+1 + ")");
@@ -46,9 +46,11 @@ public class ClientUI {
                     System.out.println("Ready for rehearsal ?");
                     System.out.println("1)yes 2)No");
                     option = sc.nextInt();
+
                     if (option == 1) {
-                        new Reservation(1, null, selectedStudio, selectedRoom, false);
-                        System.out.println("New book request sent. Reservation currently pending.");
+                        new Reservation( 1 , null, selectedStudio, selectedRoom, false);
+                        System.out.println("New book request sent. Reservation with ID: " + selectedStudio.getReservations().size() + " currently pending.");
+
                     }else{
                         System.out.println("canceled");
                     }

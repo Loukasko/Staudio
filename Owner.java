@@ -10,6 +10,8 @@ public class Owner extends User {
     public Owner(String name, String lastName, String phone, String email, String password, int ownerId) {
         super(name, lastName, phone, email, password);
         this.ownerId = ownerId;
+        this.partnerStudios = new ArrayList<Studio>();
+        this.reservations = new ArrayList<Reservation>();
     }
 
     // Setters - Getters

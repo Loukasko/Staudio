@@ -111,8 +111,13 @@ public class SampleInit {
         //reservations initialization
         Reservation reserv1 = new Reservation(001, client1, studio1, room1, false  );
         reservationList.add(reserv1);
+        studio1.setReservation(reserv1);
         Reservation reserv2 = new Reservation(002, client3, studio1, room5, false  );
         reservationList.add(reserv2);
+        studio1.setReservation(reserv2);
+        Reservation reserv3 = new Reservation(003, client2, studio2, room4, false  );
+        reservationList.add(reserv3);
+        studio2.setReservation(reserv3);
 
 //        Room room9 = new Room(9, Room.type.highend, Room.size.small, 1, 2);
 //        Room room10 = new Room(10, Room.type.highend, Room.size.large, 1, 200);

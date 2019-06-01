@@ -20,41 +20,51 @@ public class OwnerUI {
                     }
                     option = sc.nextInt();
                     Studio selectedStudio = SampleInit.getStudioList().get(option - 1);
-                    //System.out.print(selectedStudio.setReservation().size());
-                    System.out.println("Please select a Reservation from the list below");
-                    for (int j = 0; j < SampleInit.getReservationList().size(); j++) {
-                        System.out.print(j + 1 + ")");
-                        System.out.println("Reservation ID:" + SampleInit.getStudioList().get(j));
-                        System.out.print("Client of the Reservation:" + SampleInit.getReservationList().get(j).getClient() + "\t");
-                        System.out.print("Room of the Reservation:" + SampleInit.getReservationList().get(j).getRoom() + "\t");
-                        System.out.println("Is the reservation Confirmed:" + SampleInit.getReservationList().get(j).isConfirmed());
-                    }
 
+                    if (selectedStudio.getReservations().size() >= 1) {
+                        System.out.println("Please select a Reservation from the list below");
+                        for (int j = 0; j < selectedStudio.getReservations().size(); j++) {
+                            System.out.print(j + 1 + ")");
+                            System.out.println("Reservation ID: " + selectedStudio.getReservations().get(j).getReservationId());
+                            System.out.println("Client of the Reservation: " + selectedStudio.getReservations().get(j).getClient().getName());
+                            System.out.println("Room of the Reservation: " + selectedStudio.getReservations().get(j).getRoom().getRoomId());
+                            System.out.println("Is the reservation Confirmed: " + selectedStudio.getReservations().get(j).isConfirmed());
+                        }
+                    }else{
+                        System.out.println("No reservations were made for current Studio: " + selectedStudio.getStudioName());
+                        System.exit(0);
+                    }
                     option = sc.nextInt();
                     Reservation selectedReservation = selectedStudio.getReservations().get(option - 1);
-
-                    for (int j = 0; j < selectedStudio.getReservations().size(); j++) {
-                        if(selectedReservation.isConfirmed() == false){
-                        System.out.println("You have a pending reservation");
-                        System.out.println("Select an option: ");
-                        System.out.println("1) Reservation Details");
-                        System.out.println("2) Accept Reservation");
-                        System.out.println("3) Decline Reservation");
-
+                    selectedReservation.printReservationInfo();
+                    if(selectedReservation.isConfirmed() == false) {
+                    System.out.println("You have a pending reservation");
+                    System.out.println("Select an option: ");
+                    System.out.println("1) Reservation Details");
+                    System.out.println("2) Accept Reservation");
+                    System.out.println("3) Decline Reservation");
+                    option = sc.nextInt();
+                    switch (option) {
+                        case 1:
+                            selectedReservation.printReservationInfo();
+                            break;
+                        case:2
+                            selectedReservation.setConfirmed(true);
+                            System.out.println("Reservation confirmed");
+                            break;
+                        case:3
+                            System.out.println("Reservation declined");
+                        }
+                    }
+                    else{
+                        System.out.println("You have a non-pending reservation");
+                        System.out.println("Edit Your Reservation ");
+                        System.out.println("1) Edit Reservation Room");
+                        System.out.println("2) Edit Reservation Equipment");
+                        System.out.println("0) Exit ");
                         option = sc.nextInt();
 
-                        }
-                        else{
-                            System.out.println("You have a non-pending reservation");
-                            System.out.println("Edit Your Reservation ");
-                            System.out.println("1) Edit Reservation Room");
-                            System.out.println("2) Edit Reservation Equipment");
-                            System.out.println("0) Exit ");
-
-                        }
-
                     }
-
 
                     //System.out.println("Please select Date from the available below");
                     //for (int j = 0; j < selectedRoom.getAvailiableRoomDates().size(); j++) {

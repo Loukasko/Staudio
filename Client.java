@@ -9,6 +9,7 @@ public class Client extends User{
     public Client(String name, String lastName, String phone, String email, String password, int clientId) {
         super(name, lastName, phone, email, password);
         this.clientId = clientId;
+        this.history = new ArrayList<Reservation>();
     }
 
     // Setters - Getters

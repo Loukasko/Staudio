@@ -8,6 +8,7 @@ public class Reservation {
     private boolean confirmed;
     private Room room;
     private ArrayList<Equipment> equipmentList;
+    private ArrayList<Reservation> reservationList;
 
     // Constructors
     public Reservation(int reservationId,Client client,Studio studio, Room room, boolean confirmed) {
@@ -16,6 +17,7 @@ public class Reservation {
         this.studio = studio;
         this.room = room;
         this.confirmed = confirmed;
+        this.reservationList = new ArrayList<Reservation>();
     }
 
     // Seters - Getters
