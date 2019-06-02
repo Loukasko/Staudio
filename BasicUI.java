@@ -109,7 +109,7 @@ public class BasicUI {
             System.out.println("My studios: ");
             owner.printOwnerStudios();
             System.out.println("Owner My studios options: ");
-            System.out.println("\t1) Edit Studio by ID\n\t0) Exit\n\t-1) Back");
+            System.out.println("\t1) Select Studio by ID\n\t0) Exit\n\t-1) Back");
 
             do {
                 System.out.println("Choose option: ");
@@ -120,7 +120,7 @@ public class BasicUI {
                     case 1:
                         System.out.print("Studio ID: ");
                         ID = keyboard.nextInt();
-                        owner.editOwnerStudioByID(ID);
+                        editOwnerStudioByID(ID);
                         break;
                     case 0:
                         break;
@@ -136,8 +136,305 @@ public class BasicUI {
         }
 
         public static int showOwnerPersonalInfo() {
+            int opt;
+            int x=10;
+            Scanner keyboard = new Scanner(System.in);
 
-            return 0;
+            System.out.println("Owner personal info: ");
+            System.out.println(owner.toString());
+            System.out.println("Owner personal info options: ");
+            System.out.println("\t1) Edit personal info\n\t0) Exit\n\t-1) Back");
+
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch (opt) {
+                    case 1:
+                        owner.editOwnerPersonalInfo();
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                    default:
+                        System.out.println("No such option");
+                        break;
+                }
+            }while(opt < -1 || opt > 1);
+
+            return opt;
+        }
+
+        public static int editOwnerStudioByID(int ID) {
+            int opt;
+            int x=10;
+            Scanner keyboard = new Scanner(System.in);
+
+            Studio stud = owner.getPartnerStudio(ID);
+
+            System.out.println("Studio info:");
+            System.out.println(stud.toString());
+            System.out.println("Studio owner options: ");
+            System.out.println("\t1) Edit studio info\n\t0) Exit\n\t-1) Back");
+
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch(opt) {
+                    case 1:
+                        editOwnerStudioInfo(stud);
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                    default:
+                        break;
+                }
+            }while(opt < -1 || opt > 1);
+
+            return opt;
+        }
+
+        public static void editOwnerStudioInfo(Studio stud) {
+            char c;
+            Scanner keyboard = new Scanner(System.in);
+
+            String tempName = stud.getName();
+            String tempAdress = stud.getAddress();
+            String tempPhone = stud.getPhone();
+
+            System.out.print("Change name? [y/n]: ");
+            c = keyboard.next().charAt(0);
+            if(c == 'y') {
+                tempName = keyboard.next();
+            }
+            System.out.print("Change adress? [y/n]: ");
+            c = keyboard.next().charAt(0);
+            if(c == 'y') {
+                tempAdress = keyboard.next();
+            }
+            System.out.print("Change phone? [y/n]: ");
+            c = keyboard.next().charAt(0);
+            if(c == 'y') {
+                tempPhone = keyboard.next();
+            }
+            System.out.print("Edit owners? [y/n]: ");
+            c = keyboard.next().charAt(0);
+            if(c == 'y') {
+               editStudioOwners(stud);
+            }
+
+            System.out.print("Edit producers? [y/n]: ");
+            c = keyboard.next().charAt(0);
+            if(c == 'y') {
+                editStudioProducers(stud);
+            }
+
+            System.out.print("Edit rooms? [y/n]: ");
+            c = keyboard.next().charAt(0);
+            if(c == 'y') {
+                editStudioRooms(stud);
+            }
+
+            System.out.print("Edit equipment? [y/n]: ");
+            c = keyboard.next().charAt(0);
+            if(c == 'y') {
+                editStudioEquipment(stud);
+            }
+        }
+
+        public static void editStudioOwners(Studio stud) {
+            int opt;
+            int x;
+            Scanner keyboard = new Scanner(System.in);
+            int tempID;
+
+
+            System.out.println("Studio owners options: ");
+            System.out.println("\t1) Add owner\n\t2) Remove Owner\n\t0) Exit\n\t-1) Back");
+
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+                boolean f = false;
+                switch (opt) {
+                    case 1:
+                        System.out.print("New Owner ID: ");
+                        tempID = keyboard.nextInt();
+                        f = false;
+
+                        for(Owner o : SampleInit.getOwnerList()) {
+                            if(o.getOwnerId() == tempID) {
+                                if(stud.getPartnerOwner(tempID) != null) {
+                                    System.out.println("This studio already has owner with ID " + tempID + ".");
+                                    f = true;
+                                    break;
+                                }
+                                else {
+                                    stud.setPartnerOwner(o);
+                                    System.out.println("Owner " + tempID + "added succesful.");
+                                    f = true;
+                                    break;
+                                }
+                            }
+                        }
+                        System.out.println(!f ? ("There is no registered owner with ID " + tempID + ".") : "");
+                        break;
+                    case 2:
+                        System.out.print("Owner ID: ");
+                        tempID = keyboard.nextInt();
+                        f = false;
+
+                        for(Owner o : SampleInit.getOwnerList()) {
+                            if(o.getOwnerId() == tempID) {
+                                f = stud.getPartnerOwners().remove(o);
+                                System.out.println(f ? ("Owner " + tempID + " removed successfully.") : ("Error removing owner " + tempID + "."));
+                                break;
+                            }
+                        }
+                        System.out.println(!f ? ("There is no owner with ID " + tempID + " owning this studio") : "");
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                }
+            }while(opt <-1 || opt > 2);
+        }
+
+        public static void editStudioProducers(Studio stud) {
+            int opt;
+            Scanner keyboard = new Scanner(System.in);
+            int tempID;
+            boolean f = false;
+
+            System.out.println("Studio producers options: ");
+            System.out.println("\t1) New producer\n\t2) Remove producer\n\t0) Exit\n\t-1) Back");
+
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch(opt) {
+                    case 1:
+                        f = false;
+                        System.out.print("Producer ID: ");
+                        tempID = keyboard.nextInt();
+                        for(Producer p : SampleInit.getProdList()) {
+                            if(p.getProducerId() == tempID) {
+                                if(stud.getPartnerProducer(tempID) != null) {
+                                    System.out.println("Producer with ID " + tempID + " already exists.");
+                                    f = true;
+                                    break;
+                                }
+                                else {
+                                    stud.setPartnerProducer(p);
+                                    System.out.println("Producer added successfully.");
+                                    f = true;
+                                }
+                            }
+                        }
+                        System.out.println(!f ? ("There is no registered producer with ID " + tempID + ".") : "");
+                        break;
+                    case 2:
+                        f = false;
+                        System.out.println("Producer ID: ");
+                        tempID = keyboard.nextInt();
+                        for(Producer p : SampleInit.getProdList()) {
+                            if(p.getProducerId() == tempID) {
+                                if(stud.getPartnerProducer(tempID) != null) {
+                                    f = stud.getPartnerProducers().remove(p);
+                                    System.out.println(f ? ("Producer " + tempID + " removed successfully.") : "Error removing producer " + tempID + ".");
+                                }
+                            }
+                        }
+                        System.out.println(!f ? ("There is no registered producer with ID " + tempID + ".") : "");
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                }
+            }while(opt < -1 || opt > 2);
+        }
+
+        public static void editStudioRooms(Studio stud) {
+            int opt;
+            Scanner keyboard = new Scanner(System.in);
+            boolean f = false;
+
+            int tempID;
+
+            System.out.println("Rooms options: ");
+            System.out.println("\t1) New room\n\t2) Remove room\n\t0) Exit\n\t-1) Back");
+
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch(opt) {
+                    case 1:
+                        Room r = Room.makeNewRoom();
+                        System.out.println("Room info:\n" + r.toString());
+                        break;
+                    case 2:
+                        System.out.print("Room ID: ");
+                        tempID = keyboard.nextInt();
+                        if(stud.getRoom(tempID) == null) {
+                            System.out.println("There is no room with ID " + tempID + "\n");
+                        }
+                        else {
+                            f = stud.deleteRoom(tempID);
+                            System.out.println(f ? ("Room " + tempID + " removed successfully.") : ("Error removing room " + tempID + "\n"));
+                        }
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        break;
+                }
+            }while(opt < -1 || opt > 2);
+        }
+
+        public static void editStudioEquipment(Studio stud) {
+            int opt;
+            Scanner keyboard = new Scanner(System.in);
+            boolean f = false;
+            int ID;
+
+            System.out.println("Studio equipment options: ");
+            System.out.println("\t1) New equipment\n\t2) Remove equipment\n\t0) Exit\n\t-1) Back");
+
+            do {
+                System.out.print("Choose option: ");
+                opt = keyboard.nextInt();
+
+                switch(opt) {
+                    case 1:
+                        Equipment e = Equipment.makeNewEquipment();
+                        System.out.println("Equipment info: ");
+                        System.out.println(e.toString());
+                        break;
+                    case 2:
+                        System.out.print("Equipment ID: ");
+                        ID = keyboard.nextInt();
+                        if(stud.getEquip(ID) != null) {
+                            f = stud.deleteEquip(ID);
+                            System.out.println(f ? "Equipment removed successfully." : "Error removing equipment.");
+                        }
+                        else {
+                            System.out.println("There is no equipment with such ID.");
+                        }
+                        break;
+                    case 0:
+                        break;
+                    case -1:
+                        break;
+                }
+            } while(opt < -1 || opt > 2);
         }
 
     }
@@ -278,6 +575,8 @@ public class BasicUI {
 
             return opt;
         }
+
+
     }
 
     /*public static void init() {

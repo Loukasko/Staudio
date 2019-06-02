@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Studio {
     // Variables
@@ -125,6 +126,14 @@ public class Studio {
     public ArrayList getEquips() {
         return equips;
     }
+    public Equipment getEquip(int equipID) {
+        for(Equipment e : this.equips) {
+            if(e.getMusInsId() == equipID) {
+                return e;
+            }
+        }
+        return null;
+    }
     public boolean setEquips(Equipment eq) {
         for(Equipment e : this.equips) {
             if(e.getMusInsId() == eq.getMusInsId()) {
@@ -134,8 +143,23 @@ public class Studio {
         this.equips.add(eq);
         return true;
     }
+    public boolean deleteEquip(int ID) {
+        Equipment eq = this.getEquip(ID);
+        if(eq == null)
+            return false;
+
+        return this.equips.remove(eq);
+    }
     public ArrayList getPartnerProducers() {
         return partnerProducers;
+    }
+    public Producer getPartnerProducer(int ID) {
+        for(Producer p : this.partnerProducers) {
+            if(p.getProducerId() == ID) {
+                return p;
+            }
+        }
+        return null;
     }
     public boolean setPartnerProducer(Producer prod) {
         for(Producer p : this.partnerProducers) {
@@ -146,8 +170,14 @@ public class Studio {
         this.partnerProducers.add(prod);
         return true;
     }
-    public ArrayList getPartnerOwners() {
-        return partnerOwners;
+    public ArrayList getPartnerOwners() { return partnerOwners; }
+    public Owner getPartnerOwner(int ID) {
+        for(Owner o :this.partnerOwners) {
+            if(o.getOwnerId() == ID) {
+                return o;
+            }
+        }
+        return null;
     }
     public boolean setPartnerOwner(Owner partOwn) {
         for(Owner o : this.partnerOwners) {
@@ -251,7 +281,4 @@ public class Studio {
         str += "\n";
         return str;
     }
-
-
-
 }

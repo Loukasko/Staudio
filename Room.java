@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Room {
     // Variables
@@ -37,7 +38,7 @@ public class Room {
     }
     public boolean setAvaliableRoomDate(String date) {
         String avalDate = getAvaliableRoomDate(date);
-        if (avalDate == null) {
+        if (avalDate != null) {
             return false;
 
         }
@@ -98,4 +99,86 @@ public class Room {
     }
     public float getCost() { return this.cost; }
     public void setCost(float cost) { this.cost = cost; }
+
+
+    public static Room makeNewRoom() {
+        Scanner keyboard = new Scanner(System.in);
+
+        int roomID;
+        String roomTypeStr;
+        Room.type roomType;
+        String roomSizeStr;
+        Room.size roomSize;
+        float roomCost;
+        char opt;
+        String roomAvalDate;
+
+        System.out.print("Room ID: ");
+        roomID = keyboard.nextInt();
+        System.out.print("Room type [highend/rehersal]: ");
+        roomTypeStr = keyboard.next();
+        roomType = roomTypeStr.equals("highend") ? type.highend : type.rehearsal;
+        System.out.println("Size [small/medium/large]: ");
+        roomSizeStr = keyboard.next();
+        if(roomSizeStr.equals("small")) {
+            roomSize = size.small;
+        }
+        else if(roomSizeStr.equals("medium")) {
+            roomSize = size.medium;
+        }
+        else {
+            roomSize = size.large;
+        }
+        System.out.print("Cost: ");
+        roomCost = keyboard.nextFloat();
+
+        Room r = new Room(roomID, roomType, roomSize, 0, roomCost);
+
+        while(true) {
+            System.out.print("Add avaliable date? [y/n]: ");
+            opt = keyboard.next().charAt(0);
+
+            if(opt == 'y'){
+                System.out.print("Avaliable date: ");
+                roomAvalDate = keyboard.next();
+                r.setAvaliableRoomDate(roomAvalDate);
+            }
+            else if(opt == 'n'){
+                break;
+            }
+            else {
+                System.out.println("No such option.");
+            }
+        }
+
+        return r;
+
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+
+        str += "Room ID: " + this.roomId + "\n";
+        str += "Room type: " + (this.roomType == type.highend ? "highend" : "rehersal") + "\n";
+        str += "Room size: ";
+        if(this.roomSize == size.small) {
+            str += "small";
+        }
+        else if(this.roomSize == size.medium) {
+            str += "medium";
+        }
+        else {
+            str += "large";
+        }
+        str += "\n";
+        str += "Room rating: " + this.rating + "\n";
+        str += "Room cost: " + this.cost + "\n";
+        str += "Room avaliable dates:" + "\n";
+        for(String s : this.availiableRoomDates) {
+            str += "\t" + s + "\n";
+        }
+
+        return str;
+    }
 }
