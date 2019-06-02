@@ -64,6 +64,7 @@ public class Equipment {
     public static Equipment makeNewEquipment() {
         Scanner keyboard = new Scanner(System.in);
 
+        String tempIDstr;
         int equipentID;
         String equipmentName;
         String equipTypeStr;
@@ -73,9 +74,10 @@ public class Equipment {
 
 
         System.out.print("Equipment ID: ");
-        equipentID = keyboard.nextInt();
+        tempIDstr = keyboard.nextLine();
+        equipentID = Integer.parseInt(tempIDstr);
         System.out.print("Equipment name: ");
-        equipmentName = keyboard.next();
+        equipmentName = keyboard.nextLine();
         System.out.print("Equipment type [violi/klarino/kithara/baglamas/drums/fysarmonika]: ");
         equipTypeStr = keyboard.next();
         if(equipTypeStr.equals("violi"))

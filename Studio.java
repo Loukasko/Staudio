@@ -143,6 +143,9 @@ public class Studio {
         this.equips.add(eq);
         return true;
     }
+    public boolean setEquip(Equipment e) {
+        return this.equips.add(e);
+    }
     public boolean deleteEquip(int ID) {
         Equipment eq = this.getEquip(ID);
         if(eq == null)

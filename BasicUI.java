@@ -415,6 +415,7 @@ public class BasicUI {
                 switch(opt) {
                     case 1:
                         Equipment e = Equipment.makeNewEquipment();
+                        stud.setEquip(e);
                         System.out.println("Equipment info: ");
                         System.out.println(e.toString());
                         break;
