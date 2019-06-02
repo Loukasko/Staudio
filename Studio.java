@@ -98,32 +98,7 @@ public class Studio {
         this.availiableDates.remove(avalDate);
         return true;
     }
-    public ArrayList getOffers() {
-        return offers;
-    }
-    public Offer getOffer(int offerId) {
-        for(Offer o : this.offers) {
-            if(o.getOfferId() == offerId) {
-                return o;
-            }
-        }
-        return null;
-    }
-    public boolean setOffer(Offer off) {
-        if(getOffer(off.getOfferId()) != null) {
-            return false;
-        }
-        this.offers.add(off);
-        return true;
-    }
-    public boolean deleteOffer(int offerId) {
-        Offer off = getOffer(offerId);
-        if(off == null) {
-            return false;
-        }
-        this.offers.remove(off);
-        return true;
-    }
+
     public ArrayList getEquips() {
         return equips;
     }
@@ -187,6 +162,33 @@ public class Studio {
         return true;
     }
 
+    public ArrayList<Offer> getOffers() {
+        return offers;
+    }
+    public Offer getOffer(int offerId) {
+        for(Offer o : this.offers) {
+            if(o.getOfferId() == offerId) {
+                return o;
+            }
+        }
+        return null;
+    }
+    public boolean setOffer(Offer off) {
+        if(getOffer(off.getOfferId()) != null) {
+            return false;
+        }
+        this.offers.add(off);
+        return true;
+    }
+    public boolean deleteOffer(int offerId) {
+        Offer off = getOffer(offerId);
+        if(off == null) {
+            return false;
+        }
+        this.offers.remove(off);
+        return true;
+    }
+
     public int getStudioId() {
         return studioId;
     }
@@ -236,6 +238,49 @@ public class Studio {
             if(date.equals(checkDate))return true;
         }
         return false;
+    }
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Studio name: " + this.getStudioName() + "\n";
+        str += "Studio ID: " + this.getStudioId() + "\n";
+        str += "Studio adress: " + this.getAddress() + "\n";
+        str += "Studio overall rating: " + this.getOverallRating() + "\n";
+        str += "Studio phone: " + this.getPhone() + "\n";
+        str += "Studio lat: " + this.getLat() + "\n";
+        str += "Studio lng: " + this.getLng() + "\n";
+        str += "Studio owner" + (this.getPartnerOwners().size() > 1 ? "s" : "") + ": ";
+        for(Owner o : this.partnerOwners) {
+            str += (o==partnerOwners.get(0) ? "" : ", ") + o.getOwnerId();
+        }
+        str += "\n";
+        str += "Studio producer" + (this.getPartnerProducers().size() > 1 ? "s" : "") + ": ";
+        for(Producer p : this.partnerProducers) {
+            str += (p==partnerProducers.get(0) ? "" : ", ") + p.getProducerId();
+        }
+        str += "\n";
+        str += "Studio rooms:\n";
+        for(Room r : this.rooms) {
+            str += r.getRoomId() + "\n";
+        }
+        str += "Studio equipment:\n";
+        for(Equipment e : this.equips) {
+            str += e.getMusInsId() + "\n";
+        }
+        str += "Studio avaliable dates:\n";
+        for(String s : this.availiableDates) {
+            str += s + "\n";
+        }
+        str += "Studio reservations:\n";
+        for(Reservation r : this.reservations) {
+            str += r.getReservationId() + "\n";
+        }
+        str += "Studio offers:\n";
+        for(Offer o : this.offers) {
+            str += o.getOfferId();
+        }
+        str += "\n";
+        return str;
     }
 
 //    public Studio getStudio(int studioId){

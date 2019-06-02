@@ -6,7 +6,7 @@ public class OwnerUI {
         int option;
 
         while (true) {
-            System.out.println("Owner option : ");
+            System.out.println("Owner options : ");
             System.out.println("1) Show My Studios");
             System.out.println("2) Personal Info");
             System.out.println("0) Exit");
@@ -15,8 +15,9 @@ public class OwnerUI {
 
             switch (option) {
                 case 1:
-                    for (int i = 0; i < SampleInit.getStudioList().size(); i++) {
-                        System.out.println(i + 1 + ")" + SampleInit.getStudioList().get(i).getStudioName());
+                    System.out.println("Select one studiio");
+                    for (int i = 0; i < owner.getPartnerStudios().size(); i++) {
+                        System.out.println(i + 1 + ")" + owner.getPartnerStudios().get(i).getStudioName());
                     }
                     option = sc.nextInt();
                     Studio selectedStudio = SampleInit.getStudioList().get(option - 1);
@@ -118,12 +119,77 @@ public class OwnerUI {
                             break;
                         case 2:
                             //offers
+                            System.out.println("1) Make Offer for Rehearsal");
+                            System.out.println("2) Make Offer for Recording");
+                            System.out.println("3) Make Own Offer");
+                            System.out.println("0) Back to Owner options..");
+                            option = sc.nextInt();
+                            switch (option) {
+                                case 1:
+                                    //System.out.println(owner.getPartnerStudios().size());
+                                    System.out.println("Please select an Offer By ID from the list below");
+                                    for (int j = 0; j < selectedStudio.getOffers().size(); j++) {
+                                        if (selectedStudio.getOffers().get(j).getRecType() == Offer.type.rehearsal) {
+                                            //System.out.print(j + 1 + ")");
+                                            System.out.println(" Offer ID: " + selectedStudio.getOffers().get(j).getOfferId());
+                                            System.out.print(selectedStudio.getOffers().get(j).getNumOfReservations() + " Booked ");
+                                            System.out.print(selectedStudio.getOffers().get(j).getRecType() + "s + ");
+                                            System.out.print(selectedStudio.getOffers().get(j).getFree() + " FREE hours of ");
+                                            System.out.println(selectedStudio.getOffers().get(j).getRecType() + "! ");
+                                        }
+                                    }
+                                    option = sc.nextInt();
+                                    Offer selectedOfferReh = selectedStudio.getOffer(option);
+                                    //int posOffer = option - 1;
+                                    System.out.println("Are you sure you want to add this Offer?");
+                                    System.out.print("1)yes \t");
+                                    System.out.println("2)no");
+                                    option = sc.nextInt();
+                                    if (option == 1) {
+                                        owner.addOffer(selectedStudio.getStudioId(), selectedOfferReh, true/*, posOffer*/);
+                                    } else {
+                                        owner.addOffer(selectedStudio.getStudioId(), selectedOfferReh, false/*, posOffer*/);
+                                    }
+                                    break;
+                                case 2:
+                                    System.out.println(selectedStudio.getOffers().size());
+                                    System.out.println("Please select an Offer By ID from the list below");
+                                    for (int j = 0; j < selectedStudio.getOffers().size(); j++) {
+                                        if (selectedStudio.getOffers().get(j).getRecType() == Offer.type.recording) {
+                                            System.out.print(j + 1 + ")");
+                                            System.out.println(" Offer ID: " + selectedStudio.getOffers().get(j).getOfferId());
+                                            System.out.print(selectedStudio.getOffers().get(j).getNumOfReservations() + " Booked ");
+                                            System.out.print(selectedStudio.getOffers().get(j).getRecType() + "s + ");
+                                            System.out.print(selectedStudio.getOffers().get(j).getFree() + " FREE hours of ");
+                                            System.out.println(selectedStudio.getOffers().get(j).getRecType() + "! ");
+                                        }
+                                    }
+                                    option = sc.nextInt();
+                                    Offer selectedOfferRec = selectedStudio.getOffer(option);
+                                    //posOffer = option - 1;
+                                    System.out.println("Are you sure you want to add this Offer?");
+                                    System.out.print("1)yes \t");
+                                    System.out.println("2)no");
+                                    option = sc.nextInt();
+                                    if (option == 1) {
+                                        owner.addOffer(selectedStudio.getStudioId(), selectedOfferRec, true);
+                                    } else {
+                                        owner.addOffer(selectedStudio.getStudioId(), selectedOfferRec, false);
+                                    }
+                                    break;
+                                case 3:
+
+                                    break;
+                                case 0:
+                                    break;
+                            }
                             break;
                         case 3:
                             //back to owner options
                             break;
                     }
                     break;
+
                 case 2:
                     //System.out.println("Select Studio from the list below");
                     //for (int i = 0; i < SampleInit.getStudioList().size(); i++) {
@@ -143,5 +209,6 @@ public class OwnerUI {
         }
     }
 }
+
 
 

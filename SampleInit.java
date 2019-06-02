@@ -7,6 +7,7 @@ public class SampleInit {
     private static ArrayList<Studio> studioList =new ArrayList<>();
     private static ArrayList<Reservation> reservationList =new ArrayList<>();
     private static ArrayList<Equipment> equipmentList = new ArrayList<>();
+    private static ArrayList<Offer> offerList = new ArrayList<>();
 
     public SampleInit() {
         //producers initialization
@@ -136,6 +137,7 @@ public class SampleInit {
         producer2.setPartnerStudio(studio2);
 
         owner2.setPartnerStudio(studio1);
+        owner2.setPartnerStudio(studio3);
 
         Equipment equip1 = new Equipment(1, "Les Paul 360", Equipment.type.kithara );
         equipmentList.add(equip1);
@@ -151,6 +153,35 @@ public class SampleInit {
         studio3.setEquips(equip3);
         studio3.setEquips(equip4);
 
+        Offer offer1 = new Offer(1,studio1,5, 2, Offer.type.rehearsal, false);
+        offerList.add(offer1);
+        studio1.setOffer(offer1);
+        //reserv1.setOffer(offer1);
+        Offer offer2 = new Offer(2,studio1,10, 4, Offer.type.rehearsal, false);
+        offerList.add(offer2);
+        studio1.setOffer(offer2);
+        //reserv2.setOffer(offer2);
+        Offer offer3 = new Offer(3,studio1,5, 2, Offer.type.recording, false);
+        offerList.add(offer3);
+        studio1.setOffer(offer3);
+        Offer offer4 = new Offer(4,studio3,5, 2, Offer.type.rehearsal, false);
+        offerList.add(offer4);
+        studio3.setOffer(offer4);
+        Offer offer5 = new Offer(5,studio3,10, 4, Offer.type.rehearsal, false);
+        offerList.add(offer5);
+        studio3.setOffer(offer5);
+        Offer offer6 = new Offer(6,studio3,5, 2, Offer.type.recording, false);
+        offerList.add(offer6);
+        studio3.setOffer(offer6);
+        Offer offer7 = new Offer(7,studio2,5, 2, Offer.type.rehearsal, false);
+        offerList.add(offer7);
+        studio2.setOffer(offer7);
+        Offer offer8 = new Offer(8,studio2,10, 4, Offer.type.rehearsal, false);
+        offerList.add(offer8);
+        studio2.setOffer(offer8);
+        Offer offer9 = new Offer(9,studio2,5, 2, Offer.type.recording, false);
+        offerList.add(offer9);
+        studio2.setOffer(offer9);
     }
 
     public static ArrayList<Studio> getStudioList() {

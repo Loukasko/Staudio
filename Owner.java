@@ -5,6 +5,7 @@ public class Owner extends User {
     private int ownerId;
     private ArrayList<Studio> partnerStudios;
     private ArrayList<Reservation> reservations;
+    private ArrayList<Offer> offers;
 
     // Constructors
     public Owner(String name, String lastName, String phone, String email, String password, int ownerId) {
@@ -12,6 +13,7 @@ public class Owner extends User {
         this.ownerId = ownerId;
         this.partnerStudios = new ArrayList<Studio>();
         this.reservations = new ArrayList<Reservation>();
+        this.offers = new ArrayList<Offer>();
     }
 
     // Setters - Getters
@@ -85,7 +87,38 @@ public class Owner extends User {
         return true;
     }
 
-    public void manageResevation(Studio studio, Reservation reservation, boolean pending, boolean accept) {
+    public ArrayList<Offer> getOffers() {
+        return offers;
+    }
+
+    public Offer getOffer(int offerId) {
+        for (Offer o : this.offers) {
+            if (o.getOfferId() == offerId) {
+                return o;
+            }
+        }
+        return null;
+    }
+
+    public boolean setOffer(Offer off) {
+        if (getOffer(off.getOfferId()) != null) {
+            return false;
+        }
+        offers.add(off);
+        //res.(this);
+        return true;
+    }
+
+    public boolean deleteOffer(int offerId) {
+        Offer off = getOffer(offerId);
+        if (off == null) {
+            return false;
+        } else {
+            offers.remove(off);
+        }
+        return true;
+    }
+        public void manageResevation(Studio studio, Reservation reservation, boolean pending, boolean accept) {
         for (Studio i : this.getPartnerStudios()) {
             if (i.getStudioId() == studio.getStudioId()) {
                 for (Reservation j : i.getReservations()) {
@@ -141,10 +174,22 @@ public class Owner extends User {
                 }
             }
     }
-    public void addOffer(int studioId,Offer offer,boolean state){
+    public void addOffer(int studioId,Offer offer,boolean state/*, int position*/){
+
+        //System.out.println(this.getPartnerStudios().size());
         for(Studio i:this.getPartnerStudios()){
+            //System.out.println(i.toString());
+            //System.out.println(i.getStudioId());
+            //System.out.println(studioId);
             if(i.getStudioId()==studioId){
-                i.setOffer(offer);
+
+                if (state == true) {
+                    i.setOffer(offer);
+                    //System.out.println("Offer : " + i.getOffers().get(position).getOfferId() + " Added");
+                    System.out.println(i.getOffers().contains(offer)?" Offer Added":"Not Added");
+                }else { //ακυρωνω προσθηκη καινουργιου offer
+                    break;
+                }
             }
         }
     }

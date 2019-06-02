@@ -11,6 +11,9 @@ public class Offer {
     private int free;
     private boolean state;
     private ArrayList<Reservation> listOfReservations;
+    //private ArrayList<Studio> listOfStudios;
+    private ArrayList<Offer> listOfOffers;
+
 
     // Constructors
     public Offer(int offerId, Studio studio, int numOfReservations,int free,type recType, boolean state) {
@@ -20,17 +23,16 @@ public class Offer {
         this.numOfReservations = numOfReservations;
         this.free = free;
         this.state = state;
+        //this.listOfStudios = new ArrayList<Studio>();
+        this.listOfOffers = new ArrayList<Offer>();
+        this.listOfReservations = new ArrayList<Reservation>();
     }
 
     // Setters - Getters
-    public int getOfferId() {
-        return offerId;
-    }
+    public int getOfferId() { return offerId; }
     public void setOfferId(int offerId) {
         this.offerId = offerId;
     }
-    public Studio getStudio() { return studio; }
-    public void setStudio(Studio studio) { this.studio = studio; }
     public type getRecType() { return this.recType; }
     public void setRecType() { this.recType = recType; }
     public int getNumOfReservations() {

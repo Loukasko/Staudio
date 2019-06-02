@@ -9,6 +9,7 @@ public class Reservation {
     private Room room;
     private ArrayList<Equipment> equipmentList;
     private ArrayList<Reservation> reservationList;
+    private ArrayList<Offer> offerList;
 
     // Constructors
     public Reservation(int reservationId,Client client,Studio studio, Room room, boolean confirmed) {
@@ -19,6 +20,7 @@ public class Reservation {
         this.confirmed = confirmed;
         this.reservationList = new ArrayList<Reservation>();
         this.equipmentList = new ArrayList<Equipment>();
+        this.offerList = new ArrayList<Offer>();
     }
 
     // Seters - Getters
@@ -46,6 +48,37 @@ public class Reservation {
         this.equipmentList.remove(eq);
         return true;
     }
+
+    //public ArrayList<Offer> getOffers() { return offerList; }
+//
+  //  public Offer getOffer(int offerId) {
+    //    for (Offer o : this.offerList) {
+    //        if (o.getOfferId() == offerId) {
+    //            return o;
+     //       }
+     //   }
+     //   return null;
+    //}
+//
+ //   public boolean setOffer(Offer off) {
+  //      if (getOffer(off.getOfferId()) != null) {
+   //         return false;
+    //    }
+     //   offerList.add(off);
+      //  //res.(this);
+      //  return true;
+   // }
+
+    //public boolean deleteOffer(int offerId) {
+      //  Offer off = getOffer(offerId);
+        //if (off == null) {
+          //  return false;
+        //} else {
+          //  offerList.remove(off);
+        //}
+        //return true;
+    //}
+
     public int getReservationId() { return reservationId; }
     public void setReservationId(int reservationId) { this.reservationId = reservationId; }
     public Client getClient() { return this.client; }
@@ -61,6 +94,13 @@ public class Reservation {
         this.confirmed = confirmed;
     }
 
+    public ArrayList<Offer> getOfferList() {
+        return offerList;
+    }
+
+    public void setOfferList(ArrayList<Offer> offerList) {
+        this.offerList = offerList;
+    }
 
     @Override
     public String toString() {

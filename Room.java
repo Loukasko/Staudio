@@ -17,6 +17,7 @@ public class Room {
     private ArrayList<String> availiableRoomDates;
 
     private ArrayList<Reservation> listOfReservations; //not sure
+    private ArrayList<Offer> listOfOffers;
     private ArrayList<Room> rooms;
 
     // Constructions
