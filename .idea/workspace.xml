@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62fd0da1-a132-48b8-8358-04d436a1796b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/BasicUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Offer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Offer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/Owner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Production.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recording.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recording.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rehearsal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Rehearsal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SampleInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/SampleInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Studio.java" beforeDir="false" afterPath="$PROJECT_DIR$/Studio.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SampleInit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
+            <state relative-caret-position="1547">
               <caret line="112" column="95" lean-forward="true" selection-start-line="112" selection-start-column="95" selection-end-line="112" selection-end-column="95" />
             </state>
           </provider>
@@ -36,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BasicUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="726" column="45" selection-start-line="726" selection-start-column="45" selection-end-line="726" selection-end-column="45" />
+            <state relative-caret-position="300">
+              <caret line="66" column="17" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#MyException#0;class#BasicUI#0" />
@@ -47,15 +39,12 @@
                 <element signature="e#268#275#0" expanded="true" />
                 <element signature="method#startBasicUI#0;class#BasicUI#0" />
                 <element signature="e#478#486#0" expanded="true" />
-                <element signature="method#createClientUI#0;class#BasicUI#0" />
                 <element signature="method#createOwnerUI#0;class#BasicUI#0" />
                 <element signature="method#createProducerUI#0;class#BasicUI#0" />
-                <element signature="method#showStartMenuUI#0;class#ClientUI#0;class#BasicUI#0" />
                 <element signature="e#1920#1928#0" expanded="true" />
                 <element signature="method#showNewRehearsalWin#0;class#ClientUI#0;class#BasicUI#0" />
                 <element signature="method#showNewRecordingWin#0;class#ClientUI#0;class#BasicUI#0" />
                 <element signature="method#showNewProductionWin#0;class#ClientUI#0;class#BasicUI#0" />
-                <element signature="method#showNewRateWin#0;class#ClientUI#0;class#BasicUI#0" />
                 <element signature="method#showStartMenu#0;class#OwnerUI#0;class#BasicUI#0" />
                 <element signature="e#8401#8409#0" expanded="true" />
                 <element signature="method#showOwnerPersonalInfo#0;class#OwnerUI#0;class#BasicUI#0" />
@@ -76,7 +65,6 @@
                 <element signature="method#showProducerProfile#0;class#ProducerUI#0;class#BasicUI#0" />
                 <element signature="method#showProducerWork#0;class#ProducerUI#0;class#BasicUI#0" />
                 <element signature="method#editProducerWork#0;class#ProducerUI#0;class#BasicUI#0" />
-                <element signature="method#selectFromList#0;class#BasicUI#0" />
                 <element signature="e#23163#23171#0" expanded="true" />
                 <element signature="method#selectFromList#1;class#BasicUI#0" />
                 <element signature="method#makeMenu#0;class#BasicUI#0" />
@@ -88,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Offer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="83" column="32" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
+            <state relative-caret-position="270">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -100,7 +88,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Producer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
+            <state relative-caret-position="261">
               <caret line="119" selection-start-line="119" selection-end-line="119" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -124,7 +112,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Production.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
+            <state relative-caret-position="15">
               <caret line="14" column="76" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
             </state>
           </provider>
@@ -154,16 +142,34 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Reservation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
+            <state relative-caret-position="396">
+              <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
               <folding>
                 <element signature="e#323#324#0" expanded="true" />
                 <element signature="e#350#351#0" expanded="true" />
                 <element signature="e#390#391#0" expanded="true" />
                 <element signature="e#422#423#0" expanded="true" />
+                <element signature="e#1030#1031#0" expanded="true" />
+                <element signature="e#1066#1067#0" expanded="true" />
+                <element signature="e#1768#1769#0" expanded="true" />
+                <element signature="e#1804#1805#0" expanded="true" />
+                <element signature="e#1859#1860#0" expanded="true" />
+                <element signature="e#1909#1910#0" expanded="true" />
+                <element signature="e#1942#1943#0" expanded="true" />
+                <element signature="e#1976#1977#0" expanded="true" />
+                <element signature="e#2020#2021#0" expanded="true" />
+                <element signature="e#2056#2057#0" expanded="true" />
+                <element signature="e#2089#2090#0" expanded="true" />
+                <element signature="e#2123#2124#0" expanded="true" />
+                <element signature="e#2161#2162#0" expanded="true" />
+                <element signature="e#2193#2194#0" expanded="true" />
+                <element signature="e#2222#2223#0" expanded="true" />
+                <element signature="e#2254#2255#0" expanded="true" />
+                <element signature="e#2298#2299#0" expanded="true" />
+                <element signature="e#2334#2335#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -214,14 +220,14 @@
         <option value="$PROJECT_DIR$/Equipment.java" />
         <option value="$PROJECT_DIR$/Producer.java" />
         <option value="$PROJECT_DIR$/Rehearsal.java" />
-        <option value="$PROJECT_DIR$/Reservation.java" />
         <option value="$PROJECT_DIR$/SampleInit.java" />
         <option value="$PROJECT_DIR$/Studio.java" />
         <option value="$PROJECT_DIR$/Recording.java" />
-        <option value="$PROJECT_DIR$/Production.java" />
         <option value="$PROJECT_DIR$/Owner.java" />
         <option value="$PROJECT_DIR$/BasicUI.java" />
         <option value="$PROJECT_DIR$/Offer.java" />
+        <option value="$PROJECT_DIR$/Production.java" />
+        <option value="$PROJECT_DIR$/Reservation.java" />
       </list>
     </option>
   </component>
@@ -461,16 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Producer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="119" selection-start-line="119" selection-end-line="119" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Studio.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
@@ -481,13 +477,6 @@
             <element signature="e#8510#8511#0" expanded="true" />
             <element signature="e#8542#8543#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SampleInit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="112" column="95" lean-forward="true" selection-start-line="112" selection-start-column="95" selection-end-line="112" selection-end-column="95" />
         </state>
       </provider>
     </entry>
@@ -511,40 +500,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Production.java">
+    <entry file="file://$PROJECT_DIR$/Offer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="14" column="76" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
+        <state relative-caret-position="270">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Reservation.java">
+    <entry file="file://$PROJECT_DIR$/SampleInit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
-          <folding>
-            <element signature="e#323#324#0" expanded="true" />
-            <element signature="e#350#351#0" expanded="true" />
-            <element signature="e#390#391#0" expanded="true" />
-            <element signature="e#422#423#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Owner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="996">
-          <caret line="108" column="7" selection-start-line="108" selection-start-column="7" selection-end-line="108" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1547">
+          <caret line="112" column="95" lean-forward="true" selection-start-line="112" selection-start-column="95" selection-end-line="112" selection-end-column="95" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BasicUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="726" column="45" selection-start-line="726" selection-start-column="45" selection-end-line="726" selection-end-column="45" />
+        <state relative-caret-position="300">
+          <caret line="66" column="17" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#MyException#0;class#BasicUI#0" />
@@ -554,15 +527,12 @@
             <element signature="e#268#275#0" expanded="true" />
             <element signature="method#startBasicUI#0;class#BasicUI#0" />
             <element signature="e#478#486#0" expanded="true" />
-            <element signature="method#createClientUI#0;class#BasicUI#0" />
             <element signature="method#createOwnerUI#0;class#BasicUI#0" />
             <element signature="method#createProducerUI#0;class#BasicUI#0" />
-            <element signature="method#showStartMenuUI#0;class#ClientUI#0;class#BasicUI#0" />
             <element signature="e#1920#1928#0" expanded="true" />
             <element signature="method#showNewRehearsalWin#0;class#ClientUI#0;class#BasicUI#0" />
             <element signature="method#showNewRecordingWin#0;class#ClientUI#0;class#BasicUI#0" />
             <element signature="method#showNewProductionWin#0;class#ClientUI#0;class#BasicUI#0" />
-            <element signature="method#showNewRateWin#0;class#ClientUI#0;class#BasicUI#0" />
             <element signature="method#showStartMenu#0;class#OwnerUI#0;class#BasicUI#0" />
             <element signature="e#8401#8409#0" expanded="true" />
             <element signature="method#showOwnerPersonalInfo#0;class#OwnerUI#0;class#BasicUI#0" />
@@ -583,7 +553,6 @@
             <element signature="method#showProducerProfile#0;class#ProducerUI#0;class#BasicUI#0" />
             <element signature="method#showProducerWork#0;class#ProducerUI#0;class#BasicUI#0" />
             <element signature="method#editProducerWork#0;class#ProducerUI#0;class#BasicUI#0" />
-            <element signature="method#selectFromList#0;class#BasicUI#0" />
             <element signature="e#23163#23171#0" expanded="true" />
             <element signature="method#selectFromList#1;class#BasicUI#0" />
             <element signature="method#makeMenu#0;class#BasicUI#0" />
@@ -594,10 +563,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Offer.java">
+    <entry file="file://$PROJECT_DIR$/Owner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="83" column="32" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
+        <state relative-caret-position="996">
+          <caret line="108" column="7" selection-start-line="108" selection-start-column="7" selection-end-line="108" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Producer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Production.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="14" column="76" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reservation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
+          <folding>
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#350#351#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#1030#1031#0" expanded="true" />
+            <element signature="e#1066#1067#0" expanded="true" />
+            <element signature="e#1768#1769#0" expanded="true" />
+            <element signature="e#1804#1805#0" expanded="true" />
+            <element signature="e#1859#1860#0" expanded="true" />
+            <element signature="e#1909#1910#0" expanded="true" />
+            <element signature="e#1942#1943#0" expanded="true" />
+            <element signature="e#1976#1977#0" expanded="true" />
+            <element signature="e#2020#2021#0" expanded="true" />
+            <element signature="e#2056#2057#0" expanded="true" />
+            <element signature="e#2089#2090#0" expanded="true" />
+            <element signature="e#2123#2124#0" expanded="true" />
+            <element signature="e#2161#2162#0" expanded="true" />
+            <element signature="e#2193#2194#0" expanded="true" />
+            <element signature="e#2222#2223#0" expanded="true" />
+            <element signature="e#2254#2255#0" expanded="true" />
+            <element signature="e#2298#2299#0" expanded="true" />
+            <element signature="e#2334#2335#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
