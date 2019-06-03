@@ -84,7 +84,7 @@ public class Offer {
         str += "\tOffer type: " + this.recType.toString() + "\n";
         str += "\tOffer number of reservations: " + this.numOfReservations + "\n";
         str += "\tOffer status: " + this.state + "\n";
-
+        str += "\tOffer bonus: " + this.free + "\n";
         return str;
     }
 }

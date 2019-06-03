@@ -119,10 +119,14 @@ public class BasicUI {
         public static void showNewRehearsalWin() throws BackException, ExitException, LogoutException {
             Scanner keyboard = new Scanner(System.in);
             int option;
+            Equipment selectedEquipmentRehearsal=null;
 
             Studio selectedStudio = selectFromList(SampleInit.getStudioList(), "Studio list", "studio");
             Room selectedRoom = selectFromList(selectedStudio.getRooms(), "Rooms list", "room");
             String selectedDate = selectFromList(selectedRoom.getAvailiableRoomDates(), "Avaliable dates list: ", "date");
+            if (makeDialog("Would you like to rent equipment?")) {
+                selectedEquipmentRehearsal = selectFromList(selectedStudio.getEquips(), "Equipment list", "equipment: ");
+            }
 
             System.out.println("Synopsis");
             System.out.println("Client: " + client.getName() + " " + client.getLastName());
@@ -130,6 +134,9 @@ public class BasicUI {
             System.out.println("Room Size:" + selectedRoom.getRoomSize());
             System.out.println("Room Type:" + selectedRoom.getRoomType());
             System.out.println("Room Cost:" + selectedRoom.getCost());
+            if(selectedEquipmentRehearsal!=null) {
+                System.out.println("Rent Equipment: " + selectedEquipmentRehearsal.getName()+ " " + selectedEquipmentRehearsal.getEquipType() );
+            }
             System.out.println("Date:" + selectedDate + "\n");
 
             if (makeDialog("Ready for rehersal?")) {
@@ -733,6 +740,8 @@ public class BasicUI {
             Offer.type recType;
             String recTypeStr;
             int numberOfReservations;
+            String numOfBonus;
+            int bonus;
             String numberOfReservationsStr;
             String statusStr;
             boolean status;
@@ -751,12 +760,16 @@ public class BasicUI {
                 numberOfReservationsStr = keyboard.nextLine();
                 numberOfReservations = Integer.parseInt(numberOfReservationsStr);
 
+                System.out.print("Bonus Reservations: ");
+                numOfBonus = keyboard.nextLine();
+                bonus= Integer.parseInt(numOfBonus);
+
                 System.out.print("Status: ");
                 statusStr = keyboard.nextLine();
                 status = Boolean.parseBoolean(statusStr);
 
                 if (makeDialog("Save?")) {
-                    Offer off = new Offer(offerID, studio, numberOfReservations, 0, recType, status);
+                    Offer off = new Offer(offerID, studio, numberOfReservations, bonus, recType, status);
                 }
             } catch (Exception e) {
                 System.out.println("No such option");
@@ -847,7 +860,7 @@ public class BasicUI {
 
             ArrayList<String> list = new ArrayList<>();
             list.add("Show producer info");
-            list.add("Shpw producer work");
+            list.add("Show producer work");
 
             opt = makeMenu("Producer profile options",list);
             switch (opt) {
@@ -1038,7 +1051,6 @@ public class BasicUI {
         }
         return rating;
     }
-
 
 }
 

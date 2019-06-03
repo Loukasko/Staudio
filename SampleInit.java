@@ -124,8 +124,16 @@ public class SampleInit {
 
         studio1.setAvaliableDate("2-5-29 19:00:00");
         studio1.setAvaliableDate("2-5-19 18:00:00");
-        client1.getHistory().add(new Reservation(10000, client1, studio1, room1, "01-01-2019", false, new ArrayList<Equipment>()));
+        Equipment guitar1 =new Equipment(1,"Fender",Equipment.type.kithara);
+        Equipment guitar2 =new Equipment(2,"Yamaha",Equipment.type.kithara);
+        Equipment klarino1=new Equipment(3,"HandMade",Equipment.type.klarino);
+        Equipment drums1=new Equipment(4,"Yamaha",Equipment.type.drums);
+        studio1.setEquip(guitar1);
+        studio1.setEquip(guitar2);
+        studio1.setEquip(klarino1);
+        studio1.setEquip(drums1);
 
+        client1.getHistory().add(new Reservation(10000, client1, studio1, room1, "01-01-2019", false, new ArrayList<Equipment>()));
 
         //reservations initialization
         Reservation reserv1 = new Reservation(001, client1, studio1, room1, "10-10-2019", false, new ArrayList<Equipment>());
