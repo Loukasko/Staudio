@@ -17,6 +17,7 @@ public class Production extends Reservation{
         this.producer = producer;
         this.costPerMeeting = costPerMeeting;
         this.status = status;
+        client.getHistory().add(this);
     }
 
     // Setters - Getters

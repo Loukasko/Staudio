@@ -117,55 +117,7 @@ public class Producer extends User {
         System.out.println(str);
     }
 
-    public void editProducerInfo() {
-        Scanner keyboard = new Scanner(System.in);
-        char c;
-        String tempName = this.getName();
-        String tempLastName = this.getLastName();
-        String tempPhone = this.getPhone();
-        String tempEmail = this.getEmail();
-        String tempPassword = this.getPassword();
-        String tempStatus = this.isStatus() ? "true" : "false";
 
-        System.out.print("Change phone num? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            System.out.print("Phone num: ");
-            tempPhone = keyboard.next();
-        }
-
-        System.out.print("Change email? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            System.out.print("Email: ");
-            tempEmail = keyboard.next();
-        }
-
-        System.out.print("Change Password? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            System.out.print("Password: ");
-            tempPassword = keyboard.next();
-        }
-
-        System.out.print("Change status? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            System.out.print("Status [true/false]: ");
-            tempStatus = keyboard.next();
-        }
-
-        System.out.print("Save? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            this.setPhone(tempPhone);
-            this.setEmail(tempEmail);
-            this.setPassword(tempPassword);
-            this.setStatus(tempStatus.equals("true") ? true : false);
-        }
-
-        System.out.println("");
-    }
 
     public void editProducerWorkByID(int ID) {
         Production prod = null;

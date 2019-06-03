@@ -2,31 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62fd0da1-a132-48b8-8358-04d436a1796b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BasicUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Equipment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/Owner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recording.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recording.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rehearsal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Rehearsal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SampleInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/SampleInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Studio.java" beforeDir="false" afterPath="$PROJECT_DIR$/Studio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/BasicUI$OwnerUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/BasicUI$OwnerUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/BasicUI$ProducerUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/BasicUI$ProducerUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/BasicUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/BasicUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Equipment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Equipment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Owner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Owner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Recording$type.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Recording$type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Recording.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Recording.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Rehearsal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Rehearsal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Reservation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/SampleInit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/SampleInit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Staudio/Studio.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Staudio/Studio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Producer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Production.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,24 +21,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SampleInit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
+            <state relative-caret-position="-1088">
               <caret line="21" column="113" selection-start-line="21" selection-start-column="113" selection-end-line="21" selection-end-column="113" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BasicUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-274">
-              <caret line="86" column="34" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+            <state relative-caret-position="294">
+              <caret line="545" column="26" selection-start-line="545" selection-start-column="26" selection-end-line="545" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#268#275#0" expanded="true" />
                 <element signature="e#478#486#0" expanded="true" />
                 <element signature="method#createClientUI#0;class#BasicUI#0" />
-                <element signature="method#createOwnerUI#0;class#BasicUI#0" />
-                <element signature="method#createProducerUI#0;class#BasicUI#0" />
                 <element signature="method#showStartMenuUI#0;class#ClientUI#0;class#BasicUI#0" />
                 <element signature="e#1920#1928#0" expanded="true" />
                 <element signature="method#showNewRehearsalWin#0;class#ClientUI#0;class#BasicUI#0" />
@@ -78,15 +54,30 @@
                 <element signature="method#editStudioRooms#0;class#OwnerUI#0;class#BasicUI#0" />
                 <element signature="method#editStudioEquipment#0;class#OwnerUI#0;class#BasicUI#0" />
                 <element signature="method#editOwnerPersonalInfo#0;class#OwnerUI#0;class#BasicUI#0" />
-                <element signature="method#showProducerProfile#0;class#ProducerUI#0;class#BasicUI#0" />
+                <element signature="method#showStartMenu#0;class#ProducerUI#0;class#BasicUI#0" />
                 <element signature="method#showProducerInfo#0;class#ProducerUI#0;class#BasicUI#0" />
+                <element signature="method#editProducerInfo#0;class#ProducerUI#0;class#BasicUI#0" />
                 <element signature="method#showProducerWork#0;class#ProducerUI#0;class#BasicUI#0" />
-                <element signature="e#24815#24823#0" expanded="true" />
+                <element signature="method#editProducerWork#0;class#ProducerUI#0;class#BasicUI#0" />
+                <element signature="method#selectFromList#0;class#BasicUI#0" />
+                <element signature="e#23163#23171#0" expanded="true" />
                 <element signature="method#selectFromList#1;class#BasicUI#0" />
                 <element signature="method#makeMenu#0;class#BasicUI#0" />
                 <element signature="method#makeMenu#1;class#BasicUI#0" />
                 <element signature="method#makeDialog#0;class#BasicUI#0" />
                 <element signature="method#makeRatingDialog#0;class#BasicUI#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Producer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -195,44 +186,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Rehearsal.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Production.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Recording.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#820#821#0" expanded="true" />
-                <element signature="e#854#855#0" expanded="true" />
-                <element signature="e#906#907#0" expanded="true" />
-                <element signature="e#952#953#0" expanded="true" />
-                <element signature="e#987#988#0" expanded="true" />
-                <element signature="e#1019#1020#0" expanded="true" />
-                <element signature="e#1068#1069#0" expanded="true" />
-                <element signature="e#1110#1111#0" expanded="true" />
-                <element signature="e#1143#1144#0" expanded="true" />
-                <element signature="e#1173#1174#0" expanded="true" />
-                <element signature="e#1218#1219#0" expanded="true" />
-                <element signature="e#1256#1257#0" expanded="true" />
-                <element signature="e#1322#1323#0" expanded="true" />
-                <element signature="e#1352#1353#0" expanded="true" />
-                <element signature="e#1398#1399#0" expanded="true" />
-                <element signature="e#1436#1437#0" expanded="true" />
-                <element signature="e#1607#1615#0" expanded="true" />
-                <element signature="e#1834#1835#0" expanded="true" />
-                <element signature="e#1862#1863#0" expanded="true" />
-                <element signature="e#1907#1908#0" expanded="true" />
-                <element signature="e#1941#1942#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="285">
+              <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -263,8 +221,6 @@
         <option value="$PROJECT_DIR$/test.form" />
         <option value="$PROJECT_DIR$/test.java" />
         <option value="$PROJECT_DIR$/Main.java" />
-        <option value="$PROJECT_DIR$/Production.java" />
-        <option value="$PROJECT_DIR$/Producer.java" />
         <option value="$PROJECT_DIR$/Rehearsal.java" />
         <option value="$PROJECT_DIR$/Room.java" />
         <option value="$PROJECT_DIR$/Client.java" />
@@ -274,7 +230,9 @@
         <option value="$PROJECT_DIR$/Owner.java" />
         <option value="$PROJECT_DIR$/Studio.java" />
         <option value="$PROJECT_DIR$/SampleInit.java" />
+        <option value="$PROJECT_DIR$/Producer.java" />
         <option value="$PROJECT_DIR$/BasicUI.java" />
+        <option value="$PROJECT_DIR$/Production.java" />
       </list>
     </option>
   </component>
@@ -388,7 +346,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3034826" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -470,27 +427,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.java" />
-    <entry file="file://$PROJECT_DIR$/Producer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Production.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -623,24 +563,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SampleInit.java">
+    <entry file="file://$PROJECT_DIR$/Producer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="21" column="113" selection-start-line="21" selection-start-column="113" selection-end-line="21" selection-end-column="113" />
+        <state relative-caret-position="32">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BasicUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-274">
-          <caret line="86" column="34" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+        <state relative-caret-position="294">
+          <caret line="545" column="26" selection-start-line="545" selection-start-column="26" selection-end-line="545" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#268#275#0" expanded="true" />
             <element signature="e#478#486#0" expanded="true" />
             <element signature="method#createClientUI#0;class#BasicUI#0" />
-            <element signature="method#createOwnerUI#0;class#BasicUI#0" />
-            <element signature="method#createProducerUI#0;class#BasicUI#0" />
             <element signature="method#showStartMenuUI#0;class#ClientUI#0;class#BasicUI#0" />
             <element signature="e#1920#1928#0" expanded="true" />
             <element signature="method#showNewRehearsalWin#0;class#ClientUI#0;class#BasicUI#0" />
@@ -658,16 +599,33 @@
             <element signature="method#editStudioRooms#0;class#OwnerUI#0;class#BasicUI#0" />
             <element signature="method#editStudioEquipment#0;class#OwnerUI#0;class#BasicUI#0" />
             <element signature="method#editOwnerPersonalInfo#0;class#OwnerUI#0;class#BasicUI#0" />
-            <element signature="method#showProducerProfile#0;class#ProducerUI#0;class#BasicUI#0" />
+            <element signature="method#showStartMenu#0;class#ProducerUI#0;class#BasicUI#0" />
             <element signature="method#showProducerInfo#0;class#ProducerUI#0;class#BasicUI#0" />
+            <element signature="method#editProducerInfo#0;class#ProducerUI#0;class#BasicUI#0" />
             <element signature="method#showProducerWork#0;class#ProducerUI#0;class#BasicUI#0" />
-            <element signature="e#24815#24823#0" expanded="true" />
+            <element signature="method#editProducerWork#0;class#ProducerUI#0;class#BasicUI#0" />
+            <element signature="method#selectFromList#0;class#BasicUI#0" />
+            <element signature="e#23163#23171#0" expanded="true" />
             <element signature="method#selectFromList#1;class#BasicUI#0" />
             <element signature="method#makeMenu#0;class#BasicUI#0" />
             <element signature="method#makeMenu#1;class#BasicUI#0" />
             <element signature="method#makeDialog#0;class#BasicUI#0" />
             <element signature="method#makeRatingDialog#0;class#BasicUI#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SampleInit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1088">
+          <caret line="21" column="113" selection-start-line="21" selection-start-column="113" selection-end-line="21" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Production.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
         </state>
       </provider>
     </entry>

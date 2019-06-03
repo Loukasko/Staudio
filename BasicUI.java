@@ -77,11 +77,9 @@ public class BasicUI {
         OwnerUI.showStartMenu();
     }
 
-    public static void createProducerUI() {
+    public static void createProducerUI() throws ExitException, LogoutException {
         ProducerUI.producer = SampleInit.getProdList().get(0);
-        int x = 10;
-        while(x != 0)
-            x = ProducerUI.showStartMenu();
+        ProducerUI.showStartMenu();
     }
 
     public static class ClientUI {
@@ -510,140 +508,117 @@ public class BasicUI {
     public static class ProducerUI {
         public static Producer producer;
 
-        public static int showStartMenu() {
+        public static void showStartMenu() throws LogoutException, ExitException {
             Scanner keyboard = new Scanner(System.in);
             int opt = 0;
             int x = 10;
+            ArrayList<String> list = new ArrayList<>();
+            list.add("Show profile");
 
-            System.out.println("Producer options:");
-            System.out.println("\t1) Show profile");
-            System.out.println("\t0) Exit");
+            while (true) {
+                try {
+                    opt = makeMenu("Producer options",list);
 
-            do {
-                System.out.print("Choose option: ");
-                opt = keyboard.nextInt();
-
-                switch (opt) {
-                    case 1:
-                        while(x != 0 && x != -1)
-                            x = showProducerProfile();
-                        if(x == 0)
-                            opt = 0;
-                        break;
-                    case 0:
-                        break;
-                    default:
-                        System.out.println("No such option.");
-                        break;
+                    switch (opt) {
+                        case 1:
+                            showProducerProfile();
+                            break;
+                    }
+                } catch (BackException be) {
+                    continue;
                 }
-            }while(opt < 0 || opt > 1);
-
-            return opt;
+            }
         }
-
-        public static int showProducerProfile() {
-            Scanner keyboard = new Scanner(System.in);
-            int opt;
-            int x = 10;
-
-            System.out.println("Producer profile options: ");
-            System.out.println("\t1) Show Producer Info\n\t2) Show Producer Work\n\t0) Exit\n\t-1) Back");
-
-            do {
-                System.out.print("Choose option: ");
-                opt = keyboard.nextInt();
-
-                switch (opt) {
-                    case 1:
-                        while(x != 0 && x != -1)
-                            x = showProducerInfo();
-                        if(x == 0)
-                            opt = 0;
-                        break;
-                    case 2:
-                        while(x != 0 && x != -1)
-                            x = showProducerWork();
-                        if(x == 0)
-                            opt = 0;
-                        break;
-                    case 0:
-                        break;
-                    case -1:
-                        break;
-                    default:
-                        System.out.println("No such option.");
-                        break;
-                }
-            }while(opt < -1 || opt > 2);
-
-            return opt;
-        }
-
-        public static int showProducerInfo() {
-            Scanner keyboard = new Scanner(System.in);
+        public static void showProducerProfile() throws BackException, ExitException, LogoutException {
             int opt;
 
+            ArrayList<String> list = new ArrayList<>();
+            list.add("Show producer info");
+            list.add("Shpw producer work");
+
+            opt = makeMenu("Producer profile options",list);
+            switch (opt) {
+                case 1:
+                    showProducerInfo();
+                    break;
+                case 2:
+                    showProducerWork();
+                    break;
+            }
+        }
+        public static void showProducerInfo() throws BackException, ExitException, LogoutException {
             System.out.println("Producer info:");
             System.out.println(producer.toString());
-            System.out.println();
-            System.out.println("Producer profile info options: ");
-            System.out.println("\t1) Edit Profile Info\n\t0) Exit\n\t-1) Back");
-
-            do {
-                System.out.print("Choose option: ");
-                opt = keyboard.nextInt();
-
-                switch (opt) {
-                    case 1:
-                        producer.editProducerInfo();
-                        break;
-                    case 0:
-                        break;
-                    case -1:
-                        break;
-                    default:
-                        System.out.println("No such option.");
-                        break;
-                }
-            }while(opt < -1 || opt > 1);
-
-            return opt;
+            editProducerInfo();
         }
 
-        public static int showProducerWork() {
+        public static void editProducerInfo() throws BackException, ExitException, LogoutException {
+            Scanner keyboard = new Scanner(System.in);
+            char c;
+            String tempName = producer.getName();
+            String tempLastName = producer.getLastName();
+            String tempPhone = producer.getPhone();
+            String tempEmail = producer.getEmail();
+            String tempPassword = producer.getPassword();
+            String tempStatus = producer.isStatus() ? "true" : "false";
+
+            if(makeDialog("Chanhe phone num?")) {
+                System.out.print("Phone num: ");
+                tempPhone = keyboard.next();
+            }
+            if(makeDialog(("Change email?"))) {
+                System.out.print("Email: ");
+                tempEmail = keyboard.next();
+            }
+            if(makeDialog("Change password")) {
+                System.out.print("Password: ");
+                tempPassword = keyboard.next();
+            }
+            if(makeDialog("Change status?")) {
+                System.out.print("Status [true/false]: ");
+                tempStatus = keyboard.next();
+            }
+            if(makeDialog("Save?")) {
+                producer.setPhone(tempPhone);
+                producer.setEmail(tempEmail);
+                producer.setPassword(tempPassword);
+                producer.setStatus(tempStatus.equals("true") ? true : false);
+            }
+
+            System.out.println("");
+        }
+
+        public static void showProducerWork() throws BackException, ExitException, LogoutException {
             Scanner keyboard = new Scanner(System.in);
             int opt;
             int ID;
 
             System.out.println("Producer work:");
             producer.printWork();
-            System.out.println();
-            System.out.println("Producer work options: ");
-            System.out.println("\t1) Edit work by ID\n\t0) Exit\n\t-1) Back");
-
-            do {
-                System.out.print("Choose option: ");
-                opt = keyboard.nextInt();
-
-                switch (opt) {
-                    case 1:
-                        System.out.print("ID of work: ");
-                        ID = keyboard.nextInt();
-                        producer.editProducerWorkByID(ID);
-                        break;
-                    case 0:
-                        break;
-                    case -1:
-                        break;
-                    default:
-                        System.out.println("No such option.");
-                        break;
-                }
-            }while(opt < -1 || opt > 1);
-
-            return opt;
+            editProducerWork();
         }
 
+        public static void editProducerWork() throws BackException, ExitException, LogoutException {
+            Production prod = selectFromList(producer.getProductions(), "Production list: " , "production");
+
+            if(!prod.isConfirmed()) {
+                if(makeDialog("Confirm production?")) {
+                    prod.setConfirmed(true);
+                    System.out.println("Production confirmed.");
+                }
+                else {
+                    boolean f = producer.getProductions().remove(prod);
+                    System.out.println(f?"Production removed.":"Error removing production.");
+                }
+            }
+            else {
+                if(!prod.getProductionStatus()) {
+                    if(makeDialog("Finished production?")) {
+                        prod.setProductionStatus(true);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -657,11 +632,9 @@ public class BasicUI {
         opt = makeMenu(title,list, optionStr);
         return elemList.get(opt - 1);
     }
-
     public static <E> E selectFromList(ArrayList<E> elemList, String title) throws  BackException, ExitException, LogoutException {
         return selectFromList(elemList, title, "option");
     }
-
     public static int makeMenu(String menuTitle, ArrayList<String> optionList, String optionStr) throws BackException, ExitException, LogoutException  {
         Scanner keyboard = new Scanner(System.in);
         int i = 0;
@@ -699,11 +672,9 @@ public class BasicUI {
         }
         return opt;
     }
-
     public static int makeMenu(String str, ArrayList<String> optionList) throws BackException, ExitException,LogoutException {
         return makeMenu(str, optionList, "option");
     }
-
     public static boolean makeDialog(String message) {
         char c;
         String str;
@@ -733,7 +704,6 @@ public class BasicUI {
 
         return c == 'y';
     }
-
     public static int makeRatingDialog(String message) {
         String str;
         Scanner keyboard = new Scanner(System.in);
