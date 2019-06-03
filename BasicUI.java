@@ -248,8 +248,8 @@ public class BasicUI {
             int ID;
             ArrayList<String> list = new ArrayList<>();
             list.add("Edit studio info");
-            list.add("Edit studio rehearsals");
-            list.add("Edit studio offers");
+            list.add("Menu studio reservations");
+            list.add("Menu studio offers");
             Studio selectedStudio = selectFromList(owner.getPartnerStudios(), "My studios", "studio");
             System.out.println(selectedStudio.getStudioInfo());
             opt = makeMenu("Studio options", list);
@@ -533,177 +533,198 @@ public class BasicUI {
         public static void manageReservations(Studio studio) throws BackException, ExitException, LogoutException {
 
             ArrayList<String> list = new ArrayList<>();
-            list.add("New reservation");
-            list.add("Manage reservation");
-
+            list.add("Show reservations for this studio");
+            list.add("Show pending reservations");
+            Reservation res = null;
             int opt = makeMenu("Reservation options", list);
 
             switch(opt) {
                 case 1:
-                    makeNewReservation(studio);
+                    //System.out.println("Studio accepted reservations: ");
+                    ArrayList<Reservation> acceptedlist = new ArrayList<>();
+                    for(Reservation r : studio.getReservations()) {
+                        if(r.isConfirmed()) {
+                            acceptedlist.add(r);
+                        }
+                    }
+                    //Reservation res = selectFromList(studio.getReservations(), "Studio Reservations", "reservation");
+
+                    res = selectFromList(acceptedlist, "Select accepted reservations to edit", "reservation");
+                    editReservation(res);
+
                     break;
                 case 2:
-                    Reservation res = selectFromList(studio.getReservations(), "Studio reservations");
+                    //System.out.println("Studio pending reservations: ");
+                    ArrayList<Reservation> pendingList = new ArrayList<>();
+                    for(Reservation r : studio.getReservations()) {
+                        if(!r.isConfirmed()) {
+                            pendingList.add(r);
+                        }
+                    }
+                    res = selectFromList(pendingList, "Studio pending reservations", "reservation");
+                    //Reservation res = selectFromList(studio.getReservations(), "Studio reservations");
                     manageReservation(res);
                     break;
             }
+            //manageReservation(res);
         }
         public static void manageReservation(Reservation res) throws  BackException, ExitException, LogoutException {
-            int opt;
-
-            ArrayList<String> list = new ArrayList<>();
-            list.add("Edit reservation");
-            list.add("Remove reservation");
-
             Room tempRoom = res.getRoom();
-            String tempDate = res.getDate();
+            ArrayList<Equipment> equipList = res.getEquipmentList();
+            Equipment equip = null;
 
-            opt = makeMenu("Studio options",list);
-
-            switch(opt) {
-                case 1:
-                    if(!res.isConfirmed()) {
-                        if(makeDialog("Confirm reservation?")) {
-                            res.setConfirmed(true);
-                            System.out.println("Reservation confirmed.");
-                        }
-                        else {
-                            res.getStudio().getReservations().remove(res);
-                            System.out.println("Reservation rejercted.");
-                        }
-                    }
-                    else{
-                        if(makeDialog("Change room?")) {
-                            tempRoom = selectFromList(res.getStudio().getRooms(), "Studio room list", "room");
-                        }
-                        if(makeDialog("Change date?")) {
-                            tempDate = selectFromList(res.getStudio().getAvailiableDates(), "Avaliable dates: ", "date");
-                        }
-                        if(makeDialog("Save?")) {
-                            res.setRoom(tempRoom);
-                            res.setDate(tempDate);
-                            res.printReservationInfo();
-                        }
-                    }
-                    break;
-                case 2:
-                    boolean f = res.getStudio().getReservations().remove(res);
-                    System.out.println(f ? "Reservation removed successfully." : "Error while removing reservation");
-                    break;
+            if (makeDialog("Confirm reservation?")) {
+                res.setConfirmed(true);
+                System.out.println("Reservation confirmed.");
+            } else {
+                res.getStudio().getReservations().remove(res);
+                System.out.println("Reservation rejercted.");
             }
         }
-        public static void makeNewReservation(Studio studio) throws BackException, ExitException, LogoutException {
-            int opt;
-            Scanner keyboard = new Scanner(System.in);
 
-            float tempCost = 0;
+        public static void editReservation(Reservation res) throws BackException, ExitException, LogoutException {
+            Room tempRoom = res.getRoom();
+            Equipment equip = null;
+            ArrayList<Equipment> equipList = res.getStudio().getEquips();
 
-            Client tempClient = null;
-
-            System.out.print("Client ID: ");
-            opt = keyboard.nextInt();
-
-            for(Client c : SampleInit.getClientList()) {
-                if(c.getClientId() == opt) {
-                    tempClient = c;
-                    break;
-                }
+            if (makeDialog("Change room?")) {
+                tempRoom = selectFromList(res.getStudio().getRooms(), "Studio room list", "room");
             }
-            if(tempClient == null) {
-                System.out.println("There is no client with ID " + opt + ".");
-                return;
+            if (makeDialog("Change equipment?")) {
+                equip = selectFromList(res.getStudio().getEquips(), "Equipments: ", "equipment ");
             }
-
-            Room tempRoom = selectFromList(studio.getRooms(), "Studio rooms", "room");
-            boolean tempConfirmed = makeDialog("Confirmed?");
-            ArrayList<Equipment> tempEquips = new ArrayList<>();
-            while(makeDialog("Rent equipment?")) {
-                tempEquips.add(selectFromList(studio.getEquips(), "Equipment list", "equipment"));
-            }
-            String tempDate = selectFromList(studio.getAvailiableDates(), "Avaliable dates", "date");
-
-            System.out.println("Synopsis");
-            System.out.println("Client name: " + tempClient.getName() + " " + tempClient.getLastName());
-            System.out.println("Studio: " + studio.getStudioName());
-            System.out.println("Room: " + tempRoom.getRoomId());
-            System.out.println("Date: " + tempDate);
-            System.out.println("Confirmed: " + tempConfirmed);
-            System.out.println("Cost: " + tempCost);
-            if(makeDialog("Save?")) {
-                Reservation res = new Reservation(Reservation.idAutoIncrement(),tempClient,studio,tempRoom,tempDate,tempConfirmed, tempEquips);
-                boolean f = SampleInit.getReservationList().add(res);
-                System.out.println(f ? "Reservation created succesfully." : "Error while creating reservation");
-            }
-            else {
-                System.out.println("Canceled");
+            if (makeDialog("Save?")) {
+                res.setRoom(tempRoom);
+                if (equip != null)
+                    res.setEquipment(equip);
+                res.printReservationInfo();
             }
         }
+
+
+    //   public static void makeNewReservation(Studio studio) throws BackException, ExitException, LogoutException {
+    //       int opt;
+    //       Scanner keyboard = new Scanner(System.in);
+    //
+    //       float tempCost = 0;
+    //
+    //       Client tempClient = null;
+    //
+    //       System.out.print("Client ID: ");
+    //       opt = keyboard.nextInt();
+    //
+    //       for(Client c : SampleInit.getClientList()) {
+    //           if(c.getClientId() == opt) {
+    //               tempClient = c;
+    //               break;
+    //           }
+    //       }
+    //       if(tempClient == null) {
+    //           System.out.println("There is no client with ID " + opt + ".");
+    //           return;
+    //       }
+    //
+    //       Room tempRoom = selectFromList(studio.getRooms(), "Studio rooms", "room");
+    //       boolean tempConfirmed = makeDialog("Confirmed?");
+    //       ArrayList<Equipment> tempEquips = new ArrayList<>();
+    //       while(makeDialog("Rent equipment?")) {
+    //           tempEquips.add(selectFromList(studio.getEquips(), "Equipment list", "equipment"));
+    //       }
+    //       String tempDate = selectFromList(studio.getAvailiableDates(), "Avaliable dates", "date");
+    //
+    //       System.out.println("Synopsis");
+    //       System.out.println("Client name: " + tempClient.getName() + " " + tempClient.getLastName());
+    //       System.out.println("Studio: " + studio.getStudioName());
+    //       System.out.println("Room: " + tempRoom.getRoomId());
+    //       System.out.println("Date: " + tempDate);
+    //       System.out.println("Confirmed: " + tempConfirmed);
+    //       System.out.println("Cost: " + tempCost);
+    //       if(makeDialog("Save?")) {
+    //           Reservation res = new Reservation(Reservation.idAutoIncrement(),tempClient,studio,tempRoom,tempDate,tempConfirmed, tempEquips);
+    //           boolean f = SampleInit.getReservationList().add(res);
+    //           System.out.println(f ? "Reservation created succesfully." : "Error while creating reservation");
+    //       }
+    //       else {
+    //           System.out.println("Canceled");
+    //       }
+    //   }
         public static void manageOffers(Studio studio) throws BackException, ExitException, LogoutException {
             ArrayList<String> list = new ArrayList<>();
-            list.add("New Offer");
-            list.add("Manage reservation");
+            list.add("Add offer");
+            list.add("Make Own offer");
+            list.add("Show my offers");
 
             int opt = makeMenu("Offer options", list);
 
             switch(opt) {
                 case 1:
+                    addOffer(studio);
+                    break;
+                case 2:
+                   // Offer off = selectFromList(studio.getOffers(), "Offers", "offer");
                     makeNewOffer(studio);
                     break;
-                case 2:
-                    Offer off = selectFromList(studio.getOffers(), "Offers", "offer");
-                    manageOffer(off);
+                case 3:
+                    showStudioOffers(studio);
                     break;
             }
         }
-        public static void manageOffer(Offer off) throws BackException, ExitException, LogoutException {
-            int opt;
-            String tempNumOfReservationsStr;
-            int tempNumOfReservations = off.getNumOfReservations();
-            boolean tempStatus = off.isState();
-            String tempStatusStr;
 
-            Scanner keyboard = new Scanner(System.in);
-
-            ArrayList<String> list = new ArrayList<>();
-            list.add("Edit offer");
-            list.add("Remove offer");
-
-            opt = makeMenu("Offer options",list, "offer");
-
-            switch(opt) {
-                case 1:
-                    if(makeDialog("Change number of reservations?")) {
-                        System.out.print("Number of reservations: ");
-                        tempNumOfReservationsStr = keyboard.nextLine();
-                        tempNumOfReservations = Integer.parseInt(tempNumOfReservationsStr);
-                    }
-                    if(makeDialog("Change status?")) {
-                        System.out.print("Status: ");
-                        tempStatusStr = keyboard.nextLine();
-                        tempStatus = tempStatusStr.equals("true") ? true : false;
-                    }
-
-                    System.out.println("Synopsis");
-                    System.out.println("Offer ID: " + off.getOfferId());
-                    System.out.println("Studio: " + off.getStudio().getStudioName());
-                    System.out.println("Reservation type: " + off.getRecType().toString());
-                    System.out.println("Reservation status: " + (tempStatus ? "true" : "false"));
-                    System.out.println("Num of reservations: " + tempNumOfReservations);
-                    if (makeDialog("Save?")) {
-                        off.setNumOfReservations(tempNumOfReservations);
-                        off.setState(tempStatus);
-                        System.out.println("Offer changed successfully.");
-                    }
-                    else {
-                        System.out.println("Canceled.");
-                    }
-                    break;
-                case 2:
-                    boolean f = off.getStudio().getOffers().remove(off);
-                    System.out.println(f ? "Offer removed successfully" : "Error removing offer");
-                    break;
+        public static void showStudioOffers(Studio studio) {
+            for(Offer o : studio.getOffers()) {
+                System.out.println(o.toString());
             }
         }
+
+ //     public static void manageOffer(Offer off) throws BackException, ExitException, LogoutException {
+ //         int opt;
+ //         String tempNumOfReservationsStr;
+ //         int tempNumOfReservations = off.getNumOfReservations();
+ //         boolean tempStatus = off.isState();
+ //         String tempStatusStr;
+ //
+ //         Scanner keyboard = new Scanner(System.in);
+ //
+ //         ArrayList<String> list = new ArrayList<>();
+ //         list.add("Edit offer");
+ //         list.add("Remove offer");
+ //
+ //         opt = makeMenu("Offer options",list, "offer");
+ //
+ //         switch(opt) {
+ //             case 1:
+ //                 if(makeDialog("Change number of reservations?")) {
+ //                     System.out.print("Number of reservations: ");
+ //                     tempNumOfReservationsStr = keyboard.nextLine();
+ //                     tempNumOfReservations = Integer.parseInt(tempNumOfReservationsStr);
+ //                 }
+ //                 if(makeDialog("Change status?")) {
+ //                     System.out.print("Status: ");
+ //                     tempStatusStr = keyboard.nextLine();
+ //                     tempStatus = tempStatusStr.equals("true") ? true : false;
+ //                 }
+ //
+ //                 System.out.println("Synopsis");
+ //                 System.out.println("Offer ID: " + off.getOfferId());
+ //                 System.out.println("Studio: " + off.getStudio().getStudioName());
+ //                 System.out.println("Reservation type: " + off.getRecType().toString());
+ //                 System.out.println("Reservation status: " + (tempStatus ? "true" : "false"));
+ //                 System.out.println("Num of reservations: " + tempNumOfReservations);
+ //                 if (makeDialog("Save?")) {
+ //                     off.setNumOfReservations(tempNumOfReservations);
+ //                     off.setState(tempStatus);
+ //                     System.out.println("Offer changed successfully.");
+ //                 }
+ //                 else {
+ //                     System.out.println("Canceled.");
+ //                 }
+ //                 break;
+ //             case 2:
+ //                 boolean f = off.getStudio().getOffers().remove(off);
+ //                 System.out.println(f ? "Offer removed successfully" : "Error removing offer");
+ //                 break;
+ //         }
+ //     }
         public static void makeNewOffer(Studio studio) throws BackException, ExitException, LogoutException {
             Scanner keyboard = new Scanner(System.in);
 
@@ -721,7 +742,7 @@ public class BasicUI {
                 offerIDStr = keyboard.nextLine();
                 offerID = Integer.parseInt(offerIDStr);
                 System.out.println("Recording types: ");
-                System.out.println("1) Rehersal\n\t2) Highend");
+                System.out.println("\t1) Rehersal\n\t2) Highend");
                 System.out.print("Choose recording type: ");
                 recTypeStr = keyboard.nextLine();
                 recType = Offer.type.values()[Integer.parseInt(recTypeStr) - 1];
@@ -741,7 +762,62 @@ public class BasicUI {
                 System.out.println("No such option");
             }
         }
+
+        public static void addOffer(Studio studio) throws ExitException, BackException, LogoutException {
+
+            Offer off; //selectFromList(SampleInit.getOfferList(), "Offers", "offer");
+
+            ArrayList<Offer> recordingList = new ArrayList<>();
+            ArrayList<Offer> rehersalList = new ArrayList<>();
+
+            for(Offer o : SampleInit.getOfferList()) {
+                if (o.getStudio().equals(studio)) {
+                    if (o.getRecType().equals(Offer.type.rehearsal)) {
+                        rehersalList.add(o);
+                    } else {
+                        recordingList.add(o);
+                    }
+                }
+            }
+
+            ArrayList<String> list = new ArrayList<>();
+            list.add("Offer for rehearsal");
+            list.add("Offer for recording");
+
+            int opt = makeMenu( "Offer options", list);
+
+            if(opt == 1) {
+                off = selectFromList(rehersalList, "Rehearsal offers", "offer");
+            }
+            else {
+                off = selectFromList(recordingList, "Recording offers", "offer");
+            }
+
+            boolean tempState = off.isState();
+
+            //System.out.println(this.getPartnerStudios().size());
+            for(Studio i:owner.getPartnerStudios()){
+                //System.out.println(i.toString());
+                //System.out.println(i.getStudioId());
+                //System.out.println(studioId);
+                if(i.equals(studio)){
+                    if (tempState != true) {
+                        i.setOffer(off);
+                        //System.out.println("Offer : " + i.getOffers().get(position).getOfferId() + " Added");
+                        System.out.println(i.getOffers().contains(off)?" Offer Added":"Not Added");
+                        off.setState(true);
+                    }else { //ακυρωνω προσθηκη καινουργιου offer
+                        break;
+                    }
+                }
+            }
+
+
+        }
+
     }
+
+
 
     public static class ProducerUI {
         public static Producer producer;

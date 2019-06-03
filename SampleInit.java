@@ -7,6 +7,20 @@ public class SampleInit {
     private static ArrayList<Studio> studioList =new ArrayList<>();
     private static ArrayList<Reservation> reservationList =new ArrayList<>();
 
+    public static ArrayList<Offer> getOfferList() {
+        return offerList;
+    }
+
+    public static void setOfferList(ArrayList<Offer> offerList) {
+        SampleInit.offerList = offerList;
+    }
+
+    private static ArrayList<Offer> offerList = new ArrayList<>();
+
+    public static void setProdList(ArrayList<Producer> prodList) {
+        SampleInit.prodList = prodList;
+    }
+
     public SampleInit() {
         //producers initialization
         Producer producer1 = new Producer("Kirk", "Gian", "6981097028", "email@gmail.com", "otithelw", 16, true, 3);
@@ -116,7 +130,7 @@ public class SampleInit {
         //reservations initialization
         Reservation reserv1 = new Reservation(001, client1, studio1, room1, "10-10-2019", false, new ArrayList<Equipment>());
         reservationList.add(reserv1);
-        Reservation reserv2 = new Reservation(002, client3, studio1, room5, "20-05-2019", false , new ArrayList<Equipment>());
+        Reservation reserv2 = new Reservation(002, client3, studio1, room5, "20-05-2019", true , new ArrayList<Equipment>());
         reservationList.add(reserv2);
 
         Production prod1 = new Production(003, client1, studio2, false, Production.type.fullAlbum,  "29-05-2019", producer1, 10, false);
@@ -132,6 +146,35 @@ public class SampleInit {
 //        studio3.setRoom(room10);
 //        studio3.setRoom(room11);
 //        studio3.setRoom(room12);
+        Offer offer1 = new Offer(1,studio1,5, 2, Offer.type.rehearsal, false);
+        offerList.add(offer1);
+        studio1.setOffer(offer1);
+        //reserv1.setOffer(offer1);
+        Offer offer2 = new Offer(2,studio1,10, 4, Offer.type.rehearsal, false);
+        offerList.add(offer2);
+        studio1.setOffer(offer2);
+        //reserv2.setOffer(offer2);
+        Offer offer3 = new Offer(3,studio1,5, 2, Offer.type.recording, false);
+        offerList.add(offer3);
+        studio1.setOffer(offer3);
+        Offer offer4 = new Offer(4,studio3,5, 2, Offer.type.rehearsal, false);
+        offerList.add(offer4);
+        studio3.setOffer(offer4);
+        Offer offer5 = new Offer(5,studio3,10, 4, Offer.type.rehearsal, false);
+        offerList.add(offer5);
+        studio3.setOffer(offer5);
+        Offer offer6 = new Offer(6,studio3,5, 2, Offer.type.recording, false);
+        offerList.add(offer6);
+        studio3.setOffer(offer6);
+        Offer offer7 = new Offer(7,studio2,5, 2, Offer.type.rehearsal, false);
+        offerList.add(offer7);
+        studio2.setOffer(offer7);
+        Offer offer8 = new Offer(8,studio2,10, 4, Offer.type.rehearsal, false);
+        offerList.add(offer8);
+        studio2.setOffer(offer8);
+        Offer offer9 = new Offer(9,studio2,5, 2, Offer.type.recording, false);
+        offerList.add(offer9);
+        studio2.setOffer(offer9);
 
         producer1.setPartnerStudio(studio1);
         producer2.setPartnerStudio(studio1);
