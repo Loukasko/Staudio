@@ -20,6 +20,8 @@ public class Room {
         this.roomId = roomId;
         this.rating = rating;
         this.cost = cost;
+        this.roomType = roomType;
+        this.roomSize = roomSize;
         this.availiableRoomDates = new ArrayList<String>();
         this.listOfReservations = new ArrayList<Reservation>();
     }
@@ -99,7 +101,15 @@ public class Room {
     }
     public float getCost() { return this.cost; }
     public void setCost(float cost) { this.cost = cost; }
+    public type getRoomType() {
+        return this.roomType;
+    }
+    public void setRoomType(type roomType) { this.roomType = roomType; }
+    public size getRoomSize() { return this.roomSize; }
 
+    public void setRoomSize(size roomSize) {
+        this.roomSize = roomSize;
+    }
 
     public static Room makeNewRoom() {
         Scanner keyboard = new Scanner(System.in);
@@ -160,8 +170,8 @@ public class Room {
         String str = "";
 
         str += "Room ID: " + this.roomId + "\n";
-        str += "Room type: " + (this.roomType == type.highend ? "highend" : "rehersal") + "\n";
-        str += "Room size: ";
+        str += "\tRoom type: " + (this.roomType == type.highend ? "highend" : "rehersal") + "\n";
+        str += "\tRoom size: ";
         if(this.roomSize == size.small) {
             str += "small";
         }
@@ -172,11 +182,21 @@ public class Room {
             str += "large";
         }
         str += "\n";
-        str += "Room rating: " + this.rating + "\n";
-        str += "Room cost: " + this.cost + "\n";
+        str += "\tRoom rating: " + this.rating + "\n";
+        str += "\tRoom cost: " + this.cost + "\n";
+
+        return str;
+    }
+
+    public String getAvaliableDatesString() {
+
+        String str = "";
+        int i = 0;
+
         str += "Room avaliable dates:" + "\n";
         for(String s : this.availiableRoomDates) {
-            str += "\t" + s + "\n";
+            ++i;
+            str += "\t" + i + ") " + s + "\n";
         }
 
         return str;

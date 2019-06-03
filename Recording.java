@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Recording extends Reservation {
     // Variables
     public enum type{laiko,rock,tsifteteli,punk,hiphop,psalmodia}
@@ -5,14 +8,18 @@ public class Recording extends Reservation {
     private float costPerHour;
     private String startDate;
     private String endDate;
+    private String comment;
+
+
 
     // Constructors
-    public Recording(int reservationId, Client client, Studio studio, Room room, boolean confirmed, type recType, float costPerHour, String startDate, String endDate) {
-        super(reservationId, client, studio, room, confirmed);
+    public Recording(int reservationId, Client client, Studio studio, boolean confirmed, type recType, Equipment equip, float costPerHour, String startDate, String comment) {
+        super(reservationId, client, studio, null, confirmed);
         this.recType = recType;
         this.costPerHour = costPerHour;
         this.startDate = startDate;
-        this.endDate = endDate;
+        this.comment = comment;
+        this.equip = equip;
     }
 
     // Setters - Getters
@@ -36,4 +43,33 @@ public class Recording extends Reservation {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public static ArrayList<String> getRecordingTypeList() {
+        ArrayList<String> list = new ArrayList<String>();
+
+        for(int i = 0; i < type.values().length; ++i) {
+            list.add(type.values()[i].toString());
+        }
+
+        return list;
+    }
+
+    public Equipment getEquip() {
+        return equip;
+    }
+
+    public void setEquip(Equipment equip) {
+        this.equip = equip;
+    }
+
+    private Equipment equip;
+
 }

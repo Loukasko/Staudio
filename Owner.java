@@ -122,48 +122,14 @@ public class Owner extends User{
 
     public void printOwnerStudios() {
         for(Studio s : this.partnerStudios) {
-            System.out.println("\tStudio ID: " + s.getStudioId() + ", Name: " + s.getName() + "\n");
+            System.out.println("\tStudio ID: " + s.getStudioId() + ", Name: " + s.getStudioName() + "\n");
         }
     }
 
 
 
-    public void editOwnerPersonalInfo() {
-        String tempName = this.getName();
-        String tempLastName = this.getLastName();
-        String tempPhone = this.getPhone();
-        String tempEmail = this.getEmail();
-        String tempPassword = this.getPassword();
 
-        char c;
-        Scanner keyboard = new Scanner(System.in);
 
-        System.out.print("Change Phone number? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            System.out.print("Phone number: ");
-            tempPhone = keyboard.next();
-        }
-        System.out.print("Change email? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            System.out.print("Email: ");
-            tempEmail = keyboard.next();
-        }
-        System.out.print("Change password? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            System.out.print("Password: ");
-            tempPassword = keyboard.next();
-        }
-        System.out.print("Save? [y/n]: ");
-        c = keyboard.next().charAt(0);
-        if(c == 'y') {
-            this.setName(tempName);
-            this.setLastName(tempLastName);
-            this.setPhone(tempPhone);
-            this.setEmail(tempEmail);
-            this.setPassword(tempPassword);
-        }
-    }
+
+
 }

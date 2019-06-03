@@ -19,7 +19,7 @@ public class SampleInit {
         ownerList.add(owner1);
         Owner owner2 = new Owner("Kwstas", "Kavourdirhs", "2310474829", "kavourdirhs@hotmail.gr", "kavourdirhs", 4019);
         ownerList.add(owner2);
-        Owner owner3 = new Owner("Giorgos", "Georgiou", "2310474829", "kavourdirhs@hotmail.gr", "kavourdirhs", 4019);
+        Owner owner3 = new Owner("Giorgos", "Georgiou", "2310474829", "kavourdirhs@hotmail.gr", "kavourdirhs", 40);
         ownerList.add(owner3);
 
         //client initialization
@@ -107,6 +107,10 @@ public class SampleInit {
         studio2.setRoom(room6);
         studio2.setRoom(room7);
         studio2.setRoom(room8);
+
+        studio1.setAvaliableDate("2-5-29 19:00:00");
+        studio1.setAvaliableDate("2-5-19 18:00:00");
+        client1.getHistory().add(new Reservation(10000, client1, studio1, room1, false));
 
 
         //reservations initialization

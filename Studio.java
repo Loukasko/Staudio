@@ -1,7 +1,5 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Scanner;
 
 public class Studio {
     // Variables
@@ -47,6 +45,7 @@ public class Studio {
     public ArrayList<Room> getRooms() {
         return rooms;
     }
+    public void setRooms(ArrayList<Room> rooms) { this.rooms = rooms; }
     public Room getRoom(int roomId) {
         for(Room r : this.rooms) {
             if(r.getRoomId() == roomId) {
@@ -123,7 +122,7 @@ public class Studio {
         this.offers.remove(off);
         return true;
     }
-    public ArrayList getEquips() {
+    public ArrayList<Equipment> getEquips() {
         return equips;
     }
     public Equipment getEquip(int equipID) {
@@ -134,14 +133,8 @@ public class Studio {
         }
         return null;
     }
-    public boolean setEquips(Equipment eq) {
-        for(Equipment e : this.equips) {
-            if(e.getMusInsId() == eq.getMusInsId()) {
-                return false;
-            }
-        }
-        this.equips.add(eq);
-        return true;
+    public void setEquips(ArrayList<Equipment> equips) {
+        this.equips = equips;
     }
     public boolean setEquip(Equipment e) {
         return this.equips.add(e);
@@ -153,7 +146,8 @@ public class Studio {
 
         return this.equips.remove(eq);
     }
-    public ArrayList getPartnerProducers() {
+    public void setPartnerProducers(ArrayList<Producer> partnerProducers) { this.partnerProducers = partnerProducers; }
+    public ArrayList<Producer> getPartnerProducers() {
         return partnerProducers;
     }
     public Producer getPartnerProducer(int ID) {
@@ -173,7 +167,8 @@ public class Studio {
         this.partnerProducers.add(prod);
         return true;
     }
-    public ArrayList getPartnerOwners() { return partnerOwners; }
+    public ArrayList<Owner> getPartnerOwners() { return partnerOwners; }
+    public void setPartnerOwners(ArrayList<Owner> partnerOwners) { this.partnerOwners = partnerOwners; }
     public Owner getPartnerOwner(int ID) {
         for(Owner o :this.partnerOwners) {
             if(o.getOwnerId() == ID) {
@@ -191,7 +186,7 @@ public class Studio {
         this.partnerOwners.add(partOwn);
         return true;
     }
-    public String getName() { return this.name; }
+    public String getStudioName() { return this.name; }
     public void setName(String name) { this.name = name; }
     public int getStudioId() {
         return studioId;
@@ -241,10 +236,10 @@ public class Studio {
 //
 //    }
 
-    @Override
-    public String toString() {
+
+    public String getStudioInfo() {
         String str = "";
-        str += "Studio name: " + this.getName() + "\n";
+        str += "Studio name: " + this.getStudioName() + "\n";
         str += "Studio ID: " + this.getStudioId() + "\n";
         str += "Studio adress: " + this.getAddress() + "\n";
         str += "Studio overall rating: " + this.getOverallRating() + "\n";
@@ -283,5 +278,10 @@ public class Studio {
         }
         str += "\n";
         return str;
+    }
+
+    @Override
+    public String toString() {
+        return this.getStudioName();
     }
 }

@@ -7,6 +7,7 @@ public class Reservation {
     private Studio studio;
     private boolean confirmed;
     private Room room;
+    private static int autoInc=0;
     private ArrayList<Equipment> equipmentList;
 
     // Constructors
@@ -16,6 +17,7 @@ public class Reservation {
         this.studio = studio;
         this.room = room;
         this.confirmed = confirmed;
+        this.equipmentList = new ArrayList<Equipment>();
     }
 
     // Seters - Getters
@@ -74,4 +76,7 @@ public class Reservation {
         return str;
     }
     public void printReservationInfo() { System.out.println(this.toString()); }
+
+    public static int idAutoIncrement() { return ++autoInc; }
+
 }

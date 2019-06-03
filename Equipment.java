@@ -143,12 +143,14 @@ public class Equipment {
                 break;
         }
         str += "\n";
-        str += "Avaliable dates:" + "\n";
-        for(String s : this.availiableMusInsDates) {
-            str += "\t" + s + "\n";
-        }
 
         return str;
     }
+
+    //public static ArrayList<type> getTypeList() {
+
+
+    //    return list;
+    //}
 
 }

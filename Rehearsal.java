@@ -50,4 +50,18 @@ public class Rehearsal extends Reservation {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public String toString() {
+        String str = "";
+
+        str += "Client: " + client.getName() + " " + client.getLastName() + "\n";
+        str += "Studio: " + studio.getStudioName() + "\n";
+        str += "Room: " + room.getRoomId() + "\n";
+        str += "Cost/hour: " + room.getCost() + "\n";
+        str += "Date: " + startDate + "\n";
+
+        return str;
+    }
+
 }
