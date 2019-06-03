@@ -119,8 +119,8 @@ public class SampleInit {
         Reservation reserv2 = new Reservation(002, client3, studio1, room5, false  );
         reservationList.add(reserv2);
 
-        Production prod1 = new Production(003, client1, studio2, room1, false, Production.type.fullAlbum, "29-01-2019", "29-05-2019", producer1, 10, false);
-        Production prod2 = new Production(004, client1, studio2, room5, true, Production.type.miniAlbum, "29-01-2019", "29-05-2019", producer1, 10, false);
+        Production prod1 = new Production(003, client1, studio2, false, Production.type.fullAlbum,  "29-05-2019", producer1, 10, false);
+        Production prod2 = new Production(004, client1, studio2, true, Production.type.miniAlbum, "29-01-2019",  producer1, 10, false);
         producer1.setProduction(prod1);
         producer1.setProduction(prod2);
 

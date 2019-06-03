@@ -177,7 +177,28 @@ public class BasicUI {
 
 
         }
-        public static void showNewProductionWin() {
+        public static void showNewProductionWin() throws BackException, ExitException, LogoutException {
+            Scanner keyboard = new Scanner(System.in);
+            Production p;
+
+            Studio selectedStudio = selectFromList(SampleInit.getStudioList(), "Studio list", "studio");
+            Production.type prodType = Production.type.valueOf(selectFromList(Production.getProductionTypeList(), "Production type", "production type"));
+            Producer prod = selectFromList(selectedStudio.getPartnerProducers(), "Studio producers: ", "producer");
+            String date = selectFromList(selectedStudio.getAvailiableDates(), "Avaliable dates", "date");
+
+            System.out.println("Synopsis");
+            System.out.println("Client: " + client.getName() + " " + client.getLastName());
+            System.out.println("Studio: " + selectedStudio.getStudioName());
+            System.out.println("Production type: " + prodType);
+            System.out.println("Producer: " + prod.getName() + " " + prod.getLastName());
+            System.out.println("Date: " + date);
+            if(makeDialog("Ready for production?")) {
+                p = new Production(Reservation.idAutoIncrement(), client, selectedStudio, false, prodType, date, prod, 10, false);
+                SampleInit.getReservationList().add(p);
+            }
+            else {
+                System.out.println("Canceled.");
+            }
 
         }
         public static void showNewRateWin() throws BackException, ExitException, LogoutException {
@@ -237,7 +258,7 @@ public class BasicUI {
                 editOwnerStudioInfo(selectedStudio);
             }
         }
-        public static int showOwnerPersonalInfo() throws BackException, LogoutException, ExitException {
+        public static void showOwnerPersonalInfo() throws BackException, LogoutException, ExitException {
             int opt;
             int x=10;
             Scanner keyboard = new Scanner(System.in);
@@ -264,8 +285,6 @@ public class BasicUI {
                         break;
                 }
             }while(opt < -1 || opt > 1);
-
-            return opt;
         }
         public static void editOwnerStudioInfo(Studio stud) throws BackException, LogoutException, ExitException {
             char c;

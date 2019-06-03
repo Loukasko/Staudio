@@ -67,7 +67,7 @@ public class Reservation {
         str += "Reservation ID: " + reservationId + "\n";
         str += "Reservation Client: " + this.client.getClientId() + "\n";
         str += "Reservation Studio: " + this.studio.getStudioId() + "\n";
-        str += "Reservation Room: " + this.room.getRoomId() + "\n";
+        str += (this.room != null) ? "Reservation Room: " + this.room.getRoomId() + "\n" : "";
         str += "Reservation Confirmed: " + this.confirmed + "\n";
         str += "Reservation equipment:\n";
         for(Equipment e : this.equipmentList) {

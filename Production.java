@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Production extends Reservation{
     // Variables
     public enum type{miniAlbum,song,fullAlbum}
@@ -9,15 +11,16 @@ public class Production extends Reservation{
     private boolean status;
 
     // Constructors
-    public Production(int reservationId, Client client, Studio studio, Room room, boolean confirmed, type prodType, String startDay, String endDay, Producer producer, float costPerMeeting, boolean status) {
-        super(reservationId, client, studio, room, confirmed);
+    public Production(int reservationId, Client client, Studio studio, boolean confirmed, type prodType, String startDay, Producer producer, float costPerMeeting, boolean status) {
+        super(reservationId, client, studio, null, confirmed);
         this.prodType = prodType;
         this.startDay = startDay;
-        this.endDay = endDay;
+        this.endDay = "";
         this.producer = producer;
         this.costPerMeeting = costPerMeeting;
         this.status = status;
         client.getHistory().add(this);
+        producer.setProduction(this);
     }
 
     // Setters - Getters
@@ -52,5 +55,15 @@ public class Production extends Reservation{
         str += "Production producer: " + this.producer.getProducerId() + "\n";
         str += "Production cost per day: " + this.costPerMeeting + "\n";
         return str;
+    }
+
+    public static ArrayList<String> getProductionTypeList() {
+        ArrayList<String> list = new ArrayList<>();
+
+        for(int i=0; i<type.values().length; ++i) {
+            list.add(type.values()[i].toString());
+        }
+
+        return list;
     }
 }
