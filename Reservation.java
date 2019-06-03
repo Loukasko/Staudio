@@ -10,14 +10,27 @@ public class Reservation {
     private static int autoInc=0;
     private ArrayList<Equipment> equipmentList;
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    private String date;
+
     // Constructors
-    public Reservation(int reservationId, Client client, Studio studio, Room room, boolean confirmed) {
+    public Reservation(int reservationId, Client client, Studio studio, Room room, String date, boolean confirmed, ArrayList<Equipment> equipmentList) {
         this.reservationId = reservationId;
         this.client = client;
         this.studio = studio;
         this.room = room;
         this.confirmed = confirmed;
-        this.equipmentList = new ArrayList<Equipment>();
+        this.equipmentList = equipmentList;
+        this.date = date;
+        this.client.getHistory().add(this);
+        this.studio.setReservation(this);
     }
 
     // Seters - Getters
@@ -68,6 +81,7 @@ public class Reservation {
         str += "Reservation Client: " + this.client.getClientId() + "\n";
         str += "Reservation Studio: " + this.studio.getStudioId() + "\n";
         str += (this.room != null) ? "Reservation Room: " + this.room.getRoomId() + "\n" : "";
+        str += this.date + "\n";
         str += "Reservation Confirmed: " + this.confirmed + "\n";
         str += "Reservation equipment:\n";
         for(Equipment e : this.equipmentList) {

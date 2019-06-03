@@ -8,14 +8,12 @@ public class BasicUI {
     private static class MyException extends Exception {
 
     }
-
     private static class BackException extends MyException {
 
     }
     private static class ExitException extends MyException {
 
     }
-
     private static class LogoutException extends MyException {
 
     }
@@ -63,7 +61,6 @@ public class BasicUI {
             }
         }
     }
-
     public static void createClientUI() throws BackException, ExitException, LogoutException {
 
         ClientUI.client=SampleInit.getClientList().get(0);
@@ -71,12 +68,10 @@ public class BasicUI {
 
 
     }
-
     public static void createOwnerUI() throws ExitException, LogoutException {
         OwnerUI.owner = SampleInit.getOwnerList().get(0);
         OwnerUI.showStartMenu();
     }
-
     public static void createProducerUI() throws ExitException, LogoutException {
         ProducerUI.producer = SampleInit.getProdList().get(0);
         ProducerUI.showStartMenu();
@@ -251,11 +246,24 @@ public class BasicUI {
         public static void showOwnerMyStudios() throws BackException, LogoutException, ExitException {
             int opt = 0;
             int ID;
-
+            ArrayList<String> list = new ArrayList<>();
+            list.add("Edit studio info");
+            list.add("Edit studio rehearsals");
+            list.add("Edit studio offers");
             Studio selectedStudio = selectFromList(owner.getPartnerStudios(), "My studios", "studio");
             System.out.println(selectedStudio.getStudioInfo());
-            if (makeDialog("Edit studio info")) {
-                editOwnerStudioInfo(selectedStudio);
+            opt = makeMenu("Studio options", list);
+
+            switch(opt) {
+                case 1:
+                    editOwnerStudioInfo(selectedStudio);
+                    break;
+                case 2:
+                    manageReservations(selectedStudio);
+                    break;
+                case 3:
+                    manageOffers(selectedStudio);
+                    break;
             }
         }
         public static void showOwnerPersonalInfo() throws BackException, LogoutException, ExitException {
@@ -522,11 +530,221 @@ public class BasicUI {
                 owner.setPassword(tempPassword);
             }
         }
+        public static void manageReservations(Studio studio) throws BackException, ExitException, LogoutException {
+
+            ArrayList<String> list = new ArrayList<>();
+            list.add("New reservation");
+            list.add("Manage reservation");
+
+            int opt = makeMenu("Reservation options", list);
+
+            switch(opt) {
+                case 1:
+                    makeNewReservation(studio);
+                    break;
+                case 2:
+                    Reservation res = selectFromList(studio.getReservations(), "Studio reservations");
+                    manageReservation(res);
+                    break;
+            }
+        }
+        public static void manageReservation(Reservation res) throws  BackException, ExitException, LogoutException {
+            int opt;
+
+            ArrayList<String> list = new ArrayList<>();
+            list.add("Edit reservation");
+            list.add("Remove reservation");
+
+            Room tempRoom = res.getRoom();
+            String tempDate = res.getDate();
+
+            opt = makeMenu("Studio options",list);
+
+            switch(opt) {
+                case 1:
+                    if(!res.isConfirmed()) {
+                        if(makeDialog("Confirm reservation?")) {
+                            res.setConfirmed(true);
+                            System.out.println("Reservation confirmed.");
+                        }
+                        else {
+                            res.getStudio().getReservations().remove(res);
+                            System.out.println("Reservation rejercted.");
+                        }
+                    }
+                    else{
+                        if(makeDialog("Change room?")) {
+                            tempRoom = selectFromList(res.getStudio().getRooms(), "Studio room list", "room");
+                        }
+                        if(makeDialog("Change date?")) {
+                            tempDate = selectFromList(res.getStudio().getAvailiableDates(), "Avaliable dates: ", "date");
+                        }
+                        if(makeDialog("Save?")) {
+                            res.setRoom(tempRoom);
+                            res.setDate(tempDate);
+                            res.printReservationInfo();
+                        }
+                    }
+                    break;
+                case 2:
+                    boolean f = res.getStudio().getReservations().remove(res);
+                    System.out.println(f ? "Reservation removed successfully." : "Error while removing reservation");
+                    break;
+            }
+        }
+        public static void makeNewReservation(Studio studio) throws BackException, ExitException, LogoutException {
+            int opt;
+            Scanner keyboard = new Scanner(System.in);
+
+            float tempCost = 0;
+
+            Client tempClient = null;
+
+            System.out.print("Client ID: ");
+            opt = keyboard.nextInt();
+
+            for(Client c : SampleInit.getClientList()) {
+                if(c.getClientId() == opt) {
+                    tempClient = c;
+                    break;
+                }
+            }
+            if(tempClient == null) {
+                System.out.println("There is no client with ID " + opt + ".");
+                return;
+            }
+
+            Room tempRoom = selectFromList(studio.getRooms(), "Studio rooms", "room");
+            boolean tempConfirmed = makeDialog("Confirmed?");
+            ArrayList<Equipment> tempEquips = new ArrayList<>();
+            while(makeDialog("Rent equipment?")) {
+                tempEquips.add(selectFromList(studio.getEquips(), "Equipment list", "equipment"));
+            }
+            String tempDate = selectFromList(studio.getAvailiableDates(), "Avaliable dates", "date");
+
+            System.out.println("Synopsis");
+            System.out.println("Client name: " + tempClient.getName() + " " + tempClient.getLastName());
+            System.out.println("Studio: " + studio.getStudioName());
+            System.out.println("Room: " + tempRoom.getRoomId());
+            System.out.println("Date: " + tempDate);
+            System.out.println("Confirmed: " + tempConfirmed);
+            System.out.println("Cost: " + tempCost);
+            if(makeDialog("Save?")) {
+                Reservation res = new Reservation(Reservation.idAutoIncrement(),tempClient,studio,tempRoom,tempDate,tempConfirmed, tempEquips);
+                boolean f = SampleInit.getReservationList().add(res);
+                System.out.println(f ? "Reservation created succesfully." : "Error while creating reservation");
+            }
+            else {
+                System.out.println("Canceled");
+            }
+        }
+        public static void manageOffers(Studio studio) throws BackException, ExitException, LogoutException {
+            ArrayList<String> list = new ArrayList<>();
+            list.add("New Offer");
+            list.add("Manage reservation");
+
+            int opt = makeMenu("Offer options", list);
+
+            switch(opt) {
+                case 1:
+                    makeNewOffer(studio);
+                    break;
+                case 2:
+                    Offer off = selectFromList(studio.getOffers(), "Offers", "offer");
+                    manageOffer(off);
+                    break;
+            }
+        }
+        public static void manageOffer(Offer off) throws BackException, ExitException, LogoutException {
+            int opt;
+            String tempNumOfReservationsStr;
+            int tempNumOfReservations = off.getNumOfReservations();
+            boolean tempStatus = off.isState();
+            String tempStatusStr;
+
+            Scanner keyboard = new Scanner(System.in);
+
+            ArrayList<String> list = new ArrayList<>();
+            list.add("Edit offer");
+            list.add("Remove offer");
+
+            opt = makeMenu("Offer options",list, "offer");
+
+            switch(opt) {
+                case 1:
+                    if(makeDialog("Change number of reservations?")) {
+                        System.out.print("Number of reservations: ");
+                        tempNumOfReservationsStr = keyboard.nextLine();
+                        tempNumOfReservations = Integer.parseInt(tempNumOfReservationsStr);
+                    }
+                    if(makeDialog("Change status?")) {
+                        System.out.print("Status: ");
+                        tempStatusStr = keyboard.nextLine();
+                        tempStatus = tempStatusStr.equals("true") ? true : false;
+                    }
+
+                    System.out.println("Synopsis");
+                    System.out.println("Offer ID: " + off.getOfferId());
+                    System.out.println("Studio: " + off.getStudio().getStudioName());
+                    System.out.println("Reservation type: " + off.getRecType().toString());
+                    System.out.println("Reservation status: " + (tempStatus ? "true" : "false"));
+                    System.out.println("Num of reservations: " + tempNumOfReservations);
+                    if (makeDialog("Save?")) {
+                        off.setNumOfReservations(tempNumOfReservations);
+                        off.setState(tempStatus);
+                        System.out.println("Offer changed successfully.");
+                    }
+                    else {
+                        System.out.println("Canceled.");
+                    }
+                    break;
+                case 2:
+                    boolean f = off.getStudio().getOffers().remove(off);
+                    System.out.println(f ? "Offer removed successfully" : "Error removing offer");
+                    break;
+            }
+        }
+        public static void makeNewOffer(Studio studio) throws BackException, ExitException, LogoutException {
+            Scanner keyboard = new Scanner(System.in);
+
+            int offerID;
+            String offerIDStr;
+            Offer.type recType;
+            String recTypeStr;
+            int numberOfReservations;
+            String numberOfReservationsStr;
+            String statusStr;
+            boolean status;
+
+            try {
+                System.out.print("Offer ID: ");
+                offerIDStr = keyboard.nextLine();
+                offerID = Integer.parseInt(offerIDStr);
+                System.out.println("Recording types: ");
+                System.out.println("1) Rehersal\n\t2) Highend");
+                System.out.print("Choose recording type: ");
+                recTypeStr = keyboard.nextLine();
+                recType = Offer.type.values()[Integer.parseInt(recTypeStr) - 1];
+
+                System.out.print("Number of reservations: ");
+                numberOfReservationsStr = keyboard.nextLine();
+                numberOfReservations = Integer.parseInt(numberOfReservationsStr);
+
+                System.out.print("Status: ");
+                statusStr = keyboard.nextLine();
+                status = Boolean.parseBoolean(statusStr);
+
+                if (makeDialog("Save?")) {
+                    Offer off = new Offer(offerID, studio, numberOfReservations, 0, recType, status);
+                }
+            } catch (Exception e) {
+                System.out.println("No such option");
+            }
+        }
     }
 
     public static class ProducerUI {
         public static Producer producer;
-
         public static void showStartMenu() throws LogoutException, ExitException {
             Scanner keyboard = new Scanner(System.in);
             int opt = 0;
@@ -570,7 +788,6 @@ public class BasicUI {
             System.out.println(producer.toString());
             editProducerInfo();
         }
-
         public static void editProducerInfo() throws BackException, ExitException, LogoutException {
             Scanner keyboard = new Scanner(System.in);
             char c;
@@ -606,7 +823,6 @@ public class BasicUI {
 
             System.out.println("");
         }
-
         public static void showProducerWork() throws BackException, ExitException, LogoutException {
             Scanner keyboard = new Scanner(System.in);
             int opt;
@@ -616,7 +832,6 @@ public class BasicUI {
             producer.printWork();
             editProducerWork();
         }
-
         public static void editProducerWork() throws BackException, ExitException, LogoutException {
             Production prod = selectFromList(producer.getProductions(), "Production list: " , "production");
 

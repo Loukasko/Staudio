@@ -12,7 +12,7 @@ public class Production extends Reservation{
 
     // Constructors
     public Production(int reservationId, Client client, Studio studio, boolean confirmed, type prodType, String startDay, Producer producer, float costPerMeeting, boolean status) {
-        super(reservationId, client, studio, null, confirmed);
+        super(reservationId, client, studio, null, startDay, confirmed, null);
         this.prodType = prodType;
         this.startDay = startDay;
         this.endDay = "";

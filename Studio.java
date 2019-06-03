@@ -96,7 +96,7 @@ public class Studio {
         this.availiableDates.remove(avalDate);
         return true;
     }
-    public ArrayList getOffers() {
+    public ArrayList<Offer> getOffers() {
         return offers;
     }
     public Offer getOffer(int offerId) {
@@ -268,16 +268,22 @@ public class Studio {
         for(String s : this.availiableDates) {
             str += s + "\n";
         }
-        str += "Studio reservations:\n";
-        for(Reservation r : this.reservations) {
-            str += r.getReservationId() + "\n";
-        }
-        str += "Studio offers:\n";
-        for(Offer o : this.offers) {
-            str += o.getOfferId();
-        }
         str += "\n";
         return str;
+    }
+
+    public String getStudioReversationsList() {
+        String str = "";
+
+        for(Reservation r : this.reservations) {
+            str += r.toString() + "\n";
+        }
+
+        return str;
+    }
+
+    public void setReservation(Reservation res) {
+        this.reservations.add(res);
     }
 
     @Override

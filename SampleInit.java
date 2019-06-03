@@ -110,13 +110,13 @@ public class SampleInit {
 
         studio1.setAvaliableDate("2-5-29 19:00:00");
         studio1.setAvaliableDate("2-5-19 18:00:00");
-        client1.getHistory().add(new Reservation(10000, client1, studio1, room1, false));
+        client1.getHistory().add(new Reservation(10000, client1, studio1, room1, "01-01-2019", false, new ArrayList<Equipment>()));
 
 
         //reservations initialization
-        Reservation reserv1 = new Reservation(001, client1, studio1, room1, false  );
+        Reservation reserv1 = new Reservation(001, client1, studio1, room1, "10-10-2019", false, new ArrayList<Equipment>());
         reservationList.add(reserv1);
-        Reservation reserv2 = new Reservation(002, client3, studio1, room5, false  );
+        Reservation reserv2 = new Reservation(002, client3, studio1, room5, "20-05-2019", false , new ArrayList<Equipment>());
         reservationList.add(reserv2);
 
         Production prod1 = new Production(003, client1, studio2, false, Production.type.fullAlbum,  "29-05-2019", producer1, 10, false);

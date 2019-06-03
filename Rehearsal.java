@@ -1,5 +1,7 @@
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class Rehearsal extends Reservation {
     // Variables
     private Client client;
@@ -12,7 +14,7 @@ public class Rehearsal extends Reservation {
 
     // Construstor
     public Rehearsal(int reservationId, Client client, Studio studio, Room room, boolean confirmed, float costPerHour, Text comments, String startDate, String endDate) {
-        super(reservationId, client, studio, room, confirmed);
+        super(reservationId, client, studio, room, startDate, confirmed, new ArrayList<Equipment>());
         this.costPerHour = costPerHour;
         this.comments = comments;
         this.startDate = startDate;

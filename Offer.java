@@ -20,6 +20,7 @@ public class Offer {
         this.numOfReservations = numOfReservations;
         this.free = free;
         this.state = state;
+        studio.setOffer(this);
     }
 
     // Setters - Getters
@@ -72,5 +73,18 @@ public class Offer {
         }
         this.listOfReservations.remove(res);
         return true;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+
+        str += "\tOffer ID: " + this.getOfferId() + "\n";
+        str += "\tOffer studio: " + this.studio.getStudioName()+ "\n";
+        str += "\tOffer type: " + this.recType.toString() + "\n";
+        str += "\tOffer number of reservations: " + this.numOfReservations + "\n";
+        str += "\tOffer status: " + this.state + "\n";
+
+        return str;
     }
 }

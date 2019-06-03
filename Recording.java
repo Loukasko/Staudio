@@ -14,7 +14,7 @@ public class Recording extends Reservation {
 
     // Constructors
     public Recording(int reservationId, Client client, Studio studio, boolean confirmed, type recType, Equipment equip, float costPerHour, String startDate, String comment) {
-        super(reservationId, client, studio, null, confirmed);
+        super(reservationId, client, studio, null, startDate, confirmed, new ArrayList<Equipment>());
         this.recType = recType;
         this.costPerHour = costPerHour;
         this.startDate = startDate;

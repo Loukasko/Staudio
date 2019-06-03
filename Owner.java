@@ -72,7 +72,7 @@ public class Owner extends User{
         }
         return true;
     }
-    public void manageResevation(Studio studio,Client client, Reservation reservation,Room room, boolean pending, boolean accept) {
+    /*public void manageResevation(Studio studio,Client client, Reservation reservation,Room room, boolean pending, boolean accept) {
         for (Studio i : this.getPartnerStudios()) {
             if (i.getStudioId() == studio.getStudioId()) {
                 for (Reservation j : i.getReservations()) {
@@ -106,7 +106,7 @@ public class Owner extends User{
                 i.setOffer(offer);
             }
         }
-    }
+    }*/
 
     @Override
     public String toString() {
